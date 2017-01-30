@@ -32,8 +32,8 @@ public class UserRepository {
         String sql = "DELETE FROM USERS WHERE id=?";
         this.jdbcTemplate.update(sql, id);
     }
-
+    
     public List<User> findAllUser(int page, int item_per_page){
-        return this.jdbcTemplate.query("SELECT * FROM USERS", new UserRowMapper());
-    }
+        return this.jdbcTemplate.query("SELECT * FROM USERS ORDER BY ID LIMIT ?;", new Object[]{item_per_page}, new UserRowMapper());
+    }   
 }
