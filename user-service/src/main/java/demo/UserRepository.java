@@ -16,10 +16,16 @@ public class UserRepository {
     @Transactional(readOnly = true)
     public User findById(Long id) {
         try {
-            return this.jdbcTemplate.queryForObject("SELECT * FROM USERS WHERE id=?", new Object[]{id}, new UserRowMapper());
+            return this.jdbcTemplate.queryForObject("SELECT * FROM USERS WHERE id=?, ", new Object[]{id}, new UserRowMapper());
         }catch (Exception exception) {
             throw new UserNotFoundException(id);
         }
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> findUserinPage(int page, int item_per_page){
+        int firstid = (page-1) * item_per_page;
+        return this.jdbcTemplate.query("SELECT * FROM USERS WHERE id BETWEEN ? AND ?", new Object[]{firstid+1, firstid+item_per_page}, new UserRowMapper());
     }
 
     @Transactional
