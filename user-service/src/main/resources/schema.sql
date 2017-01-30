@@ -1,9 +1,108 @@
 DROP TABLE IF EXISTS USERS;
 
-CREATE TABLE USERS
-(
-    id int(11) NOT NULL AUTO_INCREMENT,
-    firstname varchar(100) NOT NULL,
-    lastname varchar(100) NOT NULL,
-    PRIMARY KEY (id)
-);
+CREATE TABLE `demo`.`users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `firstname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (1,'King','Charissa');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (2,'Fitzpatrick','Dara');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (3,'Bishop','Jennifer');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (4,'Mcknight','Laura');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (5,'Duffy','Isaiah');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (6,'Chapman','Fatima');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (7,'Sloan','Linus');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (8,'Hinton','Graiden');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (9,'Kirkland','Wang');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (10,'Watts','Evangeline');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (11,'Waller','Hermione');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (12,'Zimmerman','Levi');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (13,'Bullock','Fredericka');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (14,'Reed','Kendall');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (15,'Frank','Daryl');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (16,'Franks','Carla');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (17,'Travis','Irene');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (18,'Ashley','Joshua');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (19,'Chang','Julie');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (20,'David','Cailin');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (21,'Castaneda','Xyla');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (22,'Gonzalez','Isaac');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (23,'Beard','Margaret');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (24,'Hutchinson','Walker');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (25,'Cooke','Linus');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (26,'Hughes','Brenda');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (27,'Shepherd','Harding');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (28,'Odonnell','Flynn');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (29,'Mullen','Joshua');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (30,'Hensley','Hiram');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (31,'Myers','Zelenia');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (32,'Robbins','Althea');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (33,'Mckenzie','Ila');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (34,'Dean','Quentin');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (35,'Hayden','Rebecca');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (36,'Wilkins','Kai');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (37,'Mullen','Charissa');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (38,'Huff','Colorado');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (39,'Gordon','Sigourney');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (40,'Guthrie','Rhoda');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (41,'Mcguire','Amethyst');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (42,'Nunez','Claudia');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (43,'Cole','Raven');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (44,'Cunningham','Giselle');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (45,'Wong','Cooper');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (46,'Trevino','Yeo');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (47,'Barker','Melinda');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (48,'Lamb','Hilda');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (49,'Weaver','Paloma');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (50,'Montoya','Cameron');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (51,'Hoover','Amelia');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (52,'Suarez','Echo');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (53,'Peterson','Bert');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (54,'Yates','Guy');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (55,'Collins','Florence');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (56,'Crane','Justina');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (57,'Chambers','Clarke');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (58,'King','Ainsley');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (59,'Frederick','Kiara');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (60,'Larsen','Tanya');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (61,'Berry','Armand');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (62,'Garza','Davis');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (63,'Knox','Aquila');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (64,'Baxter','Ciara');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (65,'Brady','Aline');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (66,'Fulton','Camilla');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (67,'Wood','Angela');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (68,'Dunn','Sawyer');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (69,'Savage','Noelle');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (70,'Stuart','Kieran');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (71,'Barron','Cheyenne');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (72,'Bowers','Lareina');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (73,'Marshall','Sean');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (74,'Diaz','Plato');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (75,'Anthony','Jack');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (76,'Tucker','Iola');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (77,'Wallace','Doris');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (78,'Salazar','Sade');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (79,'Hensley','Quintessa');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (80,'Parks','Cade');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (81,'Duncan','Alexander');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (82,'Le','Martina');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (83,'Fernandez','Lewis');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (84,'Hartman','Zachary');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (85,'Kirkland','Dennis');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (86,'Navarro','Ivory');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (87,'Deleon','Ferris');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (88,'Pope','Yen');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (89,'Benson','Tanisha');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (90,'Graham','Joel');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (91,'Schwartz','Caesar');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (92,'Edwards','Risa');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (93,'Gibbs','Eve');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (94,'Dyer','Kibo');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (95,'Avery','Rajah');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (96,'Coffey','Jermaine');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (97,'Carter','Clayton');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (98,'Greer','Maxwell');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (99,'Spears','Stella');
+INSERT INTO `demo`.`users` (`id`,`firstname`,`lastname`) VALUES (100,'Fields','Lael');
