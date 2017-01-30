@@ -30,4 +30,9 @@ public class UserController {
         return this.userRepository.findUserinPage(page, item_per_page);
     }
 
+    @RequestMapping("/allUsers")
+    public List<User> getAllUser(){
+        return this.userRepository.findAllUser();
+    }
+
 }

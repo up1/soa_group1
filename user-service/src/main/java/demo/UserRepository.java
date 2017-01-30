@@ -39,7 +39,7 @@ public class UserRepository {
         this.jdbcTemplate.update(sql, id);
     }
     
-    public List<User> findAllUser(int page, int item_per_page){
-        return this.jdbcTemplate.query("SELECT * FROM USERS ORDER BY ID LIMIT ?;", new Object[]{item_per_page}, new UserRowMapper());
+    public List<User> findAllUser(){
+        return this.jdbcTemplate.query("SELECT * FROM USERS;", new UserRowMapper());
     }   
 }
