@@ -19,4 +19,11 @@ public class UserController {
     public User getUser(@RequestParam(value="id", defaultValue="1") int id) {
         return this.userRepository.findById((long) id);
     }
+
+    @RequestMapping("/users")
+    public List<User> getAllUser(
+            @RequestParam(value="page", defaultValue="1") int page,
+            @RequestParam(value="item_per_page", defaultValue="10") int id) {
+        return this.userRepository.findAllUser(1,10);
+    }
 }
