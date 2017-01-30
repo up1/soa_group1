@@ -24,8 +24,8 @@ public class UserController {
     }
 
     @RequestMapping("/users")
-    public List<User> getAllUser(
-            @RequestParam(value = "page", defaultValue = "0") int page,
+    public List<User> getUserinPage(
+            @RequestParam(value = "page", defaultValue = "1") int page,
             @RequestParam(value = "item_per_page", defaultValue = "10") int item_per_page) {
         return this.userRepository.findUserinPage(page, item_per_page);
     }
