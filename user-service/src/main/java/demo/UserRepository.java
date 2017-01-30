@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public class UserRepository {
 
@@ -29,5 +31,9 @@ public class UserRepository {
     public void delete(Long id) {
         String sql = "DELETE FROM USERS WHERE id=?";
         this.jdbcTemplate.update(sql, id);
+    }
+
+    public List<User> findAllUser(int page, int item_per_page){
+        return this.jdbcTemplate.query("SELECT * FROM USERS", new UserRowMapper());
     }
 }
