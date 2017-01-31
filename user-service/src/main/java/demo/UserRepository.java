@@ -25,7 +25,7 @@ public class UserRepository {
     @Transactional(readOnly = true)
     public List<User> findUserinPage(int page, int item_per_page){
         int firstid = (page-1) * item_per_page;
-        return this.jdbcTemplate.query("SELECT * FROM USERS WHERE id BETWEEN ? AND ?", new Object[]{firstid+1, firstid+item_per_page}, new UserRowMapper());
+        return this.jdbcTemplate.query("SELECT id, firstname, lastname FROM USERS LIMIT  ? , ?", new Object[]{firstid, item_per_page}, new UserRowMapper());
     }
 
     @Transactional
