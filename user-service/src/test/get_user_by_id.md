@@ -16,7 +16,7 @@ Perform a find user information with id `1`.
 
 ## `GET user?id=2`
 
-Perform a find user information with id `1`.
+Perform a find user information with id `2`.
 
 ===
 
@@ -24,4 +24,16 @@ Perform a find user information with id `1`.
 * `Content-Type: "application/json;charset=UTF-8"`
 ```
 {"id":2,"firstname":"Fitzpatrick","lastname":"Dara"}
+```
+
+## `GET user?id=28`
+
+Perform a find user information with id `28`.
+
+===
+
+* `Status: 200`
+* `Content-Type: "application/json;charset=UTF-8"`
+```
+{"id":28,"firstname":"Odonnell","lastname":"Flynn"}
 ```
