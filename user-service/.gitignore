@@ -57,4 +57,4 @@ $RECYCLE.BIN/
 *.lnk
 
 /.idea
-/.properties
+.properties
