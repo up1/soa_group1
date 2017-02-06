@@ -16,7 +16,7 @@ public class UserRepository {
     @Transactional(readOnly = true)
     public User findById(Long id) {
         try {
-            return this.jdbcTemplate.queryForObject("SELECT * FROM USERS WHERE id=?, ", new Object[]{id}, new UserRowMapper());
+            return this.jdbcTemplate.queryForObject("SELECT * FROM USERS WHERE id=?", new Object[]{id}, new UserRowMapper());
         }catch (Exception exception) {
             throw new UserNotFoundException(id);
         }
