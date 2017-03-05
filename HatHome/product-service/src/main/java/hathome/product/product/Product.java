@@ -1,17 +1,17 @@
 package hathome.product.product;
 
 
-import java.util.ArrayList;
-
 public class Product {
     private long id;
     private String name;
     private String detail;
     private Double price;
-    private ArrayList<String> color;
+    private String color;
     private String brand;
-    private ArrayList<Integer> amount;
+    private int amount;
     private String type;
+    private String image;
+
 
     public long getId() {
         return id;
@@ -45,11 +45,11 @@ public class Product {
         this.price = price;
     }
 
-    public ArrayList<String> getColor() {
+    public String getColor() {
         return color;
     }
 
-    public void setColor(ArrayList<String> color) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -61,11 +61,11 @@ public class Product {
         this.brand = brand;
     }
 
-    public ArrayList<Integer> getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(ArrayList<Integer> amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
@@ -77,4 +77,11 @@ public class Product {
         this.type = type;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
