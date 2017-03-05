@@ -3,7 +3,7 @@ package hathome.authentication.authen;
 /**
  * Created by User on 5/3/2560.
  */
-public class Authen {
+public class User {
     private String email;
     private String password;
 
