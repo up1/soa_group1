@@ -3,6 +3,7 @@ package hathome.authentication.authen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,6 +23,13 @@ public class UserController {
         return this.userRepository.findAllUser();
     }
 
+    @RequestMapping("/login")
+    public String getLoginPage(
+            @RequestParam(value = "email", defaultValue = "") String email,
+            @RequestParam(value = "password", defaultValue = "") String password){
+        return this.userRepository.login(email, password);
+    }
+
 
     @GetMapping("/mimi")
     public String getAuthen() {
@@ -33,5 +41,7 @@ public class UserController {
     public String sayHi(){
         return "Hi";
     }
+
+
 
 }

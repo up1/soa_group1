@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 @Repository
@@ -16,6 +17,13 @@ public class UserRepository {
 
     public List<User> findAllUser(){
         return this.jdbcTemplate.query("SELECT * FROM USER;", new UserRowMapper());
+    }
+
+
+    @Transactional(readOnly = true)
+    public String login(String email, String password){
+        String sql = "SELECT email, password FROM USER WHERE email = "+ email +" AND password = "+password+";";
+        return "true";
     }
 
 }
