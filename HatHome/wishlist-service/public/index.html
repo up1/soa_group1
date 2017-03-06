@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello CORS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!--<script src="wishlist.js"></script>-->
+</head>
+
+<body>
+<div>
+    <p class="wishlist_id">The Wishlist ID is </p>
+    <p class="user_id">The User ID is </p>
+    <p class="product_id">The Product ID is </p>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	$.ajax({
+        type:'GET',
+		dataType: 'json',
+		url: "http://localhost:9004/wishlist",
+		success: function(data, status) {
+			console.log(data);
+            $('.wishlist_id').append(data.wishlist_id);
+            $('.user_id').append(data.user_id);
+            $('.product_id').append(data.product_id);
+		}
+	});
+});
+</script>
+</body>
+</html>
