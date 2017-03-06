@@ -21,9 +21,16 @@ public class UserRepository {
 
 
     @Transactional(readOnly = true)
-    public String login(String email, String password){
-        String sql = "SELECT email, password FROM USER WHERE email = "+ email +" AND password = "+password+";";
-        return "true";
+    public User getLoginPage(String email, String password){
+        User user = new User();
+        String sql = "SELECT email, password FROM USER WHERE email = '"+ email +"' AND password = '"+password+"';";
+        try {
+            user  = this.jdbcTemplate.queryForObject(sql, new Object[]{}, new UserRowMapper());
+            return user;
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return user;
     }
 
 }

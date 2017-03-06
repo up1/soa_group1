@@ -23,11 +23,11 @@ public class UserController {
         return this.userRepository.findAllUser();
     }
 
-    @RequestMapping("/login")
-    public String getLoginPage(
+    @GetMapping("/login")
+    public User getLoginPage(
             @RequestParam(value = "email", defaultValue = "") String email,
             @RequestParam(value = "password", defaultValue = "") String password){
-        return this.userRepository.login(email, password);
+        return this.userRepository.getLoginPage(email, password);
     }
 
 
