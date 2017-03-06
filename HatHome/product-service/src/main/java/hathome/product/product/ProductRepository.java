@@ -17,4 +17,5 @@ public class ProductRepository {
         return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type, image FROM PRODUCT ORDER BY id DESC LIMIT 12;", new ProductRowMapper());
     }
 
+
 }
