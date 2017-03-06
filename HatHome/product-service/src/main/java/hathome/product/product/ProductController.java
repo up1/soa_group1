@@ -22,4 +22,10 @@ public class ProductController {
     public List<Product> getAllProduct(){
         return this.productRepository.findAllProduct();
     }
+
+    @RequestMapping("/search")
+    public List<Product> searchProduct(
+        @RequestParam(value = "keyword", defaultValue = "") String keyword){
+        return this.productRepository.searchProduct(keyword);
+    }
 }

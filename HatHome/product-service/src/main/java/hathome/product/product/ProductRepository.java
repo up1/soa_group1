@@ -17,4 +17,12 @@ public class ProductRepository {
         return this.jdbcTemplate.query("SELECT * FROM PRODUCT;", new ProductRowMapper());
     }
 
+    public List<Product> searchProduct(String keyword){
+        return this.jdbcTemplate.query("SELECT * FROM PRODUCT" +
+                " WHERE NAME LIKE '%" + keyword + "%'" +
+                " OR DETAIL LIKE '%" + keyword + "%'" +
+                " OR BRAND LIKE '%" + keyword + "%'" +
+                " OR TYPE LIKE '%" + keyword + "%'", new ProductRowMapper());
+    }
+
 }
