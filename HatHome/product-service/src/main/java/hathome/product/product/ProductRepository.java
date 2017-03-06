@@ -17,12 +17,21 @@ public class ProductRepository {
         return this.jdbcTemplate.query("SELECT * FROM PRODUCT;", new ProductRowMapper());
     }
 
-    public List<Product> searchProduct(String keyword){
+    public List<Product> searchProduct(String keyword, String price, String color, String brand, String type){
+        String[] priceParts = price.split("-");
+        Double start = Double.parseDouble(priceParts[0]);
+        Double end = Double.parseDouble(priceParts[1]);
+
         return this.jdbcTemplate.query("SELECT * FROM PRODUCT" +
-                " WHERE NAME LIKE '%" + keyword + "%'" +
+                " WHERE (NAME LIKE '%" + keyword + "%'" +
                 " OR DETAIL LIKE '%" + keyword + "%'" +
                 " OR BRAND LIKE '%" + keyword + "%'" +
-                " OR TYPE LIKE '%" + keyword + "%'", new ProductRowMapper());
+                " OR TYPE LIKE '%" + keyword + "%')" +
+                " AND ((PRICE >= " + start + ") AND (PRICE <= " + end + "))" +
+                " AND COLOR LIKE '%" + color + "%'" +
+                " AND BRAND LIKE '%" + brand + "%'" +
+                " AND TYPE LIKE '%" + type + "%'"
+                , new ProductRowMapper());
     }
 
 }

@@ -25,7 +25,11 @@ public class ProductController {
 
     @RequestMapping("/search")
     public List<Product> searchProduct(
-        @RequestParam(value = "keyword", defaultValue = "") String keyword){
-        return this.productRepository.searchProduct(keyword);
+        @RequestParam(value = "keyword", defaultValue = "") String keyword,
+        @RequestParam(value = "price", defaultValue = "0-10000") String price,
+        @RequestParam(value = "color", defaultValue = "") String color,
+        @RequestParam(value = "brand", defaultValue = "") String brand,
+        @RequestParam(value = "type", defaultValue = "") String type){
+        return this.productRepository.searchProduct(keyword, price, color, brand, type);
     }
 }
