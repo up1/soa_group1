@@ -24,10 +24,18 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public User getLoginPage(
+    public String getLoginPage(
             @RequestParam(value = "email", defaultValue = "") String email,
             @RequestParam(value = "password", defaultValue = "") String password){
-        return this.userRepository.getLoginPage(email, password);
+        User user = this.userRepository.getLoginPage(email, password);
+        String show = "";
+        if (user.getEmail() != null){
+           show = "Welcome! " + user.getEmail();
+        }else {
+            show = "Undefined your account";
+        }
+
+        return show;
     }
 
 
