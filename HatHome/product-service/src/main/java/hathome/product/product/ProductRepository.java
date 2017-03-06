@@ -22,7 +22,7 @@ public class ProductRepository {
         Double start = Double.parseDouble(priceParts[0]);
         Double end = Double.parseDouble(priceParts[1]);
 
-        return this.jdbcTemplate.query("SELECT * FROM PRODUCT" +
+        return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type, image FROM PRODUCT" +
                 " WHERE (NAME LIKE '%" + keyword + "%'" +
                 " OR DETAIL LIKE '%" + keyword + "%'" +
                 " OR BRAND LIKE '%" + keyword + "%'" +
