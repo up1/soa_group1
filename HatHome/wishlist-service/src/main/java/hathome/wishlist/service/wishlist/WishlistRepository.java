@@ -18,6 +18,6 @@ public class WishlistRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<Wishlist> findAllWishlist(){
-        return this.jdbcTemplate.query("SELECT * FROM WISHLIST;", new WishlistRowMapper());
+        return this.jdbcTemplate.query("SELECT * FROM WISHLIST", new WishlistRowMapper());
     }
 }
