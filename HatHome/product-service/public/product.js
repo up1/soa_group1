@@ -1,9 +1,7 @@
 $(document).ready(function() {
     $.ajax({
         type: 'GET',
-        url: "http://localhost:9004/a"
+        url: "http://localhost:9004/home"
     }).then(function(data) {
-        $('.pname').append(data.name);
-        console.log('sadasdas');
     });
     });

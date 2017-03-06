@@ -16,7 +16,7 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public List<Product> getRecentProduct(){
         return this.productRepository.findRecentProduct();
     }
