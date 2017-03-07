@@ -30,7 +30,8 @@ public class ProductRepository {
                 " AND ((PRICE >= " + start + ") AND (PRICE <= " + end + "))" +
                 " AND COLOR LIKE '%" + color + "%'" +
                 " AND BRAND LIKE '%" + brand + "%'" +
-                " AND TYPE LIKE '%" + type + "%'"
+                " AND TYPE LIKE '%" + type + "%'" +
+                "ORDER BY ID DESC"
                 , new ProductRowMapper());
     }
 
