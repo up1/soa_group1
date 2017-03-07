@@ -2,3 +2,5 @@
 \.idea/
 
 HatHome/cart-service/cart-service\.iml
+
+*.iml
