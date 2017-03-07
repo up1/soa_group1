@@ -1,0 +1,10 @@
+INSERT INTO `hathome`.`wishlist` VALUES (1, 1, 1);
+INSERT INTO `hathome`.`wishlist` VALUES (2, 1, 3);
+INSERT INTO `hathome`.`wishlist` VALUES (3, 2, 3);
+INSERT INTO `hathome`.`wishlist` VALUES (4, 1, 14);
+INSERT INTO `hathome`.`wishlist` VALUES (5, 2, 20);
+INSERT INTO `hathome`.`wishlist` VALUES (6, 1, 7);
+INSERT INTO `hathome`.`wishlist` VALUES (7, 2, 15);
+INSERT INTO `hathome`.`wishlist` VALUES (8, 2, 14);
+INSERT INTO `hathome`.`wishlist` VALUES (9, 1, 18);
+INSERT INTO `hathome`.`wishlist` VALUES (10, 2, 12);
