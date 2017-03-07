@@ -13,8 +13,9 @@ public class ProductRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Product> findAllProduct(){
-        return this.jdbcTemplate.query("SELECT * FROM PRODUCT;", new ProductRowMapper());
+    public List<Product> findRecentProduct(){
+        return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type, image FROM PRODUCT ORDER BY id DESC LIMIT 12;", new ProductRowMapper());
     }
+
 
 }
