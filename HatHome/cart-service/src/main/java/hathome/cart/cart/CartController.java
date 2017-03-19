@@ -25,9 +25,4 @@ public class CartController {
         return this.cartRepository.getItemInCart();
     }
 
-    @GetMapping("/test")
-    public String getAuthen() {
-        return "test";
-
-    }
 }
