@@ -279,10 +279,17 @@ a#scrollUp i{
   height: 35px;
   outline: medium none;
   padding-left: 10px;
-  width: 255px;
-  background-image: url(../images/home/searchicon.png);
+  width: 100px;
+
+}
+
+.search_button{
+  margin-bottom: -10px;
+  height: 25px;
+  width: 30px;
+  margin-left: -3px;
+  background-image:url(../images/home/searchicon.png);
   background-repeat: no-repeat;
-  background-position: 230px;
 }
 
 
@@ -608,6 +615,17 @@ a#scrollUp i{
 .category-products {
   border: 1px solid #e6e6e6;
   margin-bottom: 35px;
+}
+
+.view-all-btn{
+  background: #FE980F;
+  border: medium none;
+  border-radius: 0;
+  color: #FFFFFF;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  padding: 6px 25px;
+  margin-bottom: 30px;
 }
 
 
@@ -1210,9 +1228,7 @@ h2.title {
 .product-information {
   border: 1px solid #e6e6e6;
   overflow: hidden;
-  padding-bottom: 60px;
-  padding-left: 60px;
-  padding-top: 60px;
+  padding: 30px;
   position: relative;
 }
 
@@ -1232,25 +1248,18 @@ h2.title {
 .product-information p {
   color: #696763;
   font-family: 'Roboto', sans-serif;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
-.product-information span {
-  display: inline-block;
-  margin-bottom: 8px;
-  margin-top: 18px;
-}
 
-.product-information span span {
+.price-info b{
   color: #FE980F;
-  float: left;
   font-family: 'Roboto', sans-serif;
   font-size: 30px;
   font-weight: 700;
-  margin-right: 20px;
-  margin-top: 0px;
+  margin-top: 30px;
 }
-.product-information span input {
+.product-information input {
   border: 1px solid #DEDEDC;
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -1260,9 +1269,10 @@ h2.title {
   outline: medium none;
   text-align: center;
   width: 50px;
+  margin-bottom: 35px;
 }
 
-.product-information span label {
+.product-information label {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
@@ -1421,7 +1431,7 @@ h2.title {
 #form {
   display: block;
   margin-bottom: 185px;
-  margin-top: 185px;
+  margin-top: 50px;
   overflow: hidden;
 }
 
@@ -1457,6 +1467,20 @@ h2.title {
   width: 100%;
 }
 
+ .signup-form form textarea{
+   background: #F0F0E9;
+   border: medium none;
+   color: #696763;
+   display: block;
+   font-family: 'Roboto', sans-serif;
+   font-size: 14px;
+   font-weight: 300;
+   margin-bottom: 10px;
+   outline: medium none;
+   padding-left: 10px;
+   width: 100%;
+ }
+
 .login-form form span{
   line-height: 25px;
 }
@@ -1468,11 +1492,7 @@ h2.title {
   margin-right: 5px;
 }
 
-.login-form form button {
-  margin-top: 23px;
-}
-
-.login-form form button, .signup-form form button {
+.login-form form button, .signup-form form button{
   background: #FE980F;
   border: medium none;
   border-radius: 0;
@@ -1519,38 +1539,6 @@ h2.title {
   margin-bottom: 50px;
 }
 
-.breadcrumbs {
-  position: relative;
-}
-
-.breadcrumbs .breadcrumb {
-  background:transparent;
-  margin-bottom: 75px;
-  padding-left: 0;
-}
-
-.breadcrumbs .breadcrumb li a {
-  background:#FE980F;
-  color: #FFFFFF;
-  padding: 3px 7px;
-}
-
-.breadcrumbs .breadcrumb li a:after {
-  content:"";
-  height:auto;
-  width: auto;
-  border-width: 8px;
-  border-style: solid;
-  border-color:transparent transparent transparent #FE980F;
-  position: absolute;
-  top: 11px;
-  left:48px;
-
-}
-
-.breadcrumbs .breadcrumb > li + li:before {
-  content: " ";
-}
 
 #cart_items .cart_info {
   border: 1px solid #E6E4DF;
@@ -1587,6 +1575,7 @@ h2.title {
 
 #cart_items .cart_info .image {
   padding-left: 30px;
+
 }
 
 
@@ -1615,14 +1604,18 @@ h2.title {
 
 #cart_items .cart_info .cart_total_price {
   color: #FE980F;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .cart_product {
   display: block;
-  margin: 15px -70px 10px 25px;
+  margin: 0px -70px 10px 25px;
 }
 
+.cart_product a img{
+  width: 120px;
+  height: 120px;
+}
 .cart_quantity_button a {
   background:#F0F0E9;
   color: #696763;
@@ -1654,7 +1647,7 @@ h2.title {
 
 
 .cart_delete a {
-  background:#F0F0E9;
+  background:#e6e6e6;
   color: #FFFFFF;
   padding: 5px 7px;
   font-size: 16px
@@ -1778,7 +1771,7 @@ h2.title {
 }
 
 .check_out {
-  margin-left: 20px
+  float: right;
 }
 
 
@@ -1918,6 +1911,7 @@ h2.title {
   height: 335px;
   margin-bottom: 20px;
   padding: 15px 20px;
+
 }
 
 .order-message label {
@@ -1953,6 +1947,7 @@ h2.title {
 .table.table-condensed.total-result {
   margin-bottom: 10px;
   margin-top: 35px;
+  margin-left: -22px;
   color: #696763
 }
 
@@ -2411,105 +2406,24 @@ h2.title {
 
 
 /*************************
-******* Contact CSS ********
+******* billing CSS ********
 **************************/
 
-.contact-map {
-  width: 100%;
-  height: 385px;
-  margin-bottom: 70px
-}
-
-.contact-info .heading,
-.contact-form .heading {
-  text-transform: capitalize;
-}
-
-.contact-form .form-group {
-  margin-bottom: 20px;
-}
-
-#contact-page
-.form-control::-moz-placeholder {
-  color: #8D8D8D;
-}
-
-#contact-page .form-control {
-  background-color: #fff;
-  border: 1px solid #ddd;
+.cart_quantity p {
   color: #696763;
-  height: 46px;
-  padding: 6px 12px;
-  width: 100%;
-  font-size: 16px;
-  border-radius: 4px;
-  box-shadow:inherit;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 20px;
+  font-size: 18px;
 }
 
-#contact-page #message {
-  height:160px;
-  resize:none;
+.bill-infomation p{
+  color: #696763;
+  font-family: 'Roboto', sans-serif;
+  margin-left: 20px;
+  font-size: 17px;
+
 }
-
-#main-contact-form .btn-primary {
-  margin-bottom: 15px;
-  margin-top: 20px;
-}
-
-
-#contact-page .form-control:focus,
-#contact-page .form-control:hover {
-  box-shadow: inherit;
-  border-color: #FDB45E;
-}
-
-#contact-page .contact-info {
-  padding: 0 20px;
-}
-
-#contact-page .contact-info address {
+.bill-infomation{
+  margin-top: 40px;
   margin-bottom: 40px;
-  margin-top: -5px;
-}
-
-#contact-page .contact-info p {
-  margin-bottom: 0;
-  color: #696763;
-  font-size: 16px;
-  line-height: 25px;
-}
-
-.social-networks{
-  overflow: hidden;
-  text-align: center;
-}
-
-.social-networks ul {
-  margin-top: -5px;
-  padding: 0;
-  display: inline-block;
-}
-
-.social-networks ul li {
-  float: left;
-  text-decoration: none;
-  list-style: none;
-  margin-right: 20px;
-}
-
-.social-networks ul li:last-child{
-  margin-right: 0;
-}
-
-.social-networks ul li a {
-  color: #999;
-  font-size: 25px;
-}
-
-.contact-info .social-networks ul li a i{
-  background: none;
-}
-
-.contact-info .social-networks ul li a:hover{
-  color: #FE980F;
 }
