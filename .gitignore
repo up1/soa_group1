@@ -1,2 +1,6 @@
 
 \.idea/
+
+HatHome/product-service/data/elasticsearch/nodes/0/_state/
+
+*.lock
