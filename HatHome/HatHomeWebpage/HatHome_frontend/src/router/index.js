@@ -14,8 +14,8 @@ const router = new Router({
       component: Hello
     },
     {
-      path: '/mimi',
-      name: 'Mimi',
+      path: '/mark',
+      name: 'Mark',
       component: Mimi
     }
   ]

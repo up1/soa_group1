@@ -1,15 +1,15 @@
 <template>
-  <div class="mimi">
-    <h1>mimi</h1>
+  <div class="mark">
+    <h1>marktrs</h1>
     <p>{{msg}}</p>
   </div>
 </template>
 <script>
   export default {
-    name: 'mimi',
+    name: 'mark',
     data () {
       return {
-        msg: 'abcde'
+        msg: 'Marktrs'
       }
     }
   }

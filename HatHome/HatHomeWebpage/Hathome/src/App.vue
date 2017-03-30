@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h1>Marktrs</h1>
     <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
