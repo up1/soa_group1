@@ -1,10 +1,22 @@
 
 \.idea/
 
+HatHome/product-service/data/elasticsearch/nodes/0/_state/
+
+*.lock
+
+HatHome/product-service/product-service\.iml
+
 HatHome/cart-service/cart-service\.iml
 
 *.iml
 
+<<<<<<< HEAD
 HatHome/product-service/data/elasticsearch/nodes/0/_state/global-3\.st
 
 HatHome/product-service/data/elasticsearch/nodes/0/node\.lock
+=======
+HatHome/product-service/data/elasticsearch/nodes/0/node\.lock
+
+HatHome/product-service/data/elasticsearch/nodes/0/_state/global-3\.st
+>>>>>>> search-and-filter
