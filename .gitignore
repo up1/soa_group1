@@ -4,3 +4,7 @@
 HatHome/cart-service/cart-service\.iml
 
 *.iml
+
+HatHome/product-service/data/elasticsearch/nodes/0/_state/global-3\.st
+
+HatHome/product-service/data/elasticsearch/nodes/0/node\.lock
