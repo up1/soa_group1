@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS BILLS;
+
+CREATE TABLE `bill`.`bills` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `status` VARCHAR(70) NOT NULL,
+  `address` VARCHAR(300) NOT NULL,
+  `cart_id` INT NOT NULL,
+  `total` DOUBLE NOT NULL,
+  PRIMARY KEY (`id`));
