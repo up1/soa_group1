@@ -7,7 +7,7 @@ public class Bill {
     private long id;
     private String status;
     private String address;
-    private long cartId;
+    private long cart_id;
     private double total;
 
     public long getId() {
@@ -34,12 +34,12 @@ public class Bill {
         this.address = address;
     }
 
-    public long getCartId() {
-        return cartId;
+    public long getCart_id() {
+        return cart_id;
     }
 
-    public void setCartId(long cartId) {
-        this.cartId = cartId;
+    public void setCart_id(long cart_id) {
+        this.cart_id = cart_id;
     }
 
     public double getTotal() {
