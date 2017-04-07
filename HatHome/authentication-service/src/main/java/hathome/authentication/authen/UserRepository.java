@@ -23,7 +23,7 @@ public class UserRepository {
 
 
     @Transactional(readOnly = true)
-    public User checkLogin(String email, String password){
+    public User getUserByEmailAndPassword(String email, String password){
         User user = null;
         String sql = "SELECT id, email, password, address FROM USER WHERE email = '"+ email +"' AND password = '"+password+"';";
         try {

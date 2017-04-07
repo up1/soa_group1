@@ -34,8 +34,9 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<Map<String, Object>> checkLogin(
             @RequestBody() Map<String, Object> bodyJSON ) throws JsonProcessingException {
-        User user = this.userRepository.checkLogin((String) bodyJSON.get("email"),(String) bodyJSON.get("password"));
+        User user = this.userRepository.getUserByEmailAndPassword((String) bodyJSON.get("email"),(String) bodyJSON.get("password"));
         if (user != null){
+
         // Set claims (payloads)
         Claims claims = Jwts.claims().setSubject(user.getEmail());
         claims.put("id", user.getId());
