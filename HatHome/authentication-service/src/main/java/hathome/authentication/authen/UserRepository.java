@@ -1,6 +1,8 @@
 package hathome.authentication.authen;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,9 +23,9 @@ public class UserRepository {
 
 
     @Transactional(readOnly = true)
-    public User getLoginPage(String email, String password){
+    public User checkLogin(String email, String password){
         User user = new User();
-        String sql = "SELECT email, password FROM USER WHERE email = '"+ email +"' AND password = '"+password+"';";
+        String sql = "SELECT email, password, address FROM USER WHERE email = '"+ email +"' AND password = '"+password+"';";
         try {
             user  = this.jdbcTemplate.queryForObject(sql, new Object[]{}, new UserRowMapper());
             return user;
