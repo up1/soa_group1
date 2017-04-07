@@ -24,8 +24,8 @@ public class UserRepository {
 
     @Transactional(readOnly = true)
     public User checkLogin(String email, String password){
-        User user = new User();
-        String sql = "SELECT email, password, address FROM USER WHERE email = '"+ email +"' AND password = '"+password+"';";
+        User user = null;
+        String sql = "SELECT id, email, password, address FROM USER WHERE email = '"+ email +"' AND password = '"+password+"';";
         try {
             user  = this.jdbcTemplate.queryForObject(sql, new Object[]{}, new UserRowMapper());
             return user;
