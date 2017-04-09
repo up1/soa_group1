@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS USER;
 
 CREATE TABLE `user` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(255) NOT NULL,
+  `address` TEXT NOT NULL,
   PRIMARY KEY (`id`));
