@@ -1,0 +1,2 @@
+insert into user (email, password, address) values ('mimi@mi', 'mimi', '100 Omnoi Krathumban Samut Sakorn');
+insert into user (email, password, address) values ('user@user', 'user', '123 Ladkrabang Bangkok');
