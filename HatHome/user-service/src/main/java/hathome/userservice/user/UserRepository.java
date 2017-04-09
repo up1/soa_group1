@@ -22,8 +22,8 @@ public class UserRepository {
     }
 
 
-    public boolean signup(String email, String password, String address){
-        String sql = "INSERT INTO user (email, password, address) values ('"+ email +"', '"+ password +"', '"+ address +"');";
+    public boolean signup(User user){
+        String sql = "INSERT INTO user (email, password, address) values ('"+ user.getEmail() +"', '"+ user.getPassword() +"', '"+ user.getAddress() +"');";
         try {
             this.jdbcTemplate.execute(sql);
             return true;

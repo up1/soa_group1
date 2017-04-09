@@ -29,11 +29,18 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
         public ResponseEntity signup(@RequestBody() Map<String, Object> bodyJSON ) throws JsonProcessingException {
 
-        if(this.userRepository.signup((String) bodyJSON.get("email"), (String) bodyJSON.get("password"), (String) bodyJSON.get("address"))){
+        User user = new User();
+        user.setEmail((String) bodyJSON.get("email"));
+        user.setPassword((String) bodyJSON.get("password"));
+        user.setAddress((String) bodyJSON.get("address"));
+
+        if(this.userRepository.signup(user)){
             return new ResponseEntity<>(HttpStatus.CREATED);
         }return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
     }
+
+
 
 
 }
