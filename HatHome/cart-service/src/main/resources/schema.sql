@@ -2,5 +2,9 @@ DROP TABLE IF EXISTS CART;
 
 CREATE TABLE `cart` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`));
+  `user_id` VARCHAR(45) NOT NULL,
+  `product_id` VARCHAR(45) NOT NULL,
+  `amount` INTEGER(3) NOT NULL,
+  `status` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`)
+  );

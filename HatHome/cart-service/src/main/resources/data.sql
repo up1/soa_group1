@@ -1,2 +1,4 @@
-insert into cart (name) values ('Hat 01');
-insert into cart (name) values ('Cab 01');
+insert into cart (user_id, product_id, amount, status) values
+('mark1234', 'hat01', 2, 'unpaid'),
+('mark1234', 'hat02', 1, 'paid')
+;

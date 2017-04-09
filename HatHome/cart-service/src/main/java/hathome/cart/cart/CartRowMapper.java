@@ -13,7 +13,10 @@ public class CartRowMapper implements RowMapper<Cart> {
     public Cart mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
         Cart item = new Cart();
         item.setId(resultSet.getString("id"));
-        item.setName(resultSet.getString("name"));
+        item.setUser_id(resultSet.getString("user_id"));
+        item.setProduct_id(resultSet.getString("product_id"));
+        item.setAmount(resultSet.getString("amount"));
+        item.setStatus(resultSet.getString("status"));
         return item;
     }
 }
