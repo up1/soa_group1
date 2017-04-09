@@ -6,7 +6,6 @@ package hathome.userservice.user;
 public class User {
 
     private String email;
-    private String password;
     private String address;
     private Integer id;
 
@@ -43,12 +42,5 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 }

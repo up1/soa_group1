@@ -1,6 +1,7 @@
 package hathome.userservice.user;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +27,18 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.POST)
         public ResponseEntity signup(@RequestBody() Map<String, Object> bodyJSON ) throws JsonProcessingException {
 
-        User user = new User();
-        user.setEmail((String) bodyJSON.get("email"));
-        user.setPassword((String) bodyJSON.get("password"));
-        user.setAddress((String) bodyJSON.get("address"));
+        String password = (String) bodyJSON.remove("password");
 
-        if(this.userRepository.signup(user)){
+        ObjectMapper objectMapper = new ObjectMapper();
+        User user = objectMapper.convertValue(bodyJSON, User.class);
+
+        try {
+            this.userRepository.signup(user, password);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            System.out.println(e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
     }
 

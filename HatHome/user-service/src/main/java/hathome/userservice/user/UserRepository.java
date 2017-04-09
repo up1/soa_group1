@@ -16,16 +16,10 @@ public class UserRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-
-    public List<User> findAllUser(){
-        return this.jdbcTemplate.query("SELECT * FROM USER;", new UserRowMapper());
-    }
-
-
-    public boolean signup(User user){
-        String sql = "INSERT INTO user (email, password, address) values ('"+ user.getEmail() +"', '"+ user.getPassword() +"', '"+ user.getAddress() +"');";
+    public boolean signup(User user, String password){
+        String sql = "INSERT INTO user (email, password, address) values (?,?,?)";
         try {
-            this.jdbcTemplate.execute(sql);
+            this.jdbcTemplate.update(sql, user.getEmail(), password, user.getAddress());
             return true;
 
         }catch (Exception e){
@@ -41,7 +35,6 @@ public class UserRepository {
             return this.jdbcTemplate.queryForObject(sql,
                     new Object[]{userId}, new UserRowMapper());
         }catch (Exception exception) {
-            System.out.println(">>>>>" + exception);
             throw new UserNotFoundException(userId);
         }
     }
