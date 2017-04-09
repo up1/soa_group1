@@ -34,4 +34,15 @@ public class UserRepository {
         }
     }
 
+    @Transactional(readOnly = true)
+    public User findById(Integer userId) {
+        try {
+            String sql = "SELECT email, address, id FROM USER WHERE id=?";
+            return this.jdbcTemplate.queryForObject(sql,
+                    new Object[]{userId}, new UserRowMapper());
+        }catch (Exception exception) {
+            System.out.println(">>>>>" + exception);
+            throw new UserNotFoundException(userId);
+        }
+    }
 }
