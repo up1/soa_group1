@@ -22,10 +22,17 @@ public class CartController {
         this.cartRepository = cartRepository;
     }
 
+    @RequestMapping("/")
+    public String index(){
+        return "Hello";
+    }
+
     @RequestMapping("/cart")
     public List<Cart> getAllCartItems(){
         return this.cartRepository.getItemInCart();
     }
+
+
 
     @GetMapping("/cart/{userId}")
     public  List<Cart> getProductInCartById(@PathVariable String userId){

@@ -21,8 +21,8 @@ public class CartRepository {
     }
 
     public List<Cart> getItemInCartById(String userId) {
-        return this.jdbcTemplate.query("SELECT () FROM cart " +
-                "WHERE user_id = " + userId + " AND status = 'unpaid' ;"
+        return this.jdbcTemplate.query("SELECT * FROM cart " +
+                "WHERE user_id = '" + userId + "' AND status = 'unpaid';"
                 , new CartRowMapper());
     }
 

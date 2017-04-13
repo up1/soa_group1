@@ -30,4 +30,25 @@ public class Cart {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    
+    public String getId() {
+        return id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 }
