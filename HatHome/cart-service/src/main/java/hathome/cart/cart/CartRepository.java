@@ -16,19 +16,19 @@ public class CartRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Cart> getItemInCart(){
-        return this.jdbcTemplate.query("SELECT * FROM cart;", new CartRowMapper());
+    public List<Cart> getUnpaidItemInCart(){
+        return this.jdbcTemplate.query("SELECT * FROM cart WHERE status = 'unpaid';", new CartRowMapper());
     }
 
-    public List<Cart> getItemInCartById(String userId) {
+    public List<Cart> getItemInCartByUserId(String userId) {
         return this.jdbcTemplate.query("SELECT * FROM cart " +
                 "WHERE user_id = '" + userId + "' AND status = 'unpaid';"
                 , new CartRowMapper());
     }
 
-    public void updateAmount(String productId, BigDecimal amount) {
+    public void updateAmount(String orderId, Integer amount) {
         this.jdbcTemplate.query("UPDATE cart SET amount = " + amount
-                + " WHERE product_id = " + productId + ";"
+                + " WHERE id = " + orderId + ";"
                 ,new CartRowMapper());
     }
 }

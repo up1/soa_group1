@@ -8,7 +8,7 @@ public class Cart {
     private String id;
     private String user_id;
     private String product_id;
-    private String amount;
+    private Integer amount;
     private String status;
 
     public void setId(String id) {
@@ -23,7 +23,7 @@ public class Cart {
         this.product_id = product_id;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
@@ -31,7 +31,7 @@ public class Cart {
         this.status = status;
     }
 
-    
+
     public String getId() {
         return id;
     }
@@ -44,7 +44,7 @@ public class Cart {
         return product_id;
     }
 
-    public String getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 

@@ -1,0 +1,29 @@
+Function for cart-service
+
+[done] - Show All item in user-cart
+- Add order item to cart
+- Update amount
+- Delete order item
+
+Requirement for service
+
+- Add monitoring
+
+
+
+
+frontend
+- [
+   {'123', 5},
+   {'456', 3},
+   {'789', 3}
+  ]
+
+
+Cart-service -> UPDATE
+- UPDATE amount SET
+  (
+  {'123', 5},
+  {'456', 3},
+  {'789', 3}
+  )

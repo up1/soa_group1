@@ -5,7 +5,7 @@
       <configuration />
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -72,5 +72,12 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-juli:8.5.11" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:4.3.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:4.3.7.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-actuator:1.5.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-actuator:1.5.2.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: com.moelholm:prometheus-spring-boot-starter:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: io.prometheus:simpleclient_hotspot:0.0.16" level="project" />
+    <orderEntry type="library" name="Maven: io.prometheus:simpleclient_spring_boot:0.0.16" level="project" />
+    <orderEntry type="library" name="Maven: io.prometheus:simpleclient_common:0.0.16" level="project" />
+    <orderEntry type="library" name="Maven: io.prometheus:simpleclient:0.0.16" level="project" />
   </component>
 </module>

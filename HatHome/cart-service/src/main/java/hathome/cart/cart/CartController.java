@@ -1,10 +1,7 @@
 package hathome.cart.cart;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,25 +21,23 @@ public class CartController {
 
     @RequestMapping("/")
     public String index(){
-        return "Hello";
+        return "Hello, I'm Cart-service \n -------------------------- \n author : Marktrs";
     }
 
     @RequestMapping("/cart")
     public List<Cart> getAllCartItems(){
-        return this.cartRepository.getItemInCart();
+        return this.cartRepository.getUnpaidItemInCart();
     }
-
-
 
     @GetMapping("/cart/{userId}")
     public  List<Cart> getProductInCartById(@PathVariable String userId){
         //todo getCart API need to get product data from get product API
-        return this.cartRepository.getItemInCartById(userId);
+        return this.cartRepository.getItemInCartByUserId(userId);
     }
 
-    @RequestMapping("/cart/{productId}{amount}")
-    public  void updateProductInCart(@PathVariable String productId, BigDecimal amount){
+    @RequestMapping(value = "/cart",method = RequestMethod.PUT)
+    public void updateProductInCart(@PathVariable String orderId, Integer amount){
         //todo Updating should able to multiple update in one query
-        this.cartRepository.updateAmount(productId, amount);
+        this.cartRepository.updateAmount(orderId, amount);
     }
 }
