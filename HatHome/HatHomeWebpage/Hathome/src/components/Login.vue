@@ -54,8 +54,6 @@
     methods: {
       login: function (e) {
           e.preventDefault();
-          alert("mmmmm");
-        console.log('aaaaa')
         axios.post('http://localhost:9002/login', {
         email: this.email,
         password: this.password
