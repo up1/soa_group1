@@ -52,7 +52,8 @@
 //      this.login()
 //    },
     methods: {
-      login: function () {
+      login: function (e) {
+          e.preventDefault();
           alert("mmmmm");
         console.log('aaaaa')
         axios.post('http://localhost:9002/login', {
