@@ -7,7 +7,7 @@
           <!--login form-->
           <div class="loginForm">
           <h2>{{header}}</h2>
-          <form method="POST">
+          <form method="POST" v-on:submit.prevent="login()">
             <input type="email" placeholder="email" id="email" v-model="email"/>
             <input type="password" placeholder="password" id="password" v-model="password" />
             <div class="col-md-6">
@@ -38,6 +38,7 @@
 
 <script>
   import axios from 'axios'
+
   export default {
     name: 'loginForm',
     data () {
@@ -48,18 +49,16 @@
         checked:'',
       }
     },
-//    mounted: function () {
-//      this.login()
-//    },
     methods: {
       login: function (e) {
-          e.preventDefault();
+//          e.preventDefault();
         axios.post('http://localhost:9002/login', {
         email: this.email,
         password: this.password
           })
           .then(function (response) {
-          console.log(response);
+            this.$router.push({ path: '/' })
+              console.log(response);
         })
           .catch(function (error) {
             console.log(error);
