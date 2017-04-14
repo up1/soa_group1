@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
+import Profile from '@/components/Profile'
 
 Vue.use(Router)
 
@@ -23,8 +24,13 @@ var router = new Router({
     },
     {
       path: '/user',
-      name: 'user',
+      name: 'userRegister',
       component: Register
+    },
+    {
+      path: '/user/:userId',
+      name: 'userProfile',
+      component: Profile
     }
   ]
 })
