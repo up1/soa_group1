@@ -25,14 +25,14 @@ public class WishlistController {
     //    public String hello(){
     //        return hi;
 
-        @RequestMapping(value = "/wishlist/{wishlist_id}", method = RequestMethod.POST)
+        @RequestMapping(value = "/wishlist", method = RequestMethod.POST)
         public String insert(@RequestBody Wishlist wishlist){
             wishlistRepository.addWishlist(wishlist);
             return "can post++++++++++"+wishlist.getWishlist_id();
         }
 
-        @RequestMapping(value = "/wishlist/{wishlist_id}", method = RequestMethod.DELETE)
-        public String delete(@PathVariable Wishlist wishlist){
+        @RequestMapping(value = "/wishlist", method = RequestMethod.DELETE)
+        public String delete(@RequestBody Wishlist wishlist){
             wishlistRepository.deleteWishlist(wishlist);
             return "can delete----------"+wishlist.getWishlist_id();
         }
