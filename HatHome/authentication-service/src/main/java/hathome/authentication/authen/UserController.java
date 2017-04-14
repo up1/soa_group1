@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin
+//@CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
 
     private final UserRepository userRepository;
