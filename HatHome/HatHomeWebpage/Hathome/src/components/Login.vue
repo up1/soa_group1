@@ -24,7 +24,7 @@
               <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                  <button type="submit" class="btn btn-default" v-on:click="login">Login</button>
+                  <button type="submit" class="btn btn-default">Login</button>
                 </div>
                 <div class="col-md-4"></div>
               </div>
@@ -52,8 +52,7 @@
       }
     },
     methods: {
-      login(response) {
-//          e.preventDefault();
+      login() {
         axios.post('http://localhost:9002/login', {
           email: this.email,
           password: this.password
@@ -61,10 +60,20 @@
           .then(
             (response) => {
               this.$router.push({path: '/'})
-              console.log(response);
-            },
-            () => {
-              console.log(error);
+              //return all data
+              console.log('in then', response.data);
+
+              //return token
+              console.log('in then', response.data.access_token);
+
+              //return email
+              console.log('in then', response.data.user.email);
+            }
+          )
+          .catch(
+            (error) => {
+              console.log('in catch', error);
+              alert('Please try login again');
             }
           )
       }
