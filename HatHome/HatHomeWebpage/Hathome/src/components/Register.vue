@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div class="container">
     <div class="row">
       <div class="col-md-4"></div>
@@ -7,10 +7,10 @@
           <!--sign up form-->
           <h2>{{header}}</h2>
           <div class="form-regis">
-          <form action="#">
-            <input type="email" placeholder="Email Address" />
-            <input type="password" placeholder="Password" />
-            <textarea name="address" placeholder="Address" rows="8"></textarea>
+            <form method="POST" v-on:submit.prevent="register()">
+            <input type="email" placeholder="Email Address" v-model="email" />
+            <input type="password" placeholder="Password" v-model="password" />
+            <textarea name="address" placeholder="Address" v-model="address" rows="8"></textarea>
             <div class="col-md-4"></div>
             <div class="col-md-4"><button type="submit" class="btn btn-default">Signup</button></div>
             <div class="col-md-4"></div>
@@ -34,34 +34,38 @@
     data () {
       return {
         header: 'New User Signup!',
+        email: '',
+        password: '',
+        address:'',
       }
     },
     methods: {
-//      login() {
-//        axios.post('http://localhost:9002/login', {
-//          email: this.email,
-//          password: this.password
-//        })
-//          .then(
-//            (response) => {
-//              this.$router.push({path: '/'})
+      register() {
+        axios.post('http://localhost:9001/user', {
+          email: this.email,
+          password: this.password,
+          address: this.address,
+        })
+          .then(
+            (response) => {
+              this.$router.push({path: '/'})
 //              //return all data
-//              console.log('in then', response.data);
+              console.log('in then', response.data);
 //
 //              //return token
 //              console.log('in then', response.data.access_token);
 //
 //              //return email
 //              console.log('in then', response.data.user.email);
-//            }
-//          )
-//          .catch(
-//            (error) => {
-//              console.log('in catch', error);
+            }
+          )
+          .catch(
+            (error) => {
+              console.log('in catch', error);
 //              alert('Please try login again');
-//            }
-//          )
-//      }
+            }
+          )
+      }
     }
   }
 </script>
