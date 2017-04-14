@@ -32,10 +32,10 @@ public class WishlistRepository {
                 new Object[]{id}, new WishlistRowMapper());
     }
 
-
+    @Transactional
     public void addWishlist(Wishlist wishlist){
-        String sql = "INSERT INTO wishlist (wishlist_id, user_id, product_id) VALUES (?, ?, ?)";
-        this.jdbcTemplate.update(sql, wishlist.getWishlist_id(), wishlist.getUser_id(), wishlist.getProduct_id());
+        String sql = "INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)";
+        this.jdbcTemplate.update(sql, wishlist.getUser_id(), wishlist.getProduct_id());
     }
 
     public void deleteWishlist(Wishlist wishlist){
