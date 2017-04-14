@@ -31,4 +31,15 @@ public class WishlistRepository {
         return this.jdbcTemplate.queryForObject(sql,
                 new Object[]{id}, new WishlistRowMapper());
     }
+
+    @Transactional
+    public void addWishlist(Wishlist wishlist){
+        String sql = "INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)";
+        this.jdbcTemplate.update(sql, wishlist.getUser_id(), wishlist.getProduct_id());
+    }
+
+    public void deleteWishlist(Wishlist wishlist){
+        String sql = "DELETE FROM wishlist WHERE wishlist_id = ?";
+        this.jdbcTemplate.update(sql, wishlist.getWishlist_id());
+    }
 }
