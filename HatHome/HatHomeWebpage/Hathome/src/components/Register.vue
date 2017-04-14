@@ -48,21 +48,13 @@
         })
           .then(
             (response) => {
-              this.$router.push({path: '/'})
-//              //return all data
+              this.$router.push({path: '/login'})
               console.log('in then', response.data);
-//
-//              //return token
-//              console.log('in then', response.data.access_token);
-//
-//              //return email
-//              console.log('in then', response.data.user.email);
             }
           )
           .catch(
             (error) => {
               console.log('in catch', error);
-//              alert('Please try login again');
             }
           )
       }
