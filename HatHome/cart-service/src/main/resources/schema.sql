@@ -2,9 +2,9 @@ DROP TABLE IF EXISTS CART;
 
 CREATE TABLE `cart` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` VARCHAR(45) NOT NULL,
-  `product_id` VARCHAR(45) NOT NULL,
-  `amount` INTEGER(3) NOT NULL,
-  `status` VARCHAR(45) NOT NULL,
+  `user_id` LONG NOT NULL,
+  `product_id` LONG NOT NULL,
+  `amount` INTEGER(3) NOT NULL DEFAULT 1,
+  `status` VARCHAR(45) NOT NULL DEFAULT 'unpaid',
   PRIMARY KEY (`id`)
   );
