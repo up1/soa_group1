@@ -65,9 +65,6 @@ public class CartController {
 
         //Todo: Get data from UI click ( eg. productId + userId )
 
-        cartItem.setAmount(1);
-        cartItem.setStatus("unpaid");
-
         try {
             this.cartRepository.addProduct(cartItem);
             System.out.println("Success");

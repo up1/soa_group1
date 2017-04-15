@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>cart-service</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Apart of  Hathome web-service</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

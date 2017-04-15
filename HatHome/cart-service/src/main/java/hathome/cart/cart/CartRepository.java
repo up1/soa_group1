@@ -36,6 +36,6 @@ public class CartRepository {
 
     public void addProduct(Cart cartItem) {
         String addString = "INSERT INTO cart (user_id, product_id) VALUES (?, ?)";
-        this.jdbcTemplate.update(addString, cartItem.getUser_id(), cartItem.getProduct_id(), new CartRowMapper());
+        this.jdbcTemplate.update(addString, cartItem.getUser_id(), cartItem.getProduct_id());
     }
 }
