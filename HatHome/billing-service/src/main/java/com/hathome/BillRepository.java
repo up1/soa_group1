@@ -20,7 +20,7 @@ public class BillRepository {
 
     @Transactional(readOnly = true)
     public Bill findById(long id){
-        String sql = "SELECT id, status, address, cart_id, total FROM BILLS WHERE id=?";
+        String sql = "SELECT id, user_id, address, date, cart_id, cart_cost, shipping_cost, total FROM BILLS WHERE id=?";
         return this.jdbcTemplate.queryForObject(sql, new Object[]{id}, new BillRowMapper());
     }
 }
