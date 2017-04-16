@@ -9,6 +9,7 @@ import './assets/css/animate.css'
 import './assets/css/price-range.css'
 import './assets/css/responsive.css'
 import './assets/css/main.css'
+import './assets/css/bootstrap.min.css'
 
 //JS
 import './assets/js/html5shiv.js'
