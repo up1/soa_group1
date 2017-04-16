@@ -28,14 +28,24 @@ public class CartRepository {
                 , new CartRowMapper());
     }
 
-    public void updateAmount(int orderId, Integer amount) {
-        this.jdbcTemplate.query("UPDATE cart SET amount = " + amount
-                        + " WHERE id = " + orderId + ";"
-                , new CartRowMapper());
+    public void updateAmount(Cart cartItem) {
+        if (cartItem.getAmount() > 0) {
+            String updateSqlString = "UPDATE cart SET amount = ? WHERE id = ? AND status = 'unpaid'";
+            this.jdbcTemplate.update(updateSqlString, cartItem.getAmount(), cartItem.getId());
+        } else {
+            removeProduct(cartItem);
+        }
     }
 
+    @Transactional
     public void addProduct(Cart cartItem) {
-        String addString = "INSERT INTO cart (user_id, product_id) VALUES (?, ?)";
-        this.jdbcTemplate.update(addString, cartItem.getUser_id(), cartItem.getProduct_id());
+        String addSqlString = "INSERT INTO cart (user_id, product_id) VALUES (?, ?)";
+        this.jdbcTemplate.update(addSqlString, cartItem.getUser_id(), cartItem.getProduct_id());
     }
+
+    public void removeProduct(Cart cartItem) {
+        String removeSqlString = "DELETE FROM cart WHERE id = ? AND status = 'unpaid'";
+        this.jdbcTemplate.update(removeSqlString, cartItem.getId());
+    }
+
 }
