@@ -2,13 +2,13 @@
   <div class="billing">
     <section id="cart_items">
       <div class="container">
-        <h2 class="title text-center" style="margin-top:20px;">BILLING</h2>
+        <h2 class="title text-center" text-centerstyle="margin-top:20px;">Billing</h2>
         <div class="bill-infomation">
-          <p class="user-id"><b>User ID: </b> {{user_id}} </p>
-          <p class="user-name"><b>Name: </b> {{username}} </p>
-          <p class="bill-address"><b>Address: </b> {{bill_address}} </p>
-          <p class="bill-no"><b>Bill No: </b> {{bill_id}} </p>
-          <p class="bill-date"><b>Bill Date: </b> {{bill_date}} </p>
+          <p align="left" class="user-id"><b>User ID: </b> {{user_id}} </p>
+          <p align="left" class="user-name"><b>Name: </b> {{username}} </p>
+          <p align="left" class="bill-address"><b>Address: </b> {{bill_address}} </p>
+          <p align="left" class="bill-no"><b>Bill No: </b> {{bill_id}} </p>
+          <p align="left" class="bill-date"><b>Bill Date: </b> {{bill_date}} </p>
         </div>
 
         <div class="table-responsive cart_info">
@@ -121,7 +121,10 @@
         username: 'username',
         bill_id: 1,
         bill_address: 'bill_address',
-        bill_date: 'bill_date'
+        bill_date: 'bill_date',
+        cart_cost: 'cart_cost',
+        shipping_cost: 'shipping_cost',
+        total: 'total'
       }
     },
     mounted: function () {
@@ -133,12 +136,13 @@
         })
           .then((response) => {
             console.log(response)
-            this.user_id = response.data.user_id
             this.bill_id = response.data.id
+            this.user_id = response.data.user_id
             this.bill_address = response.data.address
-            this.shipping_cost = 0
+            this.bill_date = response.data.date
+            this.cart_cost = response.data.cart_cost
+            this.shipping_cost = response.data.shipping_cost
             this.total = response.data.total
-            this.cart_cost = this.total - this.shipping_cost
           })
           .catch(function (error) {
             console.log(error)
