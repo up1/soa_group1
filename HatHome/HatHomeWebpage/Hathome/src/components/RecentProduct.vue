@@ -47,55 +47,13 @@
                     <div class="tab-content">
                         <div class="tab-pane fade active in">
                             <!-- item1 -->
-                            <div class="col-sm-3">
+                            <div class="col-sm-3" v-for="item in list">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <a href="product-details.html"><img src="http://i.imgur.com/Ns4cgfm.jpg" />
-                                                <h4>Easy Polo Black Edition</h4></a>
-                                            <p>56 Baht</p>
-                                            <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
-                                            <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- item2 -->
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="http://i.imgur.com/hflVXay.jpg" alt="" />
-                                            <h4>Easy Polo Black Edition</h4>
-                                            <p>56 Baht</p>
-                                            <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
-                                            <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- item3 -->
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="http://i.imgur.com/kj7tXU7.jpg" alt="" />
-                                            <h4>Easy Polo Black Edition</h4>
-                                            <p>56 Baht</p>
-                                            <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
-                                            <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- item4 -->
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="http://i.imgur.com/NjNhKl1.jpg" alt="" />
-                                            <h4>Easy Polo Black Edition</h4>
-                                            <p>56 Baht</p>
+                                            <a href="product-details.html"><img v-bind:src="item.image" />
+                                                <h4>{{ item.name }}</h4></a>
+                                            <p>{{ item.price }} Baht</p>
                                             <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
                                             <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
                                         </div>
@@ -116,24 +74,37 @@
             </div>
         </div>
     </section>
-
   </div>
 </template>
 
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
-export default {
-  name: 'recentproduct',
-  data () {
-    return {
-      msg: 'test'
+  import axios from 'axios'
+  export default {
+    name: 'recentProduct',
+    data () {
+      return {
+        name: '',
+        item: '',
+        image: '',
+        list: []
+      }
+    },
+    mounted: function () {
+      this.product()
+    },
+    methods: {
+      product: function () {
+        axios.get('http://localhost:9004/recentproduct', {
+        })
+          .then((response) => {
+            console.log(response)
+            this.list = response.data
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   }
-}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-</style>
