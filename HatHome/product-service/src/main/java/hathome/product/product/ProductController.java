@@ -27,6 +27,11 @@ public class ProductController {
         return this.productRepository.findAllProductInPage(page);
     }
 
+    @GetMapping("/allproduct/{id}")
+    public Product getProduct(@PathVariable long id) {
+        return this.productRepository.findProductById((long) id);
+    }
+
     @RequestMapping("/search")
     public SearchResult searchProduct(
         @RequestParam(value = "keyword", defaultValue = "") String keyword,

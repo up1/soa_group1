@@ -23,6 +23,15 @@ public class ProductRepository {
         return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type, image FROM PRODUCT ORDER BY id LIMIT ?, ?", new Object[]{firstItem, item_per_page}, new ProductRowMapper());
     }
 
+    public Product findProductById(Long id){
+        try {
+            return this.jdbcTemplate.queryForObject("SELECT id, name, detail, price, color, brand, amount, type, image FROM PRODUCT WHERE id=?", new Object[]{id}, new ProductRowMapper());
+        }catch (Exception exception){
+            throw new ProductNotFoundException(id);
+        }
+    }
+
+
     public List<Product> searchProduct(String keyword, String price, String color, String brand, String type){
         String[] priceParts = price.split("-");
         Double start = Double.parseDouble(priceParts[0]);
