@@ -4,6 +4,8 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Profile from '@/components/Profile'
+import Wishlist from '@/components/Wishlist'
+
 
 Vue.use(Router)
 
@@ -31,6 +33,11 @@ var router = new Router({
       path: '/user/:userId',
       name: 'userProfile',
       component: Profile
+    },
+    {
+      path: '/wishlist',
+      name: 'wishlist',
+      component: Wishlist
     }
   ]
 })
