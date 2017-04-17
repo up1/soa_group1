@@ -46,13 +46,13 @@
                     <h2 class="title text-center">NEW PRODUCTS</h2>
                     <div class="tab-content">
                         <div class="tab-pane fade active in">
-                            <!-- item1 -->
+                            <!-- item -->
                             <div class="col-sm-3" v-for="item in list">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <a href="product-details.html"><img v-bind:src="item.image" />
-                                                <h4>{{ item.name }}</h4></a>
+                                        <a><router-link :to="{name: 'productDetail', param:{id: item.id}}"><img v-bind:src="item.image" />
+                                                <h4>{{ item.name }} id >>{{item.id}}</h4></router-link></a>
                                             <p>{{ item.price }} Baht</p>
                                             <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
                                             <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
@@ -67,9 +67,7 @@
             </div>
             <div class="row">
                 <center>
-                    <a href="all-product.html">
-                        <button type="submit" class="btn btn-default view-all-btn">View All Product</button>
-                    </a>
+                        <router-link to="/products"><button type="submit" class="btn btn-default view-all-btn" > View All Product</button></router-link>
                 </center>
             </div>
         </div>
@@ -77,16 +75,16 @@
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <script>
   import axios from 'axios'
   export default {
-    name: 'recentProduct',
+    name: 'recentProducts',
     data () {
       return {
         name: '',
         item: '',
         image: '',
+        id: '',
         list: []
       }
     },
@@ -95,7 +93,7 @@
     },
     methods: {
       product: function () {
-        axios.get('http://localhost:9004/recentproduct', {
+        axios.get('http://localhost:9004/recentproducts', {
         })
           .then((response) => {
             console.log(response)

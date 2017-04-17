@@ -16,18 +16,18 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    @RequestMapping("/recentproduct")
+    @RequestMapping("/recentproducts")
     public List<Product> getRecentProduct(){
         return this.productRepository.findRecentProduct();
     }
 
-    @RequestMapping("/allproduct")
+    @RequestMapping("/products")
     public List<Product> getAllProductInPage(
             @RequestParam(value = "page", defaultValue = "1") int page) {
         return this.productRepository.findAllProductInPage(page);
     }
 
-    @GetMapping("/allproduct/{id}")
+    @GetMapping("/products/{id}")
     public Product getProduct(@PathVariable long id) {
         return this.productRepository.findProductById((long) id);
     }

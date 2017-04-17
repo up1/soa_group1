@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import RecentProduct from '@/components/RecentProduct'
-import AllProduct from '@/components/AllProduct'
+import RecentProducts from '@/components/RecentProducts'
+import Products from '@/components/Products'
 import ProductDetail from '@/components/ProductDetail'
 
 Vue.use(Router)
 
-export default new Router({
+var router = new Router({
   hashbang: false,
   linkActiveClass: 'active',
   mode: 'history',
@@ -18,19 +18,22 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/recentProduct',
-      name: 'recentProduct',
-      component: RecentProduct
+      path: '/recentProducts',
+      name: 'recentProducts',
+      component: RecentProducts
     },
     {
-      path: '/allProduct',
-      name: 'allProduct',
-      component: AllProduct
+      path: '/products',
+      name: 'products',
+      component: Products
     },
     {
-      path: '/productDetail',
+      path: '/products/:id',
       name: 'productDetail',
       component: ProductDetail
     }
   ]
 })
+Vue.router = router
+Vue.use(Router)
+export default router

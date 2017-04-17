@@ -74,7 +74,7 @@
                           <!--product-details-->
                           <div class="col-sm-5">
                               <div class="view-product">
-                                  <img src="http://i.imgur.com/TL5ldBy.jpg" />
+                                <img v-bind:src="image" />
                               </div>
 
 
@@ -82,24 +82,22 @@
                           <div class="col-sm-7">
                               <div class="product-information">
                                   <!--/product-information-->
-                                  <h2>Atlanta Braves Baseball Cap</h2>
-                                  <p>This cap has the Atlanta Braves logo in white on a navy blue crown with a red coloured brim. The MLB logo is embroidered on the back of the cap in team colours. This cap is part of the MLB Authentic On-Field Collection.
-                                      That means that there is no difference between the New Era 59FIFTY that MLB players wear on-field and the New Era 59FIFTY that fans wear in the stands. The hat offers NE TECH™ that provides sun protection and helps
-                                      wick away sweat. With all of these features and over 70 years of craftsmanship and tradition in every stitch, this is the ultimate baseball cap.</p>
+                                  <h2>{{name}}</h2>
+                                  <p>{{detail}}</p>
 
-                                  <p class="price-info"><b>590 Baht</b></p>
+                                  <p class="price-info"><b> {{price}} Baht</b></p>
 
                                   <label>Quantity:</label>
-                                  <input type="text" value="3" />
+                                  <input type="text" value="1" />
 
                                   <button type="button" class="btn btn-fefault cart">
                                     <i class="fa fa-shopping-cart"></i>
                   										Add to cart
                   									</button>
-                                  <p class="product-amount"><b>Amount:</b> 55</p>
-                                  <p class="product-brand"><b>Brand:</b> New Era</p>
-                                  <p class="product-color"><b>Color:</b> Black</p>
-                                  <p class="product-cat"><b>Category:</b> Caps</p>
+                                  <p class="product-amount"><b>Amount:</b> {{amount}}</p>
+                                  <p class="product-brand"><b>Brand:</b> {{brand}}</p>
+                                  <p class="product-color"><b>Color:</b> {{color}}</p>
+                                  <p class="product-cat"><b>Category:</b> {{type}}</p>
                               </div>
                               <!--/product-information-->
                           </div>
@@ -113,12 +111,46 @@
 </template>
 
 <script>
-export default {
-  name: 'allproduct',
-  data () {
-    return {
-      msg: 'test'
+  import axios from 'axios'
+  export default {
+    name: 'productDetail',
+    data () {
+      return {
+        name: '',
+        detail: '',
+        image: '',
+        amount: '',
+        price: '',
+        brand: '',
+        color: '',
+        type: '',
+        id: ''
+      }
+    },
+    mounted: function () {
+      this.product()
+    },
+    methods: {
+      product: function () {
+        axios.get('http://localhost:9004/products/' + this.$route.params.id, {
+        })
+          .then((response) => {
+            console.log(response)
+            console.log(this.$route.params.id)
+            this.name = response.data.name
+            this.detail = response.data.detail
+            this.image = response.data.image
+            this.amount = response.data.amount
+            this.price = response.data.price
+            this.brand = response.data.brand
+            this.color = response.data.color
+            this.type = response.data.type
+            this.id = response.id
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
+      }
     }
   }
-}
 </script>
