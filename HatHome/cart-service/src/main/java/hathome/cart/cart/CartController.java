@@ -13,6 +13,7 @@ import java.util.List;
  * Created by Mark on 3/6/2017.
  */
 @RestController
+@CrossOrigin
 public class CartController {
 
     private CartRepository cartRepository;

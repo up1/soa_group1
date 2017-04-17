@@ -1544,6 +1544,9 @@ h2.title {
   margin-bottom: 50px;
 }
 
+.cart_table {
+  width: 100%;
+}
 
 #cart_items .cart_info {
   border: 1px solid #E6E4DF;
