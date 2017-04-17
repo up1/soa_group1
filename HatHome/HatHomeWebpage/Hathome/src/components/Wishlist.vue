@@ -11,23 +11,20 @@
               <thead>
               <tr class="cart_menu">
                 <td class="image">Item</td>
-                <td class="description"></td>
+                <td class="description">Product_id</td>
                 <td class="price">Price</td>
                 <td></td>
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td class="cart_product">
-                  <a href=""><img src="http://i.imgur.com/Ns4cgfm.jpg" alt=""></a>
-                </td>
-                <td class="cart_description">
-                  <h4><a href="product_id" v-model="product_id">{{product_id}}</a></h4>
-                </td>
-                <td class="cart_price">
-                  <p>฿59</p>
-                </td>
-
+              <!--test v-for-->
+              <!--<tr v-for="wishlist">-->
+                <!--<plan :x="plan"></plan>-->
+              <!--</tr>-->
+              <tr v-for="attribute in products">
+                <td><img v-bind:src="attribute.image"/>  </td>
+                <td>{{attribute.id}}</td>
+                <td>{{attribute.price}}</td>
                 <td class="cart_delete">
                   <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                 </td>
@@ -61,11 +58,13 @@
     data () {
       return {
         header: 'My Wishlist',
-        product_id: ''
+        product_id: '',
+        products : ''
       }
     },
     mounted: function () {
       this.wishlist()
+      this.getallproduct()
     },
     methods: {
       wishlist() {
@@ -84,10 +83,40 @@
           .catch(
             (error) => {
               console.log('in catch', error);
-              alert('Please try login again');
             }
           )
+      },
+      getallproduct(){
+        axios.get('http://localhost:9004/home',{
+        })
+          .then(
+          (response) => {
+            this.products = response.data;
+          }
+        )
+            .catch(
+              (error) => {
+                  console.log('in catch', error);
+              }
+            )
       }
     }
   }
+
+//  new Vue({
+//    el: "info",
+//    data: {
+//        plans:[{
+//            product_id: '',
+//            price: ''
+//        }]
+//    },
+//    components: {
+//        plan:{
+//            template: "#info",
+//            props: ["x"]
+//        }
+//    }
+//  })
+
 </script>
