@@ -17,10 +17,6 @@
               </tr>
               </thead>
               <tbody>
-              <!--test v-for-->
-              <!--<tr v-for="wishlist">-->
-                <!--<plan :x="plan"></plan>-->
-              <!--</tr>-->
               <tr v-for="attribute in products">
                 <td><img v-bind:src="attribute.image"/>  </td>
                 <td>{{attribute.id}}</td>
@@ -102,21 +98,4 @@
       }
     }
   }
-
-//  new Vue({
-//    el: "info",
-//    data: {
-//        plans:[{
-//            product_id: '',
-//            price: ''
-//        }]
-//    },
-//    components: {
-//        plan:{
-//            template: "#info",
-//            props: ["x"]
-//        }
-//    }
-//  })
-
 </script>
