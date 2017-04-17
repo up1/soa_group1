@@ -1,11 +1,12 @@
 package com.hathome;
 
-import java.util.Date;
+import com.hathome.adapter.Cart;
 
+import java.io.Serializable;
 /**
  * Created by Acer on 6/4/2560.
  */
-public class Bill {
+public class Bill{
     private long id;
     private long user_id;
     private String address;
@@ -14,14 +15,21 @@ public class Bill {
     private double cart_cost;
     private double shipping_cost;
     private double total;
+    private Cart cart;
 
-    public long getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(long user_id) {
+    public Bill(long id, long user_id, String address, String date, long cart_id, double cart_cost, double shipping_cost, double total, Cart cart) {
+        this.id = id;
         this.user_id = user_id;
+        this.address = address;
+        this.date = date;
+        this.cart_id = cart_id;
+        this.cart_cost = cart_cost;
+        this.shipping_cost = shipping_cost;
+        this.total = total;
+        this.cart = cart;
     }
+
+    public Bill(){}
 
     public long getId() {
         return id;
@@ -29,6 +37,14 @@ public class Bill {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(long user_id) {
+        this.user_id = user_id;
     }
 
     public String getAddress() {
@@ -39,20 +55,20 @@ public class Bill {
         this.address = address;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public long getCart_id() {
         return cart_id;
     }
 
     public void setCart_id(long cart_id) {
         this.cart_id = cart_id;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
     }
 
     public double getCart_cost() {
@@ -71,11 +87,21 @@ public class Bill {
         this.shipping_cost = shipping_cost;
     }
 
-    public String getDate() {
-        return date;
+    public double getTotal() {
+        return total;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
+
+
