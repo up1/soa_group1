@@ -5,7 +5,9 @@
       <div class="row">
         <div class="col-sm-3">
           <div class="logo pull-left">
-            <a href="index.html"><img src="./assets/images/logo.png" width="108" height="30" alt="" /></a>
+            <router-link to="/recentproducts">
+              <img src="./assets/images/logo.png" width="108" height="30" alt="" />
+            </router-link>
           </div>
         </div>
 

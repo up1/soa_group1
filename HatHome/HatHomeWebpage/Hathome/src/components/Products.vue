@@ -79,8 +79,10 @@
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
-                            <a href="product-details.html"><img v-bind:src="item.image" />
-                                <h4>{{ item.name }}</h4></a>
+                            <router-link :to="{ name: 'productDetail', params: { id: item.id}}">
+                                <img v-bind:src="item.image" />
+                                <h4>{{ item.name }}</h4>
+                              </router-link>
                             <p>{{ item.price }} Baht</p>
                             <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
                             <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
