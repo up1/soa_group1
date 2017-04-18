@@ -5,7 +5,7 @@ import Billing from '@/components/Billing'
 
 Vue.use(Router)
 
-export default new Router({
+var router = new Router({
   hashbang: false,
   linkActiveClass: 'active',
   mode: 'history',
@@ -22,3 +22,6 @@ export default new Router({
     }
   ]
 })
+Vue.router = router
+Vue.use(Router)
+export default router

@@ -44,10 +44,16 @@
             shipping_cost: 50,
             total: 150
           })
-            .then(function (response) {
-              console.log(response);
-            })
-            .catch(function (error) {
+            .then(
+                (response) => {
+                  console.log(response);
+                  this.$router.push({
+                    name: 'Billing',
+                    params : { id : response.data.id }
+              })}
+            )
+            .catch(
+                (error) => {
               console.log(error);
             });
         }

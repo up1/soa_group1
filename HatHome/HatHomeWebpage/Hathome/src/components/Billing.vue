@@ -132,8 +132,7 @@
     },
     methods: {
       callBilling: function () {
-        axios.get('http://localhost:9006/bill/1', {
-        })
+        axios.get('http://localhost:9006/bill/' + this.$route.params.id , {})
           .then((response) => {
             console.log(response)
             this.bill_id = response.data.id
