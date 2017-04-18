@@ -4,6 +4,7 @@ import Hello from '@/components/Hello'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Profile from '@/components/Profile'
+import Cart from '@/components/Cart'
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ var router = new Router({
       path: '/user/:userId',
       name: 'userProfile',
       component: Profile
+    },
+    {
+      path: '/cart/:userId',
+      name: 'cart',
+      component: Cart
     }
   ]
 })
