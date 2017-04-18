@@ -15,12 +15,12 @@
           </tr>
           </thead>
           <tbody id="cart_item">
-              <tr>
+              <tr v-for="product in products">
                 <td class="cart_product">
                   <a href=""><img src="http://i.imgur.com/Ns4cgfm.jpg" alt=""></a>
                 </td>
                 <td class="cart_description">
-                  <h4><a href="">{{product_name}}</a></h4>
+                  <h4><a href="">{{product.product_id}}</a></h4>
                 </td>
                 <td class="cart_price">
                   <p>฿59</p>
@@ -39,31 +39,6 @@
                   <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                 </td>
               </tr>
-              <tr>
-
-              <!--<td class="cart_product">-->
-                <!--<a href=""><img src="http://i.imgur.com/Ns4cgfm.jpg" alt=""></a>-->
-              <!--</td>-->
-              <!--<td class="cart_description">-->
-                <!--<h4><a href="">{{product_name}}</a></h4>-->
-              <!--</td>-->
-              <!--<td class="cart_price">-->
-                <!--<p>฿59</p>-->
-              <!--</td>-->
-              <!--<td class="cart_quantity">-->
-                <!--<div class="cart_quantity_button">-->
-                  <!--<a class="cart_quantity_up" href=""> + </a>-->
-                  <!--<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">-->
-                  <!--<a class="cart_quantity_down" href=""> - </a>-->
-                <!--</div>-->
-              <!--</td>-->
-              <!--<td class="cart_total">-->
-                <!--<p class="cart_total_price">฿59</p>-->
-              <!--</td>-->
-              <!--<td class="cart_delete">-->
-                <!--<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>-->
-              <!--</td>-->
-            </tr>
           </tbody>
         </table>
       </div>
@@ -78,11 +53,13 @@
     name: 'cart_info',
     data () {
       return {
-        product_name: ''
+        product_name: '',
+        products: null
       }
     },
     mounted: function () {
-      this.getCartByUserId()
+      this.getCartByUserId(),
+      this.listItemInCart()
     },
     methods: {
       getCartByUserId(){
@@ -91,12 +68,16 @@
           (response) => {
             console.log('in then', response.data);
             this.product_name = response.data[0].product_id
+            this.products = response.data
           }
         ).catch(
           (error) => {
             console.log('in catch', error);
           }
         )
+      },
+      listItemInCart(){
+
       }
     }
   }
