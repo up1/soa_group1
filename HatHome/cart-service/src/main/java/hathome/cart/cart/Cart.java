@@ -1,6 +1,8 @@
 package hathome.cart.cart;
 
 
+import hathome.cart.cart.Adapter.Product;
+
 import java.io.Serializable;
 
 /**
@@ -9,9 +11,10 @@ import java.io.Serializable;
 public class Cart implements Serializable {
     private Integer id;
     private Long user_id;
-    private Long product_id;
+    private long product_id;
     private Integer amount;
     private String status;
+    private Product product;
 
     public Integer getId() {
         return id;
@@ -29,11 +32,11 @@ public class Cart implements Serializable {
         this.user_id = user_id;
     }
 
-    public Long getProduct_id() {
+    public long getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(Long product_id) {
+    public void setProduct_id(long product_id) {
         this.product_id = product_id;
     }
 
@@ -51,5 +54,13 @@ public class Cart implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
