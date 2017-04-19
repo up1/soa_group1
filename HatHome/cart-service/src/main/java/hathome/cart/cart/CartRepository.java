@@ -48,4 +48,16 @@ public class CartRepository {
         this.jdbcTemplate.update(removeSqlString, cartItem.getId());
     }
 
+    public void updateMultiple(List<Cart> cartList) {
+        String sql = "UPDATE cart SET amount = CASE id ";
+        String idList = "";
+        for (Cart item : cartList) {
+            sql += ("WHEN " + item.getId() + " THEN " + item.getAmount() + " ");
+            idList += item.getId() + ",";
+        }
+        idList = idList.substring(0, idList.length() - 1);
+        sql += " END  WHERE id IN (" + idList + ")";
+        this.jdbcTemplate.update(sql);
+    }
+
 }

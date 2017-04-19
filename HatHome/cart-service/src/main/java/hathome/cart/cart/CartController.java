@@ -51,13 +51,16 @@ public class CartController {
     @RequestMapping(
             value = "/cart",
             method = RequestMethod.PUT)
-    public ResponseEntity<Cart> updateProductInCart(@RequestBody Cart cartItem)
+    public ResponseEntity<Cart> updateProductInCart(@RequestBody List<Cart> cartItem)
             throws JsonProcessingException{
-        //todo Updating should able to multiple update in one query
         try {
-            this.cartRepository.updateAmount(cartItem);;
-            System.out.println("Updated");
-            return new ResponseEntity<>(HttpStatus.OK);
+            if (cartItem.size() > 0){
+                this.cartRepository.updateMultiple(cartItem);;
+                System.out.println("Updated");
+                return new ResponseEntity<>(HttpStatus.OK);
+            }else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             System.out.println("Error occurred: " + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
