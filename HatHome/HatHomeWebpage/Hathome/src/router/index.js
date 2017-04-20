@@ -8,6 +8,8 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Profile from '@/components/Profile'
 import Cart from '@/components/Cart'
+import Wishlist from '@/components/Wishlist'
+
 
 Vue.use(Router)
 
@@ -55,6 +57,11 @@ var router = new Router({
       path: '/cart/:userId',
       name: 'cart',
       component: Cart
+    },
+    {
+      path: '/wishlist',
+      name: 'wishlist',
+      component: Wishlist
     }
   ]
 })

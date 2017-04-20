@@ -6,7 +6,7 @@ package hathome.wishlist.service.wishlist;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9007")
+@CrossOrigin
 public class WishlistController {
 
     private final WishlistRepository wishlistRepository;
