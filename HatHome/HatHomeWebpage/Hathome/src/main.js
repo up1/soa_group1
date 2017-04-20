@@ -24,7 +24,7 @@ import './assets/js/bootstrap.min.js'
 
 
 Vue.config.productionTip = false
-Vue.prototype.$http = axios
+// Vue.prototype.$http = axios
 
 /* eslint-disable no-new */
 new Vue({
