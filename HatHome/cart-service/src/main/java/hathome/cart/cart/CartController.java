@@ -47,12 +47,19 @@ public class CartController {
     @GetMapping("/cart/{userId}")
     public List<Cart> getProductInCartById(@PathVariable Long userId) {
         //todo getCart API need to get product data from Product-service
-        List<Cart> carts = this.cartRepository.getItemInCartByUserId(userId)
+        List<Cart> carts = this.cartRepository.getItemInCartByUserId(userId);
         return attachProductDetailToCartList(carts);
     }
 
 
     /*-------------- Update product in cart --------------*/
+
+    /**
+     * Update product in cart
+     * @param cartItem
+     * @return
+     * @throws JsonProcessingException
+     */
     @RequestMapping(
             value = "/cart",
             method = RequestMethod.PUT)
@@ -80,12 +87,17 @@ public class CartController {
     public ResponseEntity<Cart> addProductToCart(@RequestBody Cart cartItem)
             throws JsonProcessingException {
 
-        //Todo: Get data from UI click ( eg. productId + userId ).
         //Todo: Add multiple product by single query when click CART icon.
+
         try {
-            this.cartRepository.addProduct(cartItem);
-            System.out.println("Added");
-            return new ResponseEntity<>(HttpStatus.OK);
+            if(cartItem.getProduct_id() != 0){
+                this.cartRepository.addProduct(cartItem);
+                System.out.println("Added");
+                return new ResponseEntity<>(HttpStatus.OK);
+            }else {
+                System.out.println("Product id is missing");
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             System.out.println("Error occurred: " + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

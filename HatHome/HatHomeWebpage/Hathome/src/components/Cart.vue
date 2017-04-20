@@ -20,10 +20,10 @@
                   <a href=""><img src="http://i.imgur.com/Ns4cgfm.jpg" alt=""></a>
                 </td>
                 <td class="cart_description">
-                  <h4><a href="">{{product.product_id}}</a></h4>
+                  <h4><a href="">{{product.product.name}}</a></h4>
                 </td>
                 <td class="cart_price">
-                  <p>฿59</p>
+                  <p>{{product.product.price}} ฿</p>
                 </td>
                 <td class="cart_quantity">
                   <div class="cart_quantity_button">
@@ -53,13 +53,11 @@
     name: 'cart_info',
     data () {
       return {
-        product_name: '',
-        products: null
+        products : null
       }
     },
     mounted: function () {
-      this.getCartByUserId(),
-      this.listItemInCart()
+      this.getCartByUserId()
     },
     methods: {
       getCartByUserId(){
@@ -67,17 +65,13 @@
         }).then(
           (response) => {
             console.log('in then', response.data);
-            this.product_name = response.data[0].product_id
-            this.products = response.data
+            this.products = response.data;
           }
         ).catch(
           (error) => {
             console.log('in catch', error);
           }
         )
-      },
-      listItemInCart(){
-
       }
     }
   }
