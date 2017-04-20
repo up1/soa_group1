@@ -17,12 +17,14 @@ public class WishlistController {
 
     public WishlistController(WishlistRepository wishlistRepository) {
         this.wishlistRepository = wishlistRepository;
+        this.productAdapter = new ProductAdapter();
     }
 
-//    public List<Wishlist> getAllWishlistItem(){
-//        List<Wishlist> wishlists = this.wishlistRepository.
-//        return getProductDetail(wishlists);
-//    }
+    public List<Wishlist> getAllWishlistItem(){
+        List<Wishlist> wishlists = this.wishlistRepository.findAllWishlist();
+        System.out.println(wishlists);
+        return getProductDetail(wishlists);
+    }
 
     @GetMapping("/wishlist")
     public Wishlist getWishlist(@RequestParam(value = "wishlist_id", defaultValue="1") int id){
@@ -42,15 +44,15 @@ public class WishlistController {
     }
 
 
-//    private List<Wishlist> getProductDetail(List<Wishlist> wishlists){
-//        if (wishlists == null || wishlists.isEmpty()){
-//            System.out.println("Wishlist is Empty");
-//        }else {
-//            System.out.println("" + wishlists.size());
-//            for (Wishlist w : wishlists){
-//                w
-//            }
-//        }
-//        return wishlists;
-//    }
+    private List<Wishlist> getProductDetail(List<Wishlist> wishlists){
+        if (wishlists == null || wishlists.isEmpty()){
+            System.out.println("Wishlist is Empty");
+        }else {
+            System.out.println("size" + wishlists.size());
+            for (Wishlist w : wishlists){
+                w.setProduct(this.productAdapter.getProductDetail(w.getProduct_id()));
+            }
+        }
+        return wishlists;
+    }
 }
