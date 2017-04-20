@@ -126,6 +126,22 @@ public class CartController {
         }
     }
 
+
+    /*-------------- Remove product after checked-out --------------*/
+    @RequestMapping(
+            value = "/cart/{userId}",
+            method = RequestMethod.PUT)
+    public ResponseEntity<Cart> checkoutProduct(@PathVariable Long userId)
+            throws JsonProcessingException {
+        try {
+            this.cartRepository.checkOut(userId);
+            System.out.println("Checked out");
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("Error occurred: " + e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     private List<Cart> attachProductDetailToCartList(List<Cart> carts){
         if(carts == null || carts.isEmpty()) {
             System.err.println("Cart list is Empty");
@@ -137,4 +153,5 @@ public class CartController {
         }
         return carts;
     }
+
 }

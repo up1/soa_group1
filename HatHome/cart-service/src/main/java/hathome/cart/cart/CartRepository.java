@@ -60,4 +60,8 @@ public class CartRepository {
         this.jdbcTemplate.update(sql);
     }
 
+    public void checkOut(Long userId) {
+        String sql = "UPDATE cart SET status = 'paid' WHERE user_id = ? AND status = 'unpaid'";
+        this.jdbcTemplate.update(sql, userId);
+    }
 }
