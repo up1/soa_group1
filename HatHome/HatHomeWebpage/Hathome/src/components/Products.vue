@@ -84,16 +84,13 @@
                                 <h4>{{ item.name }}</h4>
                               </router-link>
                             <p>{{ item.price }} Baht</p>
-                            <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
+                            <a href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i class="fa fa-shopping-cart"></i></a>
                             <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-
-
           </div>
-
         </div>
       </div>
       <!--/all product-->
@@ -106,6 +103,8 @@
 
 <script>
 import axios from 'axios'
+import cart from '../services/cart'
+
 export default {
   name: 'recentProduct',
   data() {
@@ -113,7 +112,8 @@ export default {
       name: '',
       item: '',
       image: '',
-      list: []
+      list: [],
+      id: '',
     }
   },
   mounted: function() {
@@ -129,6 +129,9 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
+    },
+    addToCart (id, name) {
+      cart.addToCart(id, name);
     }
   }
 }

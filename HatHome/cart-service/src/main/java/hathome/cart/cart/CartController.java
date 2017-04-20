@@ -1,6 +1,8 @@
 package hathome.cart.cart;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import hathome.cart.cart.Adapter.Product;
+import hathome.cart.cart.Adapter.ProductAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,10 +19,12 @@ import java.util.List;
 public class CartController {
 
     private CartRepository cartRepository;
+    private ProductAdapter productAdapter;
 
     @Autowired
     public CartController(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
+        productAdapter = new ProductAdapter();
     }
 
     @RequestMapping("/")
@@ -34,8 +38,8 @@ public class CartController {
     /*-------------- Method for checking only --------------*/
     @GetMapping("/cart-check")
     public List<Cart> getAllCartItems() {
-        System.out.println( "listing all unpaid order" );
-        return this.cartRepository.getUnpaidItemInCart();
+        List<Cart> carts = this.cartRepository.getUnpaidItemInCart();
+        return attachProductDetailToCartList(carts);
     }
 
 
@@ -43,11 +47,19 @@ public class CartController {
     @GetMapping("/cart/{userId}")
     public List<Cart> getProductInCartById(@PathVariable Long userId) {
         //todo getCart API need to get product data from Product-service
-        return this.cartRepository.getItemInCartByUserId(userId);
+        List<Cart> carts = this.cartRepository.getItemInCartByUserId(userId);
+        return attachProductDetailToCartList(carts);
     }
 
 
     /*-------------- Update product in cart --------------*/
+
+    /**
+     * Update product in cart
+     * @param cartItem
+     * @return
+     * @throws JsonProcessingException
+     */
     @RequestMapping(
             value = "/cart",
             method = RequestMethod.PUT)
@@ -75,12 +87,17 @@ public class CartController {
     public ResponseEntity<Cart> addProductToCart(@RequestBody Cart cartItem)
             throws JsonProcessingException {
 
-        //Todo: Get data from UI click ( eg. productId + userId ).
         //Todo: Add multiple product by single query when click CART icon.
+
         try {
-            this.cartRepository.addProduct(cartItem);
-            System.out.println("Added");
-            return new ResponseEntity<>(HttpStatus.OK);
+            if(cartItem.getProduct_id() != 0){
+                this.cartRepository.addProduct(cartItem);
+                System.out.println("Added");
+                return new ResponseEntity<>(HttpStatus.OK);
+            }else {
+                System.out.println("Product id is missing");
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
         } catch (Exception e) {
             System.out.println("Error occurred: " + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -108,4 +125,33 @@ public class CartController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    /*-------------- Remove product after checked-out --------------*/
+    @RequestMapping(
+            value = "/cart/{userId}",
+            method = RequestMethod.PUT)
+    public ResponseEntity<Cart> checkoutProduct(@PathVariable Long userId)
+            throws JsonProcessingException {
+        try {
+            this.cartRepository.checkOut(userId);
+            System.out.println("Checked out");
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("Error occurred: " + e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    private List<Cart> attachProductDetailToCartList(List<Cart> carts){
+        if(carts == null || carts.isEmpty()) {
+            System.err.println("Cart list is Empty");
+        }else {
+            System.out.println("Carts size : " + carts.size());
+            for (Cart c:carts){
+                c.setProduct(this.productAdapter.getProductDetail(c.getProduct_id()));
+            }
+        }
+        return carts;
+    }
+
 }

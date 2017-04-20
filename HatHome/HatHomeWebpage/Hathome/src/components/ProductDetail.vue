@@ -90,7 +90,7 @@
                                   <label>Quantity:</label>
                                   <input type="text" value="1" />
 
-                                  <button type="button" class="btn btn-fefault cart">
+                                  <button type="button" class="btn btn-fefault cart" v-on:click="addToCart">
                                     <i class="fa fa-shopping-cart"></i>
                   										Add to cart
                   									</button>
@@ -112,6 +112,7 @@
 
 <script>
   import axios from 'axios'
+  import cart from '../services/cart'
   export default {
     name: 'productDetail',
     data () {
@@ -131,7 +132,7 @@
       this.product()
     },
     methods: {
-      product: function () {
+      product () {
         axios.get('http://localhost:9004/products/' + this.$route.params.id, {
         })
           .then((response) => {
@@ -145,11 +146,14 @@
             this.brand = response.data.brand
             this.color = response.data.color
             this.type = response.data.type
-            this.id = response.id
+            this.id = response.data.id
           })
           .catch(function (error) {
             console.log(error)
           })
+      },
+      addToCart () {
+        cart.addToCart(this.id, this.name);
       }
     }
   }
