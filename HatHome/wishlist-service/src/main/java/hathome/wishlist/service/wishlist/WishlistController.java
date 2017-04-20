@@ -20,14 +20,15 @@ public class WishlistController {
         this.productAdapter = new ProductAdapter();
     }
 
+    @GetMapping("/check")
     public List<Wishlist> getAllWishlistItem(){
         List<Wishlist> wishlists = this.wishlistRepository.findAllWishlist();
-        System.out.println(wishlists);
+        System.out.println(wishlists.size());
         return getProductDetail(wishlists);
     }
 
     @GetMapping("/wishlist")
-    public Wishlist getWishlist(@RequestParam(value = "wishlist_id", defaultValue="1") int id){
+    public Wishlist getWishlist(@RequestParam(value = "wishlist_id", defaultValue = "1") int id){
         return this.wishlistRepository.findById((long) id);
     }
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 /**
  * Created by Plern on 20/4/2560.
  */
+@Service
 public class ProductAdapter {
     public Product getProductDetail(long productId){
         RestTemplate restTemplate = new RestTemplate();
