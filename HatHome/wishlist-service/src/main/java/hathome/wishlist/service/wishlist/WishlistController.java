@@ -43,7 +43,7 @@ public class WishlistController {
         return "can delete----------"+wishlist.getWishlist_id();
     }
 
-
+    @GetMapping
     private List<Wishlist> getProductDetail(List<Wishlist> wishlists){
         if (wishlists == null || wishlists.isEmpty()){
             System.out.println("Wishlist is Empty");

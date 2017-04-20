@@ -1,7 +1,7 @@
 package hathome.wishlist.service.wishlist.Adapter;
 
 import org.springframework.web.client.RestTemplate;
-
+import org.springframework.stereotype.Service;
 /**
  * Created by Plern on 20/4/2560.
  */
