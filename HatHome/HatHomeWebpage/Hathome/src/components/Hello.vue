@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
+    <!--<billing idnaja="aaa"></billing>-->
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <h3><a v-on:click="billing">Billing</a></h3>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
@@ -21,14 +23,36 @@
 </template>
 
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome'
+  import axios from 'axios'
+  export default {
+    name: 'hello',
+    data () {
+      return {
+        msg: 'Welcome sss',
+        aaa: 'aaaa'
+      }
+    },
+    methods: {
+        billing() {
+          console.log('aaaaaaaa', 'billing');
+          axios.post('http://localhost:9006/bill', {
+            user_id : 10
+          })
+            .then(
+                (response) => {
+                  console.log(response);
+                  this.$router.push({
+                    name: 'Billing',
+                    params : { id : response.data.id }
+              })}
+            )
+            .catch(
+                (error) => {
+              console.log(error);
+            });
+        }
     }
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

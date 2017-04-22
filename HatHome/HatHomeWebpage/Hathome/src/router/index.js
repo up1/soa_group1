@@ -9,6 +9,7 @@ import Register from '@/components/Register'
 import Profile from '@/components/Profile'
 import Cart from '@/components/Cart'
 import Wishlist from '@/components/Wishlist'
+import Billing from '@/components/Billing'
 
 
 Vue.use(Router)
@@ -62,6 +63,11 @@ var router = new Router({
       path: '/wishlist',
       name: 'wishlist',
       component: Wishlist
+    },
+    {
+      path: '/billing',
+      name: 'Billing',
+      component: Billing
     }
   ]
 })
