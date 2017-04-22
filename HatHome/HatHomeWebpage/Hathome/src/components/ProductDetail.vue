@@ -74,7 +74,7 @@
                           <!--product-details-->
                           <div class="col-sm-5">
                               <div class="view-product">
-                                <img v-bind:src="image" />
+                                <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + id + '.jpg'"/>
                               </div>
 
 
@@ -145,7 +145,7 @@
             this.brand = response.data.brand
             this.color = response.data.color
             this.type = response.data.type
-            this.id = response.id
+            this.id = response.data.id
           })
           .catch(function (error) {
             console.log(error)
