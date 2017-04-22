@@ -1,5 +1,7 @@
 package com.hathome;
 
+import com.hathome.adapter.User;
+import com.hathome.adapter.UserAdapter;
 import com.mysql.cj.api.jdbc.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -34,7 +36,13 @@ public class BillRepository {
 
     @Transactional(readOnly = false)
     public BillStatus addBill(Bill bill){
-        //call adapter
+
+        //get user
+        UserAdapter userAdapter = new UserAdapter();
+        User user = userAdapter.getUserById(bill.getUser_id());
+        bill.setUsername(user.getEmail());
+        bill.setAddress(user.getAddress());
+
         BillStatus billStatus = new BillStatus();
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sql = "INSERT INTO bills (user_id, address, date, cart_id, cart_cost, shipping_cost, total) VALUES (?, ?, ?, ?, ?, ?, ?)";

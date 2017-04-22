@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class Bill{
     private long id;
     private long user_id;
+    private String username;
     private String address;
     private String date;
     private long cart_id;
@@ -45,6 +46,14 @@ public class Bill{
 
     public void setUser_id(long user_id) {
         this.user_id = user_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getAddress() {
