@@ -24,15 +24,17 @@ public class BillController {
         this.billRepository = billRepository;
     }
 
+//    get bill by bill id
     @GetMapping("/bill/{id}")
     public Bill getBillById(@PathVariable long id){
         System.out.println(id);
         return billRepository.findById(id);
     }
 
+//    save bill
     @RequestMapping(value = "/bill", method =  RequestMethod.POST)
-    public ResponseEntity<BillStatus> saveBill(@RequestBody Bill bill){
-        BillStatus billStatus = billRepository.addBill(bill);
+    public ResponseEntity<BillStatus> saveBill(@RequestBody String userId){
+        BillStatus billStatus = billRepository.addBill(userId);
         return new ResponseEntity<BillStatus>(billStatus, HttpStatus.CREATED);
     }
 }

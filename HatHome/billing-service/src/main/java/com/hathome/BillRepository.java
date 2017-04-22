@@ -33,7 +33,9 @@ public class BillRepository {
     }
 
     @Transactional(readOnly = false)
-    public BillStatus addBill(Bill bill){
+    public BillStatus addBill(String userId){
+        Bill bill = new Bill();
+        //call adapter
         BillStatus billStatus = new BillStatus();
         KeyHolder keyHolder = new GeneratedKeyHolder();
         String sql = "INSERT INTO bills (user_id, address, date, cart_id, cart_cost, shipping_cost, total) VALUES (?, ?, ?, ?, ?, ?, ?)";
