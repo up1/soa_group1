@@ -1,9 +1,7 @@
 package com.hathome;
 
-import com.mysql.cj.api.jdbc.JdbcConnection;
 import com.mysql.cj.api.jdbc.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.session.SessionProperties;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -55,6 +53,7 @@ public class BillRepository {
         }, keyHolder);
         billStatus.setStatus("success");
         billStatus.setId(keyHolder.getKey().longValue());
+        EmailService.SendSimpleMessage();
         return billStatus;
     }
 }
