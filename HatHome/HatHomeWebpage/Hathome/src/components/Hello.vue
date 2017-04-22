@@ -36,13 +36,7 @@
         billing() {
           console.log('aaaaaaaa', 'billing');
           axios.post('http://localhost:9006/bill', {
-            user_id : 10,
-            address: "aaaaaa",
-            date: "01-09-9999",
-            cart_id: 111,
-            cart_cost: 100,
-            shipping_cost: 50,
-            total: 150
+            user_id : 10
           })
             .then(
                 (response) => {

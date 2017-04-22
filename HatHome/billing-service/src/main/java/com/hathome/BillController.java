@@ -33,8 +33,8 @@ public class BillController {
 
 //    save bill
     @RequestMapping(value = "/bill", method =  RequestMethod.POST)
-    public ResponseEntity<BillStatus> saveBill(@RequestBody String userId){
-        BillStatus billStatus = billRepository.addBill(userId);
+    public ResponseEntity<BillStatus> saveBill(@RequestBody Bill bill){
+        BillStatus billStatus = billRepository.addBill(bill);
         return new ResponseEntity<BillStatus>(billStatus, HttpStatus.CREATED);
     }
 }

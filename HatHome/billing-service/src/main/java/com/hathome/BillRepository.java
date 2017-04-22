@@ -33,8 +33,7 @@ public class BillRepository {
     }
 
     @Transactional(readOnly = false)
-    public BillStatus addBill(String userId){
-        Bill bill = new Bill();
+    public BillStatus addBill(Bill bill){
         //call adapter
         BillStatus billStatus = new BillStatus();
         KeyHolder keyHolder = new GeneratedKeyHolder();
