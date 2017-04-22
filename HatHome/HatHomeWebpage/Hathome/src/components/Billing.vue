@@ -137,6 +137,7 @@
             console.log(response)
             this.bill_id = response.data.id
             this.user_id = response.data.user_id
+            this.username = response.data.username
             this.bill_address = response.data.address
             this.bill_date = response.data.date
             this.cart_cost = response.data.cart_cost

@@ -14,7 +14,7 @@ import java.util.Map;
  */
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8080")
 public class BillController {
 
     private  final  BillRepository billRepository;

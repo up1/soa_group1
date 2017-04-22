@@ -10,10 +10,10 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by Acer on 6/4/2560.
@@ -40,8 +40,12 @@ public class BillRepository {
         //get user
         UserAdapter userAdapter = new UserAdapter();
         User user = userAdapter.getUserById(bill.getUser_id());
+        System.out.println(user.getEmail() + user.getAddress());
         bill.setUsername(user.getEmail());
         bill.setAddress(user.getAddress());
+
+        //set date
+        bill.setDate(getCurrentDate());
 
         BillStatus billStatus = new BillStatus();
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -64,5 +68,11 @@ public class BillRepository {
         billStatus.setId(keyHolder.getKey().longValue());
         EmailService.SendSimpleMessage();
         return billStatus;
+    }
+
+    private String getCurrentDate(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        return dateFormat.format(new java.util.Date());
+
     }
 }
