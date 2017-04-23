@@ -35,6 +35,11 @@ public class BillRepository {
         Bill bill = this.jdbcTemplate.queryForObject(sqlBill, new Object[]{id}, new BillRowMapper());
         Cart cart = new Cart();
 
+        //set username
+        UserAdapter userAdapter = new UserAdapter();
+        User user = userAdapter.getUserById(bill.getUser_id());
+        bill.setUsername(user.getEmail());
+
         //get product detail
         String sqlItem = "SELECT product_id, amount FROM ITEMS WHERE bill_id=?";
         List<Item> items = this.jdbcTemplate.query(sqlItem, new Object[]{id}, new ItemRowMapper());

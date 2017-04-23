@@ -41,6 +41,7 @@
               </tr>
           </tbody>
         </table>
+        <a v-on:click="billing" class="btn btn-default check_out">Check out your cart</a>
       </div>
     </div>
   </section>
@@ -72,6 +73,24 @@
             console.log('in catch', error);
           }
         )
+      },
+      billing() {
+        console.log('aaaaaaaa', 'billing');
+        axios.post('http://localhost:9006/bill', {
+          user_id : 1234
+        })
+          .then(
+            (response) => {
+              console.log(response);
+              this.$router.push({
+                name: 'Billing',
+                params : { id : response.data.id }
+              })}
+          )
+          .catch(
+            (error) => {
+              console.log(error);
+            });
       }
     }
   }

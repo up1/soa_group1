@@ -65,7 +65,7 @@ var router = new Router({
       component: Wishlist
     },
     {
-      path: '/billing',
+      path: '/bill/:id',
       name: 'Billing',
       component: Billing
     }
