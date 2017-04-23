@@ -18,16 +18,16 @@ public class CartAdapter {
         String url = "http://localhost:9003/cart/" + userId;
         ResponseEntity<CartItem[]> responseEntity = restTemplate.getForEntity(url, CartItem[].class);
         CartItem[] cartObj = responseEntity.getBody();
-        System.out.println("userId" + userId);
         List<CartItem> cartItems = new ArrayList<>(Arrays.asList(cartObj));
 
         List<Product> products = new ArrayList<>();
         double totalPrice = 0;
         for (CartItem cartitem: cartItems) {
-            products.add(cartitem.getProduct());
+            Product product = cartitem.getProduct();
+            product.setAmount(cartitem.getAmount());
+            products.add(product);
             totalPrice += cartitem.getProduct().getPrice();
         }
-        System.out.println("total price: " + totalPrice);
         cart.setProducts(products);
         cart.setPrice(totalPrice);
         return  cart;

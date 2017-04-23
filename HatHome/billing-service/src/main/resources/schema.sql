@@ -15,5 +15,6 @@ CREATE TABLE `bill`.`items` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `bill_id` INT NOT NULL,
   `product_id` INT NOT NULL,
+  `amount` INT NOT NULL,
   PRIMARY KEY (`id`));
 

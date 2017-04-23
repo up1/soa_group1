@@ -1,9 +1,6 @@
 package com.hathome;
 
-import com.hathome.adapter.CartAdapter;
-import com.hathome.adapter.Product;
-import com.hathome.adapter.User;
-import com.hathome.adapter.UserAdapter;
+import com.hathome.adapter.*;
 import com.mysql.cj.api.jdbc.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,6 +13,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Acer on 6/4/2560.
@@ -32,8 +31,23 @@ public class BillRepository {
 
     @Transactional(readOnly = true)
     public Bill findById(long id){
-        String sql = "SELECT id, user_id, address, date, cart_price, shipping_cost, total FROM BILLS WHERE id=?";
-        return this.jdbcTemplate.queryForObject(sql, new Object[]{id}, new BillRowMapper());
+        String sqlBill = "SELECT id, user_id, address, date, cart_price, shipping_cost, total FROM BILLS WHERE id=?";
+        Bill bill = this.jdbcTemplate.queryForObject(sqlBill, new Object[]{id}, new BillRowMapper());
+        Cart cart = new Cart();
+
+        //get product detail
+        String sqlItem = "SELECT product_id, amount FROM ITEMS WHERE bill_id=?";
+        List<Item> items = this.jdbcTemplate.query(sqlItem, new Object[]{id}, new ItemRowMapper());
+        List<Product> products = new ArrayList<>();
+        for (Item item: items) {
+            ProductAdapter productAdapter = new ProductAdapter();
+            Product product = productAdapter.getProductById(item.getProduct_id());
+            product.setAmount(item.getAmount());
+            products.add(product);
+        }
+        cart.setProducts(products);
+        bill.setCart(cart);
+        return bill;
     }
 
     @Transactional(readOnly = false)
@@ -82,7 +96,7 @@ public class BillRepository {
         bill.setId(keyHolder.getKey().longValue());
 
         //insert to items
-        String sqlItem = "INSERT INTO items (bill_id, product_id) VALUES (?, ?)";
+        String sqlItem = "INSERT INTO items (bill_id, product_id, amount) VALUES (?, ?, ?)";
         for (Product product: bill.getCart().getProducts()) {
             this.jdbcTemplate.update(new PreparedStatementCreator() {
                 @Override
@@ -90,6 +104,7 @@ public class BillRepository {
                     PreparedStatement preparedStatement = connection.prepareStatement(sqlItem);
                     preparedStatement.setLong(1, bill.getId());
                     preparedStatement.setLong(2, product.getId());
+                    preparedStatement.setLong(3, product.getAmount());
                     return preparedStatement;
                 }
             });

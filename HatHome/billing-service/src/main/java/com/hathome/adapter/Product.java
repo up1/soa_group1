@@ -10,7 +10,7 @@ public class Product {
     private Double price;
     private String color;
     private String brand;
-    private int amount;
+    private long amount;
     private String type;
     private String image;
 
@@ -63,11 +63,11 @@ public class Product {
         this.brand = brand;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(long amount) {
         this.amount = amount;
     }
 
