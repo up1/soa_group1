@@ -26,7 +26,7 @@ public class CartAdapter {
             Product product = cartitem.getProduct();
             product.setAmount(cartitem.getAmount());
             products.add(product);
-            totalPrice += cartitem.getProduct().getPrice();
+            totalPrice += cartitem.getProduct().getPrice() * cartitem.getAmount();
         }
         cart.setProducts(products);
         cart.setPrice(totalPrice);
