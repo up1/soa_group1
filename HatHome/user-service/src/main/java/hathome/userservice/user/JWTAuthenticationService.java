@@ -1,9 +1,8 @@
-package hathome.authentication.authen;
+package hathome.userservice.user;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,7 +33,7 @@ public class JWTAuthenticationService {
             Claims body = claims.getBody();
 
             String email = body.getSubject();
-            Long id = (Long) body.get("id");
+            Long id = ((Integer) body.get("id")).longValue();
             String address = (String) body.get("address");
 
             if(email != null) {

@@ -8,8 +8,8 @@
           <div class="loginForm">
             <h2>{{header}}</h2>
             <form method="POST" v-on:submit.prevent="login()">
-              <input type="email" placeholder="email" id="email" v-model="email"/>
-              <input type="password" placeholder="password" id="password" v-model="password"/>
+              <input type="email" placeholder="email" id="email" v-model="body.email"/>
+              <input type="password" placeholder="password" id="password" v-model="body.password"/>
               <div class="col-md-6">
                                 <span>
                                 <input type="checkbox" class="checkbox" id="checkbox" v-model="checked"> Keep me signed in
@@ -39,44 +39,35 @@
 </template>
 
 <script>
-  import axios from 'axios'
-
   export default {
     name: 'loginForm',
     data () {
       return {
-        email: '',
-        password: '',
+        context: 'login context',
+        body: {
+          email: '1',
+          password: '2'
+        },
         header: 'Login to your account',
         checked: '',
       }
     },
     methods: {
       login() {
-        axios.post('http://localhost:9002/login', {
-          email: this.email,
-          password: this.password
+        var redirect = this.$auth.redirect()
+        this.$auth.login({
+          body: this.body,
+          redirect: {name: redirect ? redirect.from.name : 'products'},
+          success(){
+            console.log('success ' + this.context)
+          },
+          error(response) {
+            console.log('in catch', response);
+            alert('Please try login again');
+          }
         })
-          .then(
-            (response) => {
-              this.$router.push({path: '/'})
-              //return all data
-              console.log('in then', response.data);
-
-              //return token
-              console.log('in then', response.data.access_token);
-
-              //return email
-              console.log('in then', response.data.user.email);
-            }
-          )
-          .catch(
-            (error) => {
-              console.log('in catch', error);
-              alert('Please try login again');
-            }
-          )
       }
     }
   }
+
 </script>
