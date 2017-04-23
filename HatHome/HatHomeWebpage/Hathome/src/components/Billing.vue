@@ -23,63 +23,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
+            <tr v-for="item in products">
               <td class="cart_product">
-                <a href=""><img src="http://i.imgur.com/Ns4cgfm.jpg" alt=""></a>
+                <a href=""><img :src="item.image" alt=""></a>
               </td>
               <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
+                <h4><a href="">{{item.name}}</a></h4>
               </td>
               <td class="cart_price">
-                <p>฿59</p>
+                <p>฿{{item.price}}</p>
               </td>
               <td class="cart_quantity">
-                <p>2</p>
+                <p>{{item.amount}}</p>
               </td>
               <td class="cart_total">
-                <p class="cart_total_price">฿59</p>
+                <p class="cart_total_price">฿{{item.price * item.amount}}</p>
               </td>
 
             </tr>
 
-            <tr>
-              <td class="cart_product">
-                <a href=""><img src="http://i.imgur.com/hflVXay.jpg" alt=""></a>
-              </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
-
-              </td>
-              <td class="cart_price">
-                <p>฿59</p>
-              </td>
-              <td class="cart_quantity">
-                <p>5</p>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">฿59</p>
-              </td>
-
-            </tr>
-            <tr>
-              <td class="cart_product">
-                <a href=""><img src="http://i.imgur.com/kj7tXU7.jpg" alt=""></a>
-              </td>
-              <td class="cart_description">
-                <h4><a href="">Colorblock Scuba</a></h4>
-
-              </td>
-              <td class="cart_price">
-                <p>฿59</p>
-              </td>
-              <td class="cart_quantity">
-                <p>1</p>
-              </td>
-              <td class="cart_total">
-                <p class="cart_total_price">฿59</p>
-              </td>
-
-            </tr>
             <tr>
               <td colspan="3">&nbsp;</td>
               <td colspan="2">
@@ -124,7 +86,10 @@
         bill_date: 'bill_date',
         cart_price: 1,
         shipping_cost: 1,
-        total: 2
+        total: 2,
+        image: "",
+        cart: "",
+        products: []
       }
     },
     mounted: function () {
@@ -143,7 +108,8 @@
             this.cart_price = response.data.cart_price
             this.shipping_cost = response.data.shipping_cost
             this.total = response.data.total
-          })
+            this.products = response.data.cart.products
+           })
           .catch(function (error) {
             console.log(error)
           })
