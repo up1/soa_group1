@@ -1,8 +1,10 @@
 package com.hathome;
 
 import com.hathome.adapter.Cart;
+import com.hathome.adapter.Product;
 
-import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by Acer on 6/4/2560.
  */
@@ -12,19 +14,17 @@ public class Bill{
     private String username;
     private String address;
     private String date;
-    private long cart_id;
-    private double cart_cost;
+    private double cart_price;
     private double shipping_cost;
     private double total;
     private Cart cart;
 
-    public Bill(long id, long user_id, String address, String date, long cart_id, double cart_cost, double shipping_cost, double total, Cart cart) {
+    public Bill(long id, long user_id, String address, String date, long cart_id, double cart_price, double shipping_cost, double total, Cart cart) {
         this.id = id;
         this.user_id = user_id;
         this.address = address;
         this.date = date;
-        this.cart_id = cart_id;
-        this.cart_cost = cart_cost;
+        this.cart_price = cart_price;
         this.shipping_cost = shipping_cost;
         this.total = total;
         this.cart = cart;
@@ -72,20 +72,12 @@ public class Bill{
         this.date = date;
     }
 
-    public long getCart_id() {
-        return cart_id;
+    public double getCart_price() {
+        return cart_price;
     }
 
-    public void setCart_id(long cart_id) {
-        this.cart_id = cart_id;
-    }
-
-    public double getCart_cost() {
-        return cart_cost;
-    }
-
-    public void setCart_cost(double cart_cost) {
-        this.cart_cost = cart_cost;
+    public void setCart_price(double cart_price) {
+        this.cart_price = cart_price;
     }
 
     public double getShipping_cost() {

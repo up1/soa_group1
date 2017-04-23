@@ -16,8 +16,7 @@ public class BillRowMapper implements RowMapper<Bill> {
         bill.setUser_id(resultSet.getLong("user_id"));
         bill.setAddress(resultSet.getString("address"));
         bill.setDate(resultSet.getString("date"));
-        bill.setCart_id(resultSet.getLong("cart_id"));
-        bill.setCart_cost(resultSet.getDouble("cart_cost"));
+        bill.setCart_price(resultSet.getDouble("cart_price"));
         bill.setShipping_cost(resultSet.getDouble("shipping_cost"));
         bill.setTotal(resultSet.getDouble("total"));
         return bill;

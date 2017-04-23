@@ -1,13 +1,9 @@
 package com.hathome;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hathome.adapter.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 /**
  * Created by Acer on 6/4/2560.
@@ -33,8 +29,8 @@ public class BillController {
 
 //    save bill
     @RequestMapping(value = "/bill", method =  RequestMethod.POST)
-    public ResponseEntity<BillStatus> saveBill(@RequestBody Bill bill){
-        BillStatus billStatus = billRepository.addBill(bill);
+    public ResponseEntity<BillStatus> saveBill(@RequestBody BillStoreRequest request){
+        BillStatus billStatus = billRepository.addBill(request.getUser_id());
         return new ResponseEntity<BillStatus>(billStatus, HttpStatus.CREATED);
     }
 }

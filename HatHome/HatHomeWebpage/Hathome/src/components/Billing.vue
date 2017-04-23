@@ -86,7 +86,7 @@
                 <table class="table table-condensed total-result">
                   <tr>
                     <td>Cart Sub Total</td>
-                    <td>฿{{ cart_cost }}</td>
+                    <td>฿{{ cart_price }}</td>
                   </tr>
                   <tr class="shipping-cost">
                     <td>Shipping Cost</td>
@@ -122,9 +122,9 @@
         bill_id: 1,
         bill_address: 'bill_address',
         bill_date: 'bill_date',
-        cart_cost: 'cart_cost',
-        shipping_cost: 'shipping_cost',
-        total: 'total'
+        cart_price: 1,
+        shipping_cost: 1,
+        total: 2
       }
     },
     mounted: function () {
@@ -140,7 +140,7 @@
             this.username = response.data.username
             this.bill_address = response.data.address
             this.bill_date = response.data.date
-            this.cart_cost = response.data.cart_cost
+            this.cart_price = response.data.cart_price
             this.shipping_cost = response.data.shipping_cost
             this.total = response.data.total
           })

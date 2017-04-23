@@ -7,7 +7,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class UserAdapter {
 
-    public  User getUserById(long userId){
+    public User getUserById(long userId){
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:9001/user/" + userId;
         User user = restTemplate.getForObject(url, User.class);

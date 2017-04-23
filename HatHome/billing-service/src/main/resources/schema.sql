@@ -6,8 +6,7 @@ CREATE TABLE `bill`.`bills` (
   `user_id` INT NOT NULL,
   `address` VARCHAR(300) NOT NULL,
   `date` VARCHAR(30) NOT NULL,
-  `cart_id` INT NOT NULL,
-  `cart_cost` DOUBLE NOT NULL,
+  `cart_price` DOUBLE NOT NULL,
   `shipping_cost` DOUBLE NOT NULL,
   `total` DOUBLE NOT NULL,
   PRIMARY KEY (`id`));
