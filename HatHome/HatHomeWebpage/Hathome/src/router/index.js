@@ -1,3 +1,4 @@
+
 <<<<<<< HEAD
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -14,7 +15,6 @@ import Billing from '@/components/Billing'
 import VueAuth from '@websanova/vue-auth'
 import VueResource from 'vue-resource'
 import custom from '@/driver/custom'
-
 var router = new Router({
   hashbang: false,
   linkActiveClass: 'active',
@@ -166,9 +166,11 @@ var router = new Router({
       name: 'wishlist',
       component: Wishlist
     }
-  ]
-})
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 Vue.router = router
+})
 Vue.use(Router)
 export default router
->>>>>>> wishlist-service

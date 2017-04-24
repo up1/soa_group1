@@ -1,16 +1,17 @@
 package hathome.product.product;
 
 
+import java.math.BigDecimal;
+
 public class Product {
     private long id;
     private String name;
     private String detail;
-    private Double price;
+    private BigDecimal price;
     private String color;
     private String brand;
     private int amount;
     private String type;
-    private String image;
 
 
     public long getId() {
@@ -37,11 +38,11 @@ public class Product {
         this.detail = detail;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -77,11 +78,4 @@ public class Product {
         this.type = type;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }
