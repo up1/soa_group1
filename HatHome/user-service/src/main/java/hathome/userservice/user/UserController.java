@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 
 @RestController
+@CrossOrigin
 public class UserController {
 
     private final UserRepository userRepository;
@@ -42,11 +44,21 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/{userId}")
-    public User getUserDetail(@PathVariable Integer userId){
-        return this.userRepository.findById((Integer) userId);
+//    @GetMapping("/user/{userId}")
+//    public User getUserDetail(@PathVariable Long userId){
+//        return this.userRepository.findById((Long) userId);
+//    }
+
+    @GetMapping("/user/profile")
+    public ResponseEntity<User> getSelfDetail(HttpServletRequest request) {
+        User user = new JWTAuthenticationService().parseToken(request);
+        user = userRepository.findById(user.getId());
+
+        if(user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
-
-
 
 }

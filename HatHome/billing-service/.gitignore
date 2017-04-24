@@ -1,0 +1,38 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+/.mvn/
+.gitignore
+.mvn/
+mvnw
+mvnw.cmd
+pom.xml
+src/
+/.idea/
+/mvnw
+/mvnw.cmd
+/billing-service.iml
+!/src/
+!/pom.xml
+!/.gitignore

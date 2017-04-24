@@ -6,7 +6,7 @@ package hathome.wishlist.service.wishlist;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9007")
+@CrossOrigin
 public class WishlistController {
 
     private final WishlistRepository wishlistRepository;
@@ -20,9 +20,23 @@ public class WishlistController {
         return this.wishlistRepository.findById((long) id);
     }
 
-//    private String hi = "Say hi";
-//    @RequestMapping("/hello")
-//    public String hello(){
-//        return hi;
-//    }
+    //    private String hi = "Say hi";
+    //    @RequestMapping("/hello")
+    //    public String hello(){
+    //        return hi;
+
+        @RequestMapping(value = "/wishlist", method = RequestMethod.POST)
+        public String insert(@RequestBody Wishlist wishlist){
+            wishlistRepository.addWishlist(wishlist);
+            return "can post++++++++++"+wishlist.getWishlist_id();
+        }
+
+        @RequestMapping(value = "/wishlist", method = RequestMethod.DELETE)
+        public String delete(@RequestBody Wishlist wishlist){
+            wishlistRepository.deleteWishlist(wishlist);
+            return "can delete----------"+wishlist.getWishlist_id();
+        }
+
+//    @GetMapping(path = "")
+//    public @ResponseBody String insert (@RequestParam Wishlist wishlist, @RequestParam)
 }

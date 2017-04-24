@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>cart-service</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Apart of  Hathome web-service</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -72,6 +72,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.moelholm</groupId>
+            <artifactId>prometheus-spring-boot-starter</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 

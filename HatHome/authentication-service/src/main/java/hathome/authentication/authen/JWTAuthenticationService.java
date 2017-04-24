@@ -34,7 +34,7 @@ public class JWTAuthenticationService {
             Claims body = claims.getBody();
 
             String email = body.getSubject();
-            Integer id = (Integer) body.get("id");
+            Long id = (Long) body.get("id");
             String address = (String) body.get("address");
 
             if(email != null) {
