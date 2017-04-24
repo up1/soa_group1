@@ -22,9 +22,8 @@ public class ProductController {
     }
 
     @RequestMapping("/products")
-    public List<Product> getAllProductInPage(
-            @RequestParam(value = "page", defaultValue = "1") int page) {
-        return this.productRepository.findAllProductInPage(page);
+    public List<Product> getAllProductInPage(){
+        return this.productRepository.findAllProduct();
     }
 
     @GetMapping("/products/{id}")
