@@ -25,7 +25,7 @@
         <div class="col-sm-6">
           <div class="shop-menu pull-right">
             <ul class="nav navbar-nav">
-              <li><a href="wishlist.html"><i class="fa fa-star"></i> Wishlist</a></li>
+              <li> <router-link :to="{ name: 'wishlist', params: { userid: this.$auth.user().id}}"><i class="fa fa-star"></i> Wishlist</router-link></li>
               <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
               <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
               <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
