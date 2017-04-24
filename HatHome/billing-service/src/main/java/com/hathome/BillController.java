@@ -1,5 +1,6 @@
 package com.hathome;
 
+import com.hathome.adapter.CartAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,8 @@ public class BillController {
     @RequestMapping(value = "/bill", method =  RequestMethod.POST)
     public ResponseEntity<BillStatus> saveBill(@RequestBody BillStoreRequest request){
         BillStatus billStatus = billRepository.addBill(request.getUser_id());
+        CartAdapter cartAdapter = new CartAdapter();
+        cartAdapter.checkOutFromCart(request.getUser_id());
         return new ResponseEntity<BillStatus>(billStatus, HttpStatus.CREATED);
     }
 }
