@@ -4,6 +4,70 @@
       <div class="col-sm-3">
         <div class="left-sidebar">
 
+<<<<<<< HEAD
+=======
+          <h2>Category</h2>
+          <div class="panel-group category-products">
+            <!--category-products-->
+            <div class="cat-product checkbox">
+              <label><input type="checkbox" id="caps" value="Caps" v-model="checkedCat">Caps</label>
+            </div>
+            <div class="cat-product checkbox">
+              <label><input type="checkbox" id="hats" value="Hats" v-model="checkedCat">Hats</label>
+            </div>
+            <div class="cat-product checkbox">
+              <label><input type="checkbox" id="beanies" value="Beanies" v-model="checkedCat">Beanies</label>
+            </div>
+
+          </div>
+          <!--/category-products-->
+
+          <div class="brands_products">
+            <!--brands_products-->
+            <h2>Brands</h2>
+            <div class="brands-name">
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="newEra" value="newEra" v-model="checkedCat">New Era</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="converse" value="converse" v-model="checkedCat">Converse</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="jaxon" value="jaxon" v-model="checkedBrand">Jaxon</label>
+              </div>
+            </div>
+          </div>
+          <!--/brands_products-->
+
+          <div class="color_products">
+            <!--color-->
+            <h2>Color</h2>
+            <div class="brands-name">
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="black" value="black" v-model="checkedColor">black</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="white" value="white" v-model="checkedColor">white</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="red" value="red" v-model="checkedColor">red</label>
+              </div>
+            </div>
+          </div>
+          <!--/color-->
+
+
+          <div class="price-range">
+            <!--price-range-->
+            <h2>Price Range</h2>
+            <div class="price-slider">
+              <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
+              <b>฿ 0</b> <b class="pull-right">฿ 600</b>
+            </div>
+          </div>
+          <!--/price-range-->
+
+>>>>>>> develop
 
 
         </div>
@@ -24,8 +88,13 @@
                       <h4>{{ item.name }}</h4>
                     </router-link>
                     <p>{{ item.price }} Baht</p>
+<<<<<<< HEAD
                     <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
                     <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)"><i class="fa fa-star"></i></a>
+=======
+                    <a href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i class="fa fa-shopping-cart"></i></a>
+                    <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
+>>>>>>> develop
                   </div>
                 </div>
               </div>
@@ -44,8 +113,12 @@
 
 <script>
 import axios from 'axios'
+<<<<<<< HEAD
 import wishlist from '../services/wishlist'
 
+=======
+import cart from '../services/cart'
+>>>>>>> develop
 export default {
   name: 'recentProduct',
   data() {
@@ -74,9 +147,12 @@ export default {
     },
     setPage(n) {
       this.currentPage = n;
+<<<<<<< HEAD
     },
     addToWishlist (id, name) {
       wishlist.addToWishlist(id, name);
+=======
+>>>>>>> develop
     }
   },
   computed: {
@@ -94,6 +170,12 @@ export default {
         this.currentPage = this.numOfPages;
       }
       return this.list.slice(this.offset, this.limit);
+<<<<<<< HEAD
+=======
+    },
+    addToCart (id, name) {
+      cart.addToCart(id, name, this.$auth.user().id);
+>>>>>>> develop
     }
   }
 }

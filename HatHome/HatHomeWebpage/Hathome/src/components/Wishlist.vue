@@ -22,23 +22,13 @@
                 <td>{{index+1}}</td>
                 <td><img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.product_id + '.jpg'" style="width: 120px; height: 120px;" /></td>
                 <td>{{item.product.name}}</td>
+                <td>
+                  <div id="add-cart">
+                    <button v-on:click="addToCart(item.product_id, item.product.name)" class="btn btn-default check_out">Add to Cart</button>
+                  </div>
+                </td>
                 <td class="cart_delete">
                   <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="2">&nbsp;</td>
-                <td colspan="2">
-                  <table class="table table-condensed total-result">
-                    <tr>
-                      <td>
-                        <div id="add-cart">
-                          <button v-on:click="" class="btn btn-default check_out">Add to Cart</button>
-                          <!--<a class="btn btn-default check_out" href="">Buy Wishlist</a>-->
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
                 </td>
               </tr>
               </tbody>
@@ -54,6 +44,7 @@
 
 <script>
   import axios from 'axios'
+  import cart from '../services/cart'
   export default {
     name: 'wishlist',
     data () {
@@ -100,6 +91,9 @@
                   console.log('in catch', error);
               }
             )
+      },
+      addToCart(id, name){
+        cart.addToCart(id, name, this.$auth.user().id);
       }
     }
   }

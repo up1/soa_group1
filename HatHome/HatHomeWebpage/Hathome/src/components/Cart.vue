@@ -17,10 +17,19 @@
           <tbody id="cart_item">
               <tr v-for="product in products">
                 <td class="cart_product">
-                  <a href=""><img src="http://i.imgur.com/Ns4cgfm.jpg" alt=""></a>
+                  <a href="">
+                    <router-link :to="{ name: 'productDetail', params: { id: product.product.id}}">
+                    <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + product.product.id +'.jpg'" />
+                    </router-link>
+                  </a>
                 </td>
                 <td class="cart_description">
-                  <h4><a href="">{{product.product.name}}</a></h4>
+                  <h4><a href="">
+                    <router-link :to="{ name: 'productDetail', params: { id: product.product.id}}">
+                      {{product.product.name}}
+                    </router-link>
+                  </a>
+                  </h4>
                 </td>
                 <td class="cart_price">
                   <p>{{product.product.price}} ฿</p>
@@ -64,12 +73,11 @@
         axios.get('http://localhost:9003/cart/' + this.$route.params.userId, {
         }).then(
           (response) => {
-            console.log('in then', response.data);
             this.products = response.data;
           }
         ).catch(
           (error) => {
-            console.log('in catch', error);
+            console.log('Error occur : ', error);
           }
         )
       }
