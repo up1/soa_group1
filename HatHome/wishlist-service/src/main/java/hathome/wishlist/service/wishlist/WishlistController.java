@@ -20,16 +20,11 @@ public class WishlistController {
         this.productAdapter = new ProductAdapter();
     }
 
-    @GetMapping("/check")
-    public List<Wishlist> getAllWishlistItem(){
-        List<Wishlist> wishlists = this.wishlistRepository.findAllWishlist();
-        System.out.println(wishlists.size());
+    @GetMapping("/wishlist/user/{user_id}")
+    public List<Wishlist> getWishlist(@PathVariable int user_id){
+        List<Wishlist> wishlists = this.wishlistRepository.findAllWishlist((long)user_id);
         return getProductDetail(wishlists);
-    }
-
-    @GetMapping("/wishlist")
-    public Wishlist getWishlist(@RequestParam(value = "wishlist_id", defaultValue = "1") int id){
-        return this.wishlistRepository.findById((long) id);
+//        return this.wishlistRepository.findById((long) user_id);
     }
 
     @RequestMapping(value = "/wishlist", method = RequestMethod.POST)

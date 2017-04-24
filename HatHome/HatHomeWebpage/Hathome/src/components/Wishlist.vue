@@ -10,23 +10,24 @@
             <table class="table table-condensed" style="width: 100%;">
               <thead>
               <tr class="cart_menu">
-                <td class="image">Item</td>
-                <td class="description">Product_id</td>
+                <td class="no">Item</td>
+                <td class="image"></td>
+                <td class="description">Product</td>
                 <td class="price">Price</td>
                 <td></td>
               </tr>
               </thead>
               <tbody>
-              <tr v-for="attribute in products">
-                <td><img v-bind:src="attribute.image"/>  </td>
-                <td>{{attribute.id}}</td>
-                <td>{{attribute.price}}</td>
+              <tr v-for="(item, index) in list">
+                <td>{{index+1}}</td>
+                <td><img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.product_id + '.jpg'" style="width: 120px; height: 120px;" /></td>
+                <td>{{item.product.name}}</td>
                 <td class="cart_delete">
                   <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
                 </td>
               </tr>
               <tr>
-                <td colspan="1">&nbsp;</td>
+                <td colspan="2">&nbsp;</td>
                 <td colspan="2">
                   <table class="table table-condensed total-result">
                     <tr>
@@ -55,7 +56,7 @@
       return {
         header: 'My Wishlist',
         product_id: '',
-        products : ''
+        list : []
       }
     },
     mounted: function () {
@@ -64,16 +65,16 @@
     },
     methods: {
       wishlist() {
-        axios.get('http://localhost:9005/wishlist', {
+        axios.get('http://localhost:9005/wishlist/user/' + this.$route.params.userid, {
 //          product_id: this.product_id
         })
           .then(
             (response) => {
 //              this.$router.push({path: '/'})
               //return all data
-              console.log('in then', response.data);
-              console.log('in then', response.data.product_id);
-              this.product_id = response.data.product_id;
+              console.log('in then',this.$route.params.userid);
+              this.list = response.data;
+              console.log(list);
             }
           )
           .catch(

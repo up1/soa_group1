@@ -59,7 +59,7 @@ var router = new Router({
       component: Cart
     },
     {
-      path: '/wishlist',
+      path: '/wishlist/:userid',
       name: 'wishlist',
       component: Wishlist
     }
