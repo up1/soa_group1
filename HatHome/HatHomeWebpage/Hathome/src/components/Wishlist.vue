@@ -60,7 +60,7 @@
     },
     methods: {
       wishlist() {
-        axios.get('http://localhost:9005/wishlist/user/' + this.$route.params.userid, {
+        axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {
 //          product_id: this.product_id
         })
           .then(
