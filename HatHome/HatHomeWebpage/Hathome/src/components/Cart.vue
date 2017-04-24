@@ -50,19 +50,40 @@
               </tr>
           </tbody>
         </table>
+        <a v-on:click="billing" class="btn btn-default check_out">Check out your cart</a>
       </div>
     </div>
+    <div id="wrapper" class="container">
+      <modal v-if="showModal">
+        <h3 slot="header" class="modal-title">
+            Modal title
+          </h3>
+          <div slot="footer">
+     <button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>
+     <button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitAndClose()">
+       Submit
+     </button>
+    </div>
+      </modal>
+      <button type="button" class="btn btn-primary" @click="openModal()">Open Modal</button>
+     </div>
+ </div>
   </section>
 </template>
 
 <script>
   import axios from 'axios'
+  import Modal from '@/components/Modal';
 
   export default {
     name: 'cart_info',
+    components: {
+      Modal
+    },
     data () {
       return {
-        products : null
+        products : null,
+        showModal: false
       }
     },
     mounted: function () {
@@ -80,7 +101,34 @@
             console.log('Error occur : ', error);
           }
         )
-      }
+      },
+      billing() {
+        console.log('aaaaaaaa', 'billing');
+        axios.post('http://localhost:9006/bill', {
+          user_id : 1234
+        })
+          .then(
+            (response) => {
+              console.log(response);
+              this.$router.push({
+                name: 'Billing',
+                params : { id : response.data.id }
+              })}
+          )
+          .catch(
+            (error) => {
+              console.log(error);
+            });
+      },
+      openModal(){
+        this.showModal = true;
+      },
+  closeModal() {
+     this.showModal = false;
+  },
+  submitAndClose() {
+    
+  }
     }
   }
 </script>

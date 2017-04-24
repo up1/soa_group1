@@ -28,7 +28,7 @@
     name: 'hello',
     data () {
       return {
-        msg: 'Welcome sss',
+        msg: 'Welcome thara',
         aaa: 'aaaa'
       }
     },
@@ -36,7 +36,7 @@
         billing() {
           console.log('aaaaaaaa', 'billing');
           axios.post('http://localhost:9006/bill', {
-            user_id : 10
+            user_id : 1234
           })
             .then(
                 (response) => {
