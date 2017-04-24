@@ -25,10 +25,10 @@
             <tbody>
             <tr v-for="item in products">
               <td class="cart_product">
-                <a href=""><img :src="item.image" alt=""></a>
+                <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'" style="width: 120px; height: 120px;"/>
               </td>
               <td class="cart_description">
-                <h4><a href="">{{item.name}}</a></h4>
+                <h4>{{item.name}}</h4>
               </td>
               <td class="cart_price">
                 <p>฿{{item.price}}</p>
