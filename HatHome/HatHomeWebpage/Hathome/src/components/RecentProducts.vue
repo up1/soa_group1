@@ -55,10 +55,9 @@
                           <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'"/>
                           <h4>{{ item.name }}</h4>
                         </router-link>
-                      </a>
                       <p>{{ item.price }} Baht</p>
                       <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
-                      <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
+                      <a href="#" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)"><i class="fa fa-star"></i></a>
                     </div>
                   </div>
                 </div>
@@ -80,6 +79,8 @@
 
 <script>
 import axios from 'axios'
+import wishlist from '../services/wishlist'
+
 export default {
   name: 'recentProducts',
   data() {
@@ -108,6 +109,9 @@ export default {
     scrollBehavior: function(to, from, savedPosition) {
       return {x: 0,  y: 0}
 
+    },
+    addToWishlist (id, name) {
+      wishlist.addToWishlist(id, name);
     }
   }
 }
