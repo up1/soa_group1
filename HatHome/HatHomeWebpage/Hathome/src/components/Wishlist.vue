@@ -54,6 +54,7 @@
 
 <script>
   import axios from 'axios'
+  import cart from '../services/cart'
   export default {
     name: 'wishlist',
     data () {
@@ -100,6 +101,9 @@
                   console.log('in catch', error);
               }
             )
+      },
+      addToCart(id, name){
+        cart.addToCart(id, name, this.$auth.user().id);
       }
     }
   }

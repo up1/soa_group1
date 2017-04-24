@@ -12,6 +12,7 @@
     "test": "npm run unit && npm run e2e"
   },
   "dependencies": {
+    "@websanova/vue-auth": "^2.10.1-beta",
     "axios": "^0.16.1",
     "resourcejs": "^1.7.0",
     "vue": "^2.2.2",
