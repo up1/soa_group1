@@ -32,7 +32,11 @@
                   <table class="table table-condensed total-result">
                     <tr>
                       <td>
-                        <a class="btn btn-default check_out" href="">Buy Wishlist</a></td>
+                        <div id="add-cart">
+                          <button v-on:click="" class="btn btn-default check_out">Add to Cart</button>
+                          <!--<a class="btn btn-default check_out" href="">Buy Wishlist</a>-->
+                        </div>
+                      </td>
                     </tr>
                   </table>
                 </td>
@@ -99,4 +103,10 @@
       }
     }
   }
+//  new Vue({
+//    el: '#add-cart',
+//    data:{
+//
+//    }
+//  })
 </script>
