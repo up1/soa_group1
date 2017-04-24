@@ -4,8 +4,6 @@
       <div class="col-sm-3">
         <div class="left-sidebar">
 
-<<<<<<< HEAD
-=======
           <h2>Category</h2>
           <div class="panel-group category-products">
             <!--category-products-->
@@ -67,9 +65,6 @@
           </div>
           <!--/price-range-->
 
->>>>>>> develop
-
-
         </div>
       </div>
 
@@ -88,13 +83,8 @@
                       <h4>{{ item.name }}</h4>
                     </router-link>
                     <p>{{ item.price }} Baht</p>
-<<<<<<< HEAD
-                    <a href="#" class="btn btn-default custom-button"><i class="fa fa-shopping-cart"></i></a>
-                    <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)"><i class="fa fa-star"></i></a>
-=======
                     <a href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i class="fa fa-shopping-cart"></i></a>
-                    <a href="#" class="btn btn-default custom-button"><i class="fa fa-star"></i></a>
->>>>>>> develop
+                    <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)"><i class="fa fa-star"></i></a>
                   </div>
                 </div>
               </div>
@@ -113,12 +103,9 @@
 
 <script>
 import axios from 'axios'
-<<<<<<< HEAD
 import wishlist from '../services/wishlist'
-
-=======
 import cart from '../services/cart'
->>>>>>> develop
+
 export default {
   name: 'recentProduct',
   data() {
@@ -147,12 +134,11 @@ export default {
     },
     setPage(n) {
       this.currentPage = n;
-<<<<<<< HEAD
     },
     addToWishlist (id, name) {
       wishlist.addToWishlist(id, name);
-=======
->>>>>>> develop
+    },addToCart (id, name) {
+      cart.addToCart(id, name, this.$auth.user().id);
     }
   },
   computed: {
@@ -170,13 +156,8 @@ export default {
         this.currentPage = this.numOfPages;
       }
       return this.list.slice(this.offset, this.limit);
-<<<<<<< HEAD
-=======
-    },
-    addToCart (id, name) {
-      cart.addToCart(id, name, this.$auth.user().id);
->>>>>>> develop
     }
   }
+
 }
 </script>
