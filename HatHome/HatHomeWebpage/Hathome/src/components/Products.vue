@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-blind="http://www.w3.org/1999/xhtml">
 <div class="container">
   <div class="row">
       <div class="col-sm-3">
@@ -137,7 +137,16 @@ export default {
     },
     addToWishlist (id, name) {
       wishlist.addToWishlist(id, name, this.$auth.user().id);
-    },addToCart (id, name) {
+    },
+    deleteFromWishlist (id){
+      console.log(`DELETED`);
+      wishlist.deleteFromWishlist(id)
+        .then(() => {
+          this.list = null
+          this.wishlist()
+        })
+    },
+    addToCart (id, name) {
       cart.addToCart(id, name, this.$auth.user().id);
     }
   },
@@ -158,6 +167,5 @@ export default {
       return this.list.slice(this.offset, this.limit);
     }
   }
-
 }
 </script>

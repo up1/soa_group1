@@ -22,5 +22,20 @@ class Wishlist {
         }
       )
   }
+
+  deleteFromWishlist (wishlistId) {
+    console.log(`DELETE`);
+    return axios.delete('http://localhost:9005/wishlist/' + wishlistId)
+      .then(
+        (response) => {
+          console.log('in then', response.data);
+        }
+      )
+      .catch(
+        (error) => {
+          console.log('in catch', error);
+        }
+      )
+  }
 }
 export default Wishlist = new Wishlist();

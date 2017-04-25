@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-blind="http://www.w3.org/1999/xhtml">
 <div class="recentproduct">
   <section id="slider">
     <!--  slider-->
@@ -58,7 +58,7 @@
                       <p>{{ item.price }} Baht</p>
                       <a href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)">
                         <i class="fa fa-shopping-cart"></i></a>
-                      <a href="#" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
+                      <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
                         <i class="fa fa-star"></i></a>
                     </div>
                   </div>
@@ -114,6 +114,14 @@ export default {
     },
     addToWishlist (id, name) {
       wishlist.addToWishlist(id, name, this.$auth.user().id);
+    },
+    deleteFromWishlist (id){
+      console.log(`DELETED`);
+      wishlist.deleteFromWishlist(id)
+        .then(() => {
+          this.list = []
+          this.wishlist()
+        })
     },
     addToCart (id, name) {
       cart.addToCart(id, name, this.$auth.user().id);

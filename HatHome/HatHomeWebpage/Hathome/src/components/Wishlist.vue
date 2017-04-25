@@ -28,7 +28,7 @@
                   </div>
                 </td>
                 <td class="cart_delete">
-                  <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                  <a class="cart_quantity_delete" v-on:click="deleteFromWishlist(item.wishlist_id)"><i class="fa fa-times"></i></a>
                 </td>
               </tr>
               </tbody>
@@ -45,18 +45,20 @@
 <script>
   import axios from 'axios'
   import cart from '../services/cart'
+  import wishlist from '../services/wishlist'
+
   export default {
     name: 'wishlist',
     data () {
       return {
         header: 'My Wishlist',
         product_id: '',
-        list : []
+        list : [],
+        product: ''
       }
     },
     mounted: function () {
       this.wishlist()
-      this.getallproduct()
     },
     methods: {
       wishlist() {
@@ -65,8 +67,6 @@
         })
           .then(
             (response) => {
-//              this.$router.push({path: '/'})
-              //return all data
               console.log('in then',this.$route.params.userid);
               this.list = response.data;
               console.log(list);
@@ -78,29 +78,17 @@
             }
           )
       },
-      getallproduct(){
-        axios.get('http://localhost:9004/home',{
+      deleteFromWishlist (id){
+        console.log(`DELETED`);
+        wishlist.deleteFromWishlist(id)
+        .then(() => {
+          this.list = []
+          this.wishlist()
         })
-          .then(
-          (response) => {
-            this.products = response.data;
-          }
-        )
-            .catch(
-              (error) => {
-                  console.log('in catch', error);
-              }
-            )
       },
       addToCart(id, name){
         cart.addToCart(id, name, this.$auth.user().id);
       }
     }
   }
-//  new Vue({
-//    el: '#add-cart',
-//    data:{
-//
-//    }
-//  })
 </script>
