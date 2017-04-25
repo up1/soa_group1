@@ -22,5 +22,21 @@ class Cart {
         }
       )
   }
+
+  removeInCart (cartItemId, productName){
+
+    console.log(`Removing ${cartItemId} - ${productName} from cart`)
+    return axios.delete('http://localhost:9003/cart/' + cartItemId)
+      .then(
+        (response) => {
+          alert(`Removed ${productName} from cart`)
+        }
+      ).catch(
+      (error) => {
+        console.log('in catch', error);
+      }
+    )
+  }
 }
+
 export default Cart = new Cart();
