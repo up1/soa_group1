@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -107,14 +108,17 @@ public class CartController {
 
     /*-------------- Remove product in cart --------------*/
     @RequestMapping(
-            value = "/cart",
+            value = "/cart/{itemId}",
             method = RequestMethod.DELETE)
-    public ResponseEntity<Cart> removeProductInCart(@RequestBody Cart cartItem)
+    public ResponseEntity<Cart> removeProductInCart(@PathVariable int itemId)
             throws JsonProcessingException {
 
         //Todo: Get data from UI click ( eg. productId + userId )
         //Todo: Check existing data before delete.
         //Todo: Delete multiple product by single query
+        Cart cartItem = new Cart();
+        cartItem.setId(itemId);
+        System.out.println("Removing item " + cartItem.getId());
 
         try {
             this.cartRepository.removeProduct(cartItem);
