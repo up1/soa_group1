@@ -21,14 +21,18 @@ public class WishlistRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Wishlist> findAllWishlist(){
-        return this.jdbcTemplate.query("SELECT wishlist_id, user_id, product_id FROM WISHLIST", new WishlistRowMapper());
+    public List<Wishlist> findAllWishlist(Long id){
+        return this.jdbcTemplate.query("SELECT wishlist_id, user_id, product_id FROM WISHLIST WHERE user_id=?", new Object[]{id}, new WishlistRowMapper());
     }
 
-    @Transactional(readOnly = true)
-    public Wishlist findById(Long id) {
-        String sql = "SELECT wishlist_id, user_id, product_id FROM WISHLIST WHERE wishlist_id=?";
-        return this.jdbcTemplate.queryForObject(sql,
-                new Object[]{id}, new WishlistRowMapper());
+    @Transactional
+    public void addWishlist(Wishlist wishlist){
+        String sql = "INSERT INTO wishlist (user_id, product_id) VALUES (?, ?)";
+        this.jdbcTemplate.update(sql, wishlist.getUser_id(), wishlist.getProduct_id());
+    }
+
+    public void deleteWishlist(Wishlist wishlist){
+        String sql = "DELETE FROM wishlist WHERE wishlist_id = ?";
+        this.jdbcTemplate.update(sql, wishlist.getWishlist_id());
     }
 }
