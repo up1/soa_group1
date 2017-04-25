@@ -44,10 +44,10 @@ public class UserController {
 
     }
 
-//    @GetMapping("/user/{userId}")
-//    public User getUserDetail(@PathVariable Long userId){
-//        return this.userRepository.findById((Long) userId);
-//    }
+    @GetMapping("/user/{userId}")
+    public User getUserDetail(@PathVariable Long userId){
+        return this.userRepository.findById((Long) userId);
+    }
 
     @GetMapping("/user/profile")
     public ResponseEntity<User> getSelfDetail(HttpServletRequest request) {

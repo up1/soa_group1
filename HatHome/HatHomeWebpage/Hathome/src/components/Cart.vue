@@ -53,20 +53,20 @@
         <a v-on:click="billing" class="btn btn-default check_out">Check out your cart</a>
       </div>
     </div>
-    <div id="wrapper" class="container">
-      <modal v-if="showModal">
-        <h3 slot="header" class="modal-title">
-            Modal title
-          </h3>
-          <div slot="footer">
-     <button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>
-     <button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitAndClose()">
-       Submit
-     </button>
-    </div>
-      </modal>
-      <button type="button" class="btn btn-primary" @click="openModal()">Open Modal</button>
-     </div>
+    <!--<div id="wrapper" class="container">-->
+      <!--<modal v-if="showModal">-->
+        <!--<h3 slot="header" class="modal-title">-->
+            <!--Modal title-->
+          <!--</h3>-->
+          <!--<div slot="footer">-->
+     <!--<button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>-->
+     <!--<button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitAndClose()">-->
+       <!--Submit-->
+     <!--</button>-->
+    <!--</div>-->
+      <!--</modal>-->
+      <!--<button type="button" class="btn btn-primary" @click="openModal()">Open Modal</button>-->
+     <!--</div>-->
  </div>
   </section>
 </template>
@@ -91,7 +91,7 @@
     },
     methods: {
       getCartByUserId(){
-        axios.get('http://localhost:9003/cart/' + this.$route.params.userId, {
+        axios.get('http://localhost:9003/cart/' + this.$auth.user().id, {
         }).then(
           (response) => {
             this.products = response.data;
@@ -105,7 +105,7 @@
       billing() {
         console.log('aaaaaaaa', 'billing');
         axios.post('http://localhost:9006/bill', {
-          user_id : 1234
+          user_id: this.$auth.user().id
         })
           .then(
             (response) => {
@@ -127,7 +127,7 @@
      this.showModal = false;
   },
   submitAndClose() {
-    
+
   }
     }
   }
