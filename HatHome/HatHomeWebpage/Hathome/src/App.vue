@@ -41,6 +41,9 @@
                 <li><router-link :to="{ name: 'login'}">
                 <i class="fa fa-lock"></i> Login</router-link>
                 </li>
+                <li><router-link :to="{ name: 'userRegister'}">
+                  <i class="fa fa-lock"></i> Sign up</router-link>
+                </li>
               </ul>
             </div>
           </div>
