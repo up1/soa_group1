@@ -113,7 +113,7 @@ export default {
 
     },
     addToWishlist (id, name) {
-      wishlist.addToWishlist(id, name);
+      wishlist.addToWishlist(id, name, this.$auth.user().id);
     },
     addToCart (id, name) {
       cart.addToCart(id, name, this.$auth.user().id);
