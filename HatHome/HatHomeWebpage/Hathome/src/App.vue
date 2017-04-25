@@ -25,7 +25,7 @@
           <div class="col-sm-6">
             <div class="shop-menu pull-right">
               <ul class="nav navbar-nav">
-                <li> 
+                <li>
                     <router-link :to="{ name: 'wishlist', params: { userid: this.$auth.user().id}}">
                     <i class="fa fa-star"></i> Wishlist</router-link>
                 </li>
@@ -34,8 +34,16 @@
                   <a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a>
                   </router-link>
                 </li>
-                <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+                <li>
+                  <router-link :to="{ name: 'userProfile', params: { userId: this.$auth.user().id}}">
+                    <i class="fa fa-user"></i> Account</router-link>
+                </li>
+                <li><router-link :to="{ name: 'login'}">
+                <i class="fa fa-lock"></i> Login</router-link>
+                </li>
+                <li><router-link :to="{ name: 'userRegister'}">
+                  <i class="fa fa-lock"></i> Sign up</router-link>
+                </li>
               </ul>
             </div>
           </div>

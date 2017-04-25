@@ -45,7 +45,7 @@
                   <p class="cart_total_price">฿59</p>
                 </td>
                 <td class="cart_delete">
-                  <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                  <a class="cart_quantity_delete" v-on:click="remove(product.id, product.product.name)"><i class="fa fa-times"></i></a>
                 </td>
               </tr>
           </tbody>
@@ -72,13 +72,13 @@
           </div>
       </modal>
      </div>
- </div>
   </section>
 </template>
 
 <script>
   import axios from 'axios'
   import Modal from '@/components/Modal';
+  import cart from '../services/cart'
 
   export default {
     name: 'cart_info',
@@ -149,12 +149,20 @@
       openModal(){
         this.showModal = true;
       },
-  closeModal() {
-     this.showModal = false;
-  },
-  submitAndClose() {
-    this.s='Please wait...'
-  }
+      closeModal() {
+         this.showModal = false;
+      },
+      submitAndClose() {
+        this.s='Please wait...'
+      },
+      remove (itemId, name){
+          cart.removeInCart(itemId, name)
+            .then(() => {
+              this.products = null
+              this.getCartByUserId()
+            })
+
+      }
     }
   }
 </script>

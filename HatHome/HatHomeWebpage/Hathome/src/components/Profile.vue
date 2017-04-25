@@ -1,23 +1,20 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-sm-4">
-          <!--Profile form-->
-          <h2>{{header}}</h2>
-          <div class="userProfile">
-            <!--<form method="POST" v-on:submit.prevent="register()">-->
-              email: <input type="email" v-model="email">
-              address: <textarea name="address" v-model="address" rows="8"></textarea>
-              <div class="col-md-4"></div>
-              <!--<div class="col-md-4"><button type="submit" class="btn btn-default">Signup</button></div>-->
-              <div class="col-md-4"></div>
-            <!--</form>-->
-          </div>
-        <!--/Profile form-->
+    <h2>{{header}}</h2>
+    <div class="userProfile">
+      <div class="row">
+        <div class="col-sm-1 left">email: </div>
+        <div class="col-sm-4">
+          <input class="col-sm-12" type="email" v-model="email">
+        </div>
       </div>
-      <div class="col-md-4"></div>
+      <br>
+      <div class="row">
+        <div class="col-sm-1">address:</div>
+        <div class="col-sm-4"><textarea name="address" v-model="address" rows="8"></textarea></div>
+      </div>
     </div>
+    <!--/Profile form-->
   </div>
 </template>
 
@@ -29,7 +26,7 @@
       return {
         header: 'Your profile',
         email: '',
-        address:'',
+        address: '',
       }
     },
     mounted: function () {
@@ -37,8 +34,7 @@
     },
     methods: {
       showProfile() {
-        axios.get('http://localhost:9001/user/' + this.$route.params.userId, {
-        })
+        axios.get('http://localhost:9001/user/' + this.$route.params.userId, {})
           .then(
             (response) => {
               console.log('in then', response.data);
