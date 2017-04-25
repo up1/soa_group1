@@ -24,7 +24,6 @@ class Cart {
   }
 
   removeInCart (cartItemId, productName){
-
     console.log(`Removing ${cartItemId} - ${productName} from cart`)
     return axios.delete('http://localhost:9003/cart/' + cartItemId)
       .then(
@@ -36,6 +35,26 @@ class Cart {
         console.log('in catch', error);
       }
     )
+  }
+
+  updateItemInCart (updateList) {
+    let list = updateList.map(function (obj) {
+      return {
+        id : obj.id,
+        amount:obj.amount
+      };
+    });
+    axios.put('http://localhost:9003/cart',list)
+      .then(
+        (response) => {
+          alert(`Cart updated`)
+        }
+      )
+      .catch(
+        (error) => {
+          console.log('in catch', error);
+        }
+      )
   }
 }
 
