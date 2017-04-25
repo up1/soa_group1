@@ -3,8 +3,7 @@ import axios from 'axios'
 
 class Wishlist {
 
-  addToWishlist (productId, productName) {
-    let userId = 1
+  addToWishlist (productId, productName, userId) {
     //TODO : get current userId
     console.log(`Adding new product ${productId} to ${userId} wishlist`)
     axios.post('http://localhost:9005/wishlist', {
