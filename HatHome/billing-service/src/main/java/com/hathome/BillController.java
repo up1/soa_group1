@@ -31,7 +31,7 @@ public class BillController {
 //    save bill
     @RequestMapping(value = "/bill", method =  RequestMethod.POST)
     public ResponseEntity<BillStatus> saveBill(@RequestBody BillStoreRequest request){
-        BillStatus billStatus = billRepository.addBill(request.getUser_id());
+        BillStatus billStatus = billRepository.addBill(request);
         CartAdapter cartAdapter = new CartAdapter();
         cartAdapter.checkOutFromCart(request.getUser_id());
         return new ResponseEntity<BillStatus>(billStatus, HttpStatus.CREATED);
