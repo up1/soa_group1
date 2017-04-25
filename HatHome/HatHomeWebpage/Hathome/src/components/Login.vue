@@ -17,7 +17,7 @@
               </div>
               <div class="col-md-6">
                                 <span>
-                                <a href="register.html"><p>Not a member yet?</p></a>
+                                  <router-link :to="{ name: 'userRegister'}"> <a href="register.html"><p>Not a member yet?</p></a></router-link>
                                 </span>
               </div>
 
