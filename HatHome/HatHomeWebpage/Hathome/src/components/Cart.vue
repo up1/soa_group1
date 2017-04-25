@@ -50,23 +50,28 @@
               </tr>
           </tbody>
         </table>
-        <a v-on:click="billing" class="btn btn-default check_out">Check out your cart</a>
+        <a v-on:click="openModal" class="btn btn-default check_out">Check out your cart</a>
       </div>
     </div>
-    <!--<div id="wrapper" class="container">-->
-      <!--<modal v-if="showModal">-->
-        <!--<h3 slot="header" class="modal-title">-->
-            <!--Modal title-->
-          <!--</h3>-->
-          <!--<div slot="footer">-->
-     <!--<button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>-->
-     <!--<button type="button" class="btn btn-primary" data-dismiss="modal" @click="submitAndClose()">-->
-       <!--Submit-->
-     <!--</button>-->
-    <!--</div>-->
-      <!--</modal>-->
-      <!--<button type="button" class="btn btn-primary" @click="openModal()">Open Modal</button>-->
-     <!--</div>-->
+    <div id="wrapper" class="container">
+      <modal v-if="showModal">
+          <h3 slot="header" class="modal-title">
+            Modal title
+          </h3>
+          <div slot ="body" class="modal-body">
+            <h4>{{s}}</h4>
+            <h5>Please check your address.</h5>
+            <textarea v-model="address" placeholder="your address"></textarea>
+
+          </div>
+          <div slot="footer">
+             <button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>
+             <button type="button" class="btn btn-primary" data-dismiss="modal" @click="billing()">
+               Submit
+             </button>
+          </div>
+      </modal>
+     </div>
  </div>
   </section>
 </template>
@@ -83,11 +88,14 @@
     data () {
       return {
         products : null,
-        showModal: false
+        showModal: false,
+        address:'',
+        s: 'Do you want to check out your cart?'
       }
     },
     mounted: function () {
       this.getCartByUserId()
+      this.get_address()
     },
     methods: {
       getCartByUserId(){
@@ -102,10 +110,28 @@
           }
         )
       },
+      get_address() {
+        console.log('address', 'user');
+        axios.get('http://localhost:9001/user/' + this.$auth.user().id, {
+        })
+          .then(
+            (response) => {
+              console.log(response);
+              this.username = response.data.emmail;
+              this.address = response.data.address;
+            }
+          )
+          .catch(
+            (error) => {
+              console.log(error);
+            });
+      },
       billing() {
         console.log('aaaaaaaa', 'billing');
         axios.post('http://localhost:9006/bill', {
-          user_id: this.$auth.user().id
+          user_id: this.$auth.user().id,
+          username: this.email,
+          address: this.address
         })
           .then(
             (response) => {
@@ -127,7 +153,7 @@
      this.showModal = false;
   },
   submitAndClose() {
-
+    this.s='Please wait...'
   }
     }
   }
