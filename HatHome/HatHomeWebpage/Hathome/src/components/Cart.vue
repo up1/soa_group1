@@ -170,12 +170,6 @@
           })
       },
       updateAmount (){
-//        var update_list = this.products.map(function (obj) {
-//          return {
-//            id :obj.id,
-//            amount:obj.amount
-//          };
-//        });
         cart.updateItemInCart(this.products);
       }
     }
