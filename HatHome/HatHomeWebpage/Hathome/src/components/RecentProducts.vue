@@ -101,7 +101,7 @@ export default {
     product: function() {
       axios.get('http://localhost:9004/recentproducts', {})
         .then((response) => {
-          console.log(response)
+//          console.log(response)
           this.list = response.data
         })
         .catch(function(error) {
