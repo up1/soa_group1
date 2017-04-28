@@ -74,7 +74,7 @@
         <div class="tab-content">
           <div class="tab-pane fade active in">
             <!-- item1 -->
-            <div class="col-sm-4" v-for="(item, index) in computedProducts">
+            <div class="col-sm-4" v-for="item in list">
               <div class="product-image-wrapper">
                 <div class="single-products">
                   <div class="productinfo text-center">
@@ -82,9 +82,24 @@
                       <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'" />
                       <h4>{{ item.name }}</h4>
                     </router-link>
-                    <p>{{ item.price }} Baht</p>
+                    <p>{{ item.price }} Baht</p> {{item.id}}
                     <a href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i class="fa fa-shopping-cart"></i></a>
-                    <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)"><i class="fa fa-star"></i></a>
+
+
+                    {{wishlists_id}}
+                    {{ item.id }}
+                    {{wishlists_id.indexOf( item.id )}}
+
+                    <div v-if="wishlists_id.indexOf( item.id ) < 0">
+                      <a href="" class="btn btn-default wlclicked-button" v-on:click="addToWishlist(item.id, item.name)">
+                        <i class="fa fa-star"></i>
+                      </a>
+                    </div>
+                    <div v-else>
+                      <a href="" class="btn btn-danger custom-button" v-on:click="addToWishlist(item.id, item.name)">
+                        <i class="fa fa-star"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -115,29 +130,60 @@ export default {
       image: '',
       list: [],
       currentPage: 1,
-      perPage: 9
+      perPage: 9,
+      wishlists: '',
+      wishlists_id: [],
     }
   },
   mounted: function() {
-    this.product()
+    this.product();
+    this.getWishlist();
   },
   methods: {
     product: function() {
       axios.get('http://localhost:9004/products', {})
         .then((response) => {
-          console.log(response)
+          console.log('gade>> ' + response)
           this.list = response.data
         })
         .catch(function(error) {
           console.log(error)
         })
     },
+
+    getWishlist: function () {
+      axios.get('http://localhost:9005/wishlist/user/'+ this.$auth.user().id, {})
+        .then((response) => {
+          console.log('>>>>>' + response.data)
+          this.wishlists = response.data
+          console.log(this.wishlists.length)
+
+
+          var i = 0;
+          for ( i=0 ; i < this.wishlists.length ; i ++){
+            console.log('wishlists >' + this.wishlists);
+            console.log('wishlists[i]>>' + this.wishlists[i]);
+            console.log('wishlists[i].product_id>>>' + this.wishlists[i].product_id);
+            console.log('-------------------------');
+            this.wishlists_id.push(this.wishlists[i].product_id);
+          }
+
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+
+    },
+
     setPage(n) {
       this.currentPage = n;
     },
+
     addToWishlist (id, name) {
       wishlist.addToWishlist(id, name, this.$auth.user().id);
     },
+
     deleteFromWishlist (id){
       console.log(`DELETED`);
       wishlist.deleteFromWishlist(id)
@@ -146,10 +192,11 @@ export default {
           this.wishlist()
         })
     },
+
     addToCart (id, name) {
       cart.addToCart(id, name, this.$auth.user().id);
-    }
-  },
+    },
+
   computed: {
     offset: function() {
       return ((this.currentPage - 1) * this.perPage);
@@ -166,6 +213,8 @@ export default {
       }
       return this.list.slice(this.offset, this.limit);
     }
+
   }
 }
+
 </script>

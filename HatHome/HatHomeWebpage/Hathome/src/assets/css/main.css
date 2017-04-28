@@ -965,6 +965,16 @@ h2.title {
   font-size: 15px;
   margin-bottom: 25px;
 }
+/*wishlist clicked button*/
+.wlclicked-button{
+  background:#e6e6e6;
+  border: 0 none;
+  border-radius: 0;
+  color: #FE980F;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
 
 .custom-button:hover {
   background: #FE980F;
