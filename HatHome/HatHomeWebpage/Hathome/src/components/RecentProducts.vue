@@ -43,7 +43,7 @@
       <div class="row">
         <div class="category-tab">
           <!--category-tab-->
-          <h2 class="title text-center">NEW PRODUCTS</h2>
+          <h2 class="title text-center">RECENT PRODUCTS</h2>
           <div class="tab-content">
             <div class="tab-pane fade active in">
               <!-- item -->
