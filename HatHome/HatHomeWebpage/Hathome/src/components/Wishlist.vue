@@ -18,7 +18,7 @@
               </tr>
               </thead>
               <tbody>
-              <tr v-for="(item, index) in list">
+              <tr v-for="(item, index) in wishlists">
                 <td>{{index+1}}</td>
                 <td><img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.product_id + '.jpg'" style="width: 120px; height: 120px;" /></td>
                 <td>{{item.product.name}}</td>
@@ -53,7 +53,7 @@
       return {
         header: 'My Wishlist',
         product_id: '',
-        list : [],
+        wishlists : [],
         product: ''
       }
     },
@@ -68,13 +68,12 @@
           .then(
             (response) => {
               console.log('in then',this.$route.params.userid);
-              this.list = response.data;
-              console.log(list);
+              this.wishlists = response.data;
             }
           )
           .catch(
             (error) => {
-              console.log('in catch', error);
+              console.log('in catch'+ this.context , error);
             }
           )
       },
@@ -82,7 +81,7 @@
         console.log(`DELETED`);
         wishlist.deleteFromWishlist(id)
         .then(() => {
-          this.list = []
+          this.wishlists = []
           this.wishlist()
         })
       },

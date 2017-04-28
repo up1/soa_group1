@@ -5,7 +5,7 @@ class Wishlist {
 
   addToWishlist (productId, productName, userId) {
     //TODO : get current userId
-    console.log(`Adding new product ${productId} to ${userId} wishlist`)
+    // console.log(`Adding new product ${productId} to ${userId} wishlist`)
     axios.post('http://localhost:9005/wishlist', {
       user_id: userId,
       product_id: productId

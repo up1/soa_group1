@@ -967,10 +967,10 @@ h2.title {
 }
 /*wishlist clicked button*/
 .wlclicked-button{
-  background:#e6e6e6;
+  background:#FE980F;
   border: 0 none;
   border-radius: 0;
-  color: #FE980F;
+  color: #ffffff;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   margin-bottom: 25px;

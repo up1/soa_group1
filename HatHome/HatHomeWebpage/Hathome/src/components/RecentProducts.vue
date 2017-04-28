@@ -47,7 +47,7 @@
           <div class="tab-content">
             <div class="tab-pane fade active in">
               <!-- item -->
-              <div class="col-sm-3" v-for="item in list">
+              <div class="col-sm-3" v-for="item in wishlists">
                 <div class="product-image-wrapper">
                   <div class="single-products">
                     <div class="productinfo text-center">
@@ -91,7 +91,7 @@ export default {
       item: '',
       image: '',
       id: '',
-      list: []
+      wishlists: []
     }
   },
   mounted: function() {
@@ -102,7 +102,7 @@ export default {
       axios.get('http://localhost:9004/recentproducts', {})
         .then((response) => {
           console.log(response)
-          this.list = response.data
+          this.wishlists = response.data
         })
         .catch(function(error) {
           console.log(error)
@@ -119,7 +119,7 @@ export default {
       console.log(`DELETED`);
       wishlist.deleteFromWishlist(id)
         .then(() => {
-          this.list = []
+          this.wishlists = []
           this.wishlist()
         })
     },

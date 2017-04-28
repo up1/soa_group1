@@ -94,7 +94,7 @@
                                     <i class="fa fa-shopping-cart"></i>
                   										Add to cart
                                   </button>
-                                  <button type="button" class="btn btn-default custom-button" v-on:click="addToWishlist">
+                                  <button type="button" class="btn btn-default custom-button" v-on:click="addToWishlist(id, name)">
                                     <i class="fa fa-star"></i>
                                     Add To Wishlist
                                   </button>
@@ -165,7 +165,6 @@
         console.log(`DELETED`);
         wishlist.deleteFromWishlist(id)
           .then(() => {
-            this.list = null
             this.wishlist()
           })
       },
