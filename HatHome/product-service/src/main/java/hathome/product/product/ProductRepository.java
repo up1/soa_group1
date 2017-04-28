@@ -3,7 +3,6 @@ package hathome.product.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,6 +28,11 @@ public class ProductRepository {
         }
     }
 
+    public List<Product> findProductsInPage(int page){
+        int item_per_page = 9;
+        int firstItem = (page-1) * item_per_page;
+        return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type FROM PRODUCT WHERE amount!=0 ORDER BY id LIMIT ?, ?", new Object[]{firstItem, item_per_page}, new ProductRowMapper());
+    }
 
     public List<Product> searchProduct(String keyword, String price, String color, String brand, String type){
         String[] priceParts = price.split("-");

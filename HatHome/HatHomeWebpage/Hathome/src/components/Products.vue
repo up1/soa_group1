@@ -74,7 +74,7 @@
         <div class="tab-content">
           <div class="tab-pane fade active in">
             <!-- item1 -->
-            <div class="col-sm-4" v-for="(item, index) in computedProducts">
+            <div class="col-sm-4" v-for="item in list">
               <div class="product-image-wrapper">
                 <div class="single-products">
                   <div class="productinfo text-center">
@@ -94,8 +94,14 @@
       </div>
       <!--/all product-->
     </div>
-    <div class="btn-group">
-      <a href="" @click.prevent="setPage(n)" v-for="n in numOfPages" class="btn btn-default">{{n}}</a>
+    <div>
+      <button id="previousBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToPrevious">
+        Previous
+      </button>
+        Page {{currentPage}} of {{lastPage}}
+      <button id="nextBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToNext">
+        Next
+      </button>
     </div>
   </div>
 </div>
@@ -114,26 +120,54 @@ export default {
       item: '',
       image: '',
       list: [],
-      currentPage: 1,
-      perPage: 9
+      resource_url:'http://localhost:9004/products/pages/'+ this.$route.params.page,
+      currentPage: '',
+      lastPage: ''
     }
   },
   mounted: function() {
-    this.product()
+    this.product(this.$route.params.page)
   },
   methods: {
-    product: function() {
-      axios.get('http://localhost:9004/products', {})
+    product: function(page) {
+      return axios.get('http://localhost:9004/products/pages/'+ this.$route.params.page, {})
         .then((response) => {
           console.log(response)
-          this.list = response.data
+          this.list = response.data.products
+          this.currentPage = response.data.currentPage
+          this.lastPage = response.data.lastPage
         })
         .catch(function(error) {
           console.log(error)
         })
     },
-    setPage(n) {
-      this.currentPage = n;
+    updateResource(data){
+      this.list = data
+      this.lastPage = data.lastPage
+      this.currentPage = data.currentPage
+    },
+    checkDisable() {
+      if(this.currentPage==1 && this.$route.params.page!=1){
+        console.log('el'+this.currentPage + ' ' + this.$route.params.page);
+        document.getElementById("previousBtn").disabled = false;
+        document.getElementById("nextBtn").disabled = false;
+      }
+      else if (this.currentPage==1) {
+        console.log('pre'+this.currentPage + ' ' + this.$route.params.page);
+        document.getElementById("previousBtn").disabled = true;
+        document.getElementById("nextBtn").disabled = false;
+      }
+      else if(this.lastPage==this.$route.params.page){
+        console.log('last'+this.currentPage + ' ' + this.$route.params.page);
+        document.getElementById("nextBtn").disabled = true;
+        document.getElementById("previousBtn").disabled = false;
+      }
+    },
+    goToPrevious() {
+    this.$router.push({ name: 'products', params: { page: this.currentPage - 1 } });
+    },
+    goToNext() {
+    this.$router.push({ name: 'products', params: { page: this.currentPage + 1 } });
     },
     addToWishlist (id, name) {
       wishlist.addToWishlist(id, name, this.$auth.user().id);
@@ -141,22 +175,13 @@ export default {
       cart.addToCart(id, name, this.$auth.user().id);
     }
   },
-  computed: {
-    offset: function() {
-      return ((this.currentPage - 1) * this.perPage);
-    },
-    limit: function() {
-      return (this.offset + this.perPage);
-    },
-    numOfPages: function() {
-      return Math.ceil(this.list.length / this.perPage);
-    },
-    computedProducts: function() {
-      if (this.offset > this.list.length) {
-        this.currentPage = this.numOfPages;
-      }
-      return this.list.slice(this.offset, this.limit);
+  watch: {
+    '$route.params.page'(newpage, oldpage) {
+        this.product(newpage)
     }
+  },
+  components: {
+    VPaginator: VuePaginator
   }
 
 }

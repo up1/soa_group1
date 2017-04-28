@@ -21,9 +21,16 @@ public class ProductController {
         return this.productRepository.findRecentProduct();
     }
 
-    @RequestMapping("/products")
-    public List<Product> getAllProductInPage(){
-        return this.productRepository.findAllProduct();
+    @GetMapping("/products/pages/{page}")
+    public ProductPage getProductInPage(@PathVariable int page) {
+        ProductPage productPage = new ProductPage();
+        List<Product> products = this.productRepository.findAllProduct();
+        productPage.setCurrentPage(page);
+        productPage.setLastPage((int)Math.ceil(products.size()/9.0));
+        productPage.setNextPageUrl("http://localhost:9004/products/pages/"+Integer.toString(page+1));
+        productPage.setPrevPageUrl("http://localhost:9004/products/pages/"+Integer.toString(page-1));
+        productPage.setProducts(this.productRepository.findProductsInPage(page));
+        return productPage;
     }
 
     @GetMapping("/products/{id}")
