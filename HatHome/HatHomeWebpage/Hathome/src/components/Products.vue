@@ -3,8 +3,68 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="left-sidebar">
+          
+          <h2>Category</h2>
+          <div class="panel-group category-products">
+            <!--category-products-->
+            <div class="cat-product checkbox">
+              <label><input type="checkbox" id="caps" value="Caps" v-model="checkedCat">Caps</label>
+            </div>
+            <div class="cat-product checkbox">
+              <label><input type="checkbox" id="hats" value="Hats" v-model="checkedCat">Hats</label>
+            </div>
+            <div class="cat-product checkbox">
+              <label><input type="checkbox" id="beanies" value="Beanies" v-model="checkedCat">Beanies</label>
+            </div>
+
+          </div>
+          <!--/category-products-->
+
+          <div class="brands_products">
+            <!--brands_products-->
+            <h2>Brands</h2>
+            <div class="brands-name">
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="newEra" value="newEra" v-model="checkedCat">New Era</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="converse" value="converse" v-model="checkedCat">Converse</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="jaxon" value="jaxon" v-model="checkedBrand">Jaxon</label>
+              </div>
+            </div>
+          </div>
+          <!--/brands_products-->
+
+          <div class="color_products">
+            <!--color-->
+            <h2>Color</h2>
+            <div class="brands-name">
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="black" value="black" v-model="checkedColor">black</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="white" value="white" v-model="checkedColor">white</label>
+              </div>
+              <div class="cat-product checkbox">
+                <label><input type="checkbox" id="red" value="red" v-model="checkedColor">red</label>
+              </div>
+            </div>
+          </div>
+          <!--/color-->
 
 
+          <div class="price-range">
+            <!--price-range-->
+            <h2>Price Range</h2>
+            <div class="price-slider">
+              <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5"
+                     data-slider-value="[250,450]" id="sl2"><br/>
+              <b>฿ 0</b> <b class="pull-right">฿ 600</b>
+            </div>
+          </div>
+          <!--/price-range-->
         </div>
       </div>
 
