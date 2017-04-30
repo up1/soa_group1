@@ -13,12 +13,12 @@
 
           <div class="col-sm-3">
             <div class="input-group stylish-input-group">
-              <input type="text" class="search_box" placeholder="Search">
-              <span class="input-group-addon ">
-                            <button type="submit">
-                                <span class="glyphicon glyphicon-search"></span>
-            </button>
-            </span>
+              <input type="text" v-model="keyword" class="search_box" placeholder="Search" >
+                <span class="input-group-addon ">
+                  <button type="submit" @click="searchKeyword()">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </span>
             </div>
           </div>
 
@@ -51,7 +51,7 @@
       </div>
     </nav>
     <!--/navbar-->
-    <router-view></router-view>
+    <router-view :keyword="keyword"></router-view>
 
     <footer id="footer">
       <!--Footer-->
@@ -77,7 +77,16 @@
 
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+    data() {
+        return{
+            keyword: ''
+        }
+    },
+    mounted: function() {
+    },
+    methods: {
+    }
   }
 </script>
 

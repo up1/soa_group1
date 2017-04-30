@@ -35,7 +35,7 @@ public class ProductRepository {
         Double start = Double.parseDouble(priceParts[0]);
         Double end = Double.parseDouble(priceParts[1]);
 
-        return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type, image FROM PRODUCT" +
+        return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type FROM PRODUCT" +
                 " WHERE (NAME LIKE '%" + keyword + "%'" +
                 " OR DETAIL LIKE '%" + keyword + "%'" +
                 " OR BRAND LIKE '%" + keyword + "%'" +
@@ -44,6 +44,7 @@ public class ProductRepository {
                 " AND COLOR LIKE '%" + color + "%'" +
                 " AND BRAND LIKE '%" + brand + "%'" +
                 " AND TYPE LIKE '%" + type + "%'" +
+//                " AND TYPE LIKE '%" + "cap" + "%'" +
                 "ORDER BY ID DESC"
                 , new ProductRowMapper());
     }
