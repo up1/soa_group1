@@ -63,9 +63,13 @@
         axios.put('http://localhost:9007/user/' + this.$route.params.userId , {email: this.email, address: this.address})
           .then(
             (response) => {
-              console.log('in then', response.data);
-              this.email = response.data.email
-              this.address = response.data.address
+                alert("Update finihed!!")
+              axios.get('http://localhost:9007/user/' + this.$route.params.userId, {})
+            }
+          )
+          .catch(
+            (error) => {
+              console.log('in catch', error);
             }
           )
       }
