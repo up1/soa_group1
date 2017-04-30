@@ -45,8 +45,8 @@
       return {
         context: 'login context',
         body: {
-          email: '1',
-          password: '2'
+          email: '',
+          password: ''
         },
         header: 'Login to your account',
         checked: '',
