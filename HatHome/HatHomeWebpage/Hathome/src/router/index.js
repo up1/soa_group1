@@ -95,7 +95,7 @@ Vue.use(VueAuth, {
     url: 'http://localhost:9002/login'
   },
   fetchData: {
-    url: 'http://localhost:9001/user/profile'
+    url: 'http://localhost:9007/user/profile'
   },
   parseUserData: function (data) {
     return data

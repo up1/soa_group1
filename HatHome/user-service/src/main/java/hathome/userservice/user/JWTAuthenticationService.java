@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class JWTAuthenticationService {
 
-    public static final long EXPIRATION_TIME = 1000 * 60 * 60 * 24 * 10; // in milliseconds, 10 days
+    public static final long EXPIRATION_TIME = (long) (1000 * 60 * 60 * 24 * 10.0); // in milliseconds, 10 days
     public static final String SECRET = "aGF0aG9tQXV0aA==";
     public static final String TOKEN_PREFIX = "Bearer";
     public static final String HEADER_STRING = "Authorization";
@@ -37,7 +37,11 @@ public class JWTAuthenticationService {
             String address = (String) body.get("address");
 
             if(email != null) {
-                return new User(id, email, address);
+                User user = new User();
+                user.setId(id);
+                user.setEmail(email);
+                user.setAddress(address);
+                return user;
             }
         }
 

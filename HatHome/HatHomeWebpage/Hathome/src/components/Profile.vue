@@ -34,7 +34,7 @@
     },
     methods: {
       showProfile() {
-        axios.get('http://localhost:9001/user/' + this.$route.params.userId, {})
+        axios.get('http://localhost:9007/user/' + this.$route.params.userId, {})
           .then(
             (response) => {
               console.log('in then', response.data);

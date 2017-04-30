@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController()
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin
 public class ProductController {
 
     private final ProductRepository productRepository;

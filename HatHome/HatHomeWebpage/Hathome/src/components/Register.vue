@@ -41,7 +41,7 @@
     },
     methods: {
       register() {
-        axios.post('http://localhost:9001/user', {
+        axios.post('http://localhost:9007/user', {
           email: this.email,
           password: this.password,
           address: this.address,

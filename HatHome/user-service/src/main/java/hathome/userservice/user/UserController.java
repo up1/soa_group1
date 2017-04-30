@@ -38,8 +38,7 @@ public class UserController {
             this.userRepository.signup(user, password);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
-            System.out.println(e);
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new UserNotFoundException(user.getId(), e);
         }
 
     }
