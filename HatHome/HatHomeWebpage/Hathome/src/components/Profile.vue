@@ -2,6 +2,7 @@
   <div class="container">
     <h2>{{header}}</h2>
     <div class="userProfile">
+      <form method="POST" v-on:submit.prevent="updateProfile()">
       <div class="row">
         <div class="col-sm-1 left">email: </div>
         <div class="col-sm-4">
@@ -13,8 +14,17 @@
         <div class="col-sm-1">address:</div>
         <div class="col-sm-4"><textarea name="address" v-model="address" rows="8"></textarea></div>
       </div>
-    </div>
-    <!--/Profile form-->
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <button type="submit" class="btn btn-default">save</button>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      </form>
+    </div> <!--/Profile form-->
+
+
   </div>
 </template>
 
@@ -48,6 +58,9 @@
 //              alert('Please try login again');
             }
           )
+      },
+      updateProfile(){
+          alert("mimi");
       }
     }
   }
