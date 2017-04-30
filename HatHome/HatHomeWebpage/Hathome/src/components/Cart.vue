@@ -122,7 +122,7 @@
         )
       },
       get_address() {
-        axios.get('http://localhost:9001/user/' + this.$auth.user().id, {})
+        axios.get('http://localhost:9007/user/' + this.$auth.user().id, {})
           .then(
             (response) => {
               this.username = response.data.emmail;
