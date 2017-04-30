@@ -70,7 +70,11 @@
       </div>
       <div class="row">
         <center>
-          <router-link :to="{ name: 'products', params: {page: 1 }}"><button type="submit" class="btn btn-default view-all-btn"> View All Product</button></router-link>
+          <router-link :to="{ name: 'products', params: {page: 1 }}">
+            <button type="submit" class="btn btn-default view-button">
+              View All Product
+            </button>
+          </router-link>
         </center>
       </div>
     </div>
@@ -130,3 +134,23 @@ export default {
 }
 
 </script>
+
+
+<style>
+.view-button {
+  background:#FE980F;
+  border: 0 none;
+  border-radius: 0;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+.view-button:hover {
+  background: #e6e6e6;
+  border: 0 none;
+  border-radius: 0;
+  color: #696763;
+}
+</style>

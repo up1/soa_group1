@@ -30,7 +30,7 @@
                 </li>
                 <li v-if="$auth.check()">
                   <router-link :to="{ name: 'cart', params: { userId: this.$auth.user().id}}">
-                    <a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a>
+                    <i class="fa fa-shopping-cart"></i> Cart
                   </router-link>
                 </li>
                 <li v-if="$auth.check()">
@@ -39,11 +39,11 @@
                   </router-link>
                 </li>
                 <li v-if="$auth.check()">
-                  <a href="" @click.prevent="logout()"><i class="fa fa-lock"></i> Logout</a>
+                  <a href="" @click.prevent="logout()"><i class="fa fa-unlock"></i> Log out</a>
                 </li>
                 <li v-if="!$auth.check()">
                   <router-link :to="{ name: 'login'}">
-                    <i class="fa fa-lock"></i> Sign in
+                    <i class="fa fa-lock"></i> Log in
                   </router-link>
                 </li>
               </ul>
