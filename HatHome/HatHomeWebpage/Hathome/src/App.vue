@@ -38,6 +38,9 @@
                     <router-link :to="{ name: 'userProfile', params: { userId: this.$auth.user().id}}">
                       <i class="fa fa-user"></i> Account</router-link>
                   </li>
+                <li v-if="$auth.check()">
+                  <i class="fa fa-lock"><a href="" @click.prevent="logout()">Logout</a></i>
+                </li>
                   <li v-if="!$auth.check()"><router-link :to="{ name: 'login'}">
                     <i class="fa fa-lock"></i> Sign in</router-link>
                   </li>
@@ -76,9 +79,31 @@
 
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+    data () {
+      return {
+      }
+    },
+    methods: {
+      logout() {
+          this.$auth.logout({
+            makeRequest: true,
+            params: {},
+            success(){
+                console.log('success ' + this.context);
+            },
+            error(response) {
+                console.log('in catch', response);
+                },
+
+            redirect: '/recentProducts'
+
+      }); }
+    }
   }
+
 </script>
+
 
 <style>
   #app {

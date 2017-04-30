@@ -67,6 +67,10 @@ var router = new Router({
       path: '/bill/:id',
       name: 'Billing',
       component: Billing
+    },
+    {
+      path: '/logout',
+      name: 'logout'
     }
   ],
   scrollBehavior (to, from, savedPosition) {
@@ -98,6 +102,9 @@ Vue.use(VueAuth, {
   },
   registerData: {
     url: 'http://localhost:9002/user'
+  },
+  logoutData: {
+    url: 'http://localhost:9002/logout'
   }
 })
 
