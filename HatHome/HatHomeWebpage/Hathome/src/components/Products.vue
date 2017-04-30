@@ -4,67 +4,6 @@
       <div class="col-sm-3">
         <div class="left-sidebar">
 
-          <h2>Category</h2>
-          <div class="panel-group category-products">
-            <!--category-products-->
-            <div class="cat-product checkbox">
-              <label><input type="checkbox" id="caps" value="Caps" v-model="checkedCat">Caps</label>
-            </div>
-            <div class="cat-product checkbox">
-              <label><input type="checkbox" id="hats" value="Hats" v-model="checkedCat">Hats</label>
-            </div>
-            <div class="cat-product checkbox">
-              <label><input type="checkbox" id="beanies" value="Beanies" v-model="checkedCat">Beanies</label>
-            </div>
-
-          </div>
-          <!--/category-products-->
-
-          <div class="brands_products">
-            <!--brands_products-->
-            <h2>Brands</h2>
-            <div class="brands-name">
-              <div class="cat-product checkbox">
-                <label><input type="checkbox" id="newEra" value="newEra" v-model="checkedCat">New Era</label>
-              </div>
-              <div class="cat-product checkbox">
-                <label><input type="checkbox" id="converse" value="converse" v-model="checkedCat">Converse</label>
-              </div>
-              <div class="cat-product checkbox">
-                <label><input type="checkbox" id="jaxon" value="jaxon" v-model="checkedBrand">Jaxon</label>
-              </div>
-            </div>
-          </div>
-          <!--/brands_products-->
-
-          <div class="color_products">
-            <!--color-->
-            <h2>Color</h2>
-            <div class="brands-name">
-              <div class="cat-product checkbox">
-                <label><input type="checkbox" id="black" value="black" v-model="checkedColor">black</label>
-              </div>
-              <div class="cat-product checkbox">
-                <label><input type="checkbox" id="white" value="white" v-model="checkedColor">white</label>
-              </div>
-              <div class="cat-product checkbox">
-                <label><input type="checkbox" id="red" value="red" v-model="checkedColor">red</label>
-              </div>
-            </div>
-          </div>
-          <!--/color-->
-
-
-          <div class="price-range">
-            <!--price-range-->
-            <h2>Price Range</h2>
-            <div class="price-slider">
-              <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5"
-                     data-slider-value="[250,450]" id="sl2"><br/>
-              <b>฿ 0</b> <b class="pull-right">฿ 600</b>
-            </div>
-          </div>
-          <!--/price-range-->
 
         </div>
       </div>
@@ -85,16 +24,16 @@
                       </router-link>
                       <p>{{ item.price }} Baht</p>
                       <div>
-                        <div class="col-sm-7" align="right" style="border: 1px; margin-right: -5px">
+                        <div class="col-sm-7" align="right" style="margin-right: -5px">
                           <a href="" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i
                             class="fa fa-shopping-cart"></i></a>
                         </div>
-                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
-                          <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
+                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="margin-left: -25px;"  align="left">
+                          <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </a>
                         </div>
-                        <div v-else  class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
+                        <div v-else class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
                           <a href="" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </a>
@@ -159,7 +98,6 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
-
     },
 
     updateResource(data){
@@ -196,27 +134,27 @@ export default {
             this.wishlists = response.data;
             var i = 0;
             for (i = 0; i < this.wishlists.length; i++) {
-            }
               this.wishlists_id.push(this.wishlists[i].product_id);
+            }
           })
           .catch(function (error) {
-            console.log(error)
+            console.log('fffffff'+error)
           })
-      },
-      addToWishlist (id, name) {
-        wishlist.addToWishlist(id, name, this.$auth.user().id);
-      },
-
-      deleteFromWishlist (productId){
-        wishlist.deleteFromWishlist(productId, this.$auth.user().id)
-          .then(() => {
-            this.wishlists = []
-            this.wishlist()
-          })
-      },
-      addToCart (id, name) {
-        cart.addToCart(id, name, this.$auth.user().id);
-      }
+    },
+    addToWishlist (id) {
+      wishlist.addToWishlist(id, this.$auth.user().id);
+    },
+    deleteFromWishlist (productId){
+        console.log('adasasffasf');
+      wishlist.deleteFromWishlist(productId, this.$auth.user().id)
+        .then(() => {
+          this.wishlists = []
+          this.getWishlist()
+        })
+    },
+    addToCart (id, name) {
+      cart.addToCart(id, name, this.$auth.user().id);
+    }
   },
   watch: {
     '$route.params.page'(newpage, oldpage) {
