@@ -70,7 +70,7 @@
       </div>
       <div class="row">
         <center>
-          <router-link to="/products" style="text-decoration: none;"><button type="submit" class="view-all-btn"> View All Product</button></router-link>
+          <router-link :to="{ name: 'products', params: {page: 1 }}"><button type="submit" class="btn btn-default view-all-btn"> View All Product</button></router-link>
         </center>
       </div>
     </div>

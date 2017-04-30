@@ -110,9 +110,15 @@
         </div>
         <!--/all product-->
       </div>
-      <div class="btn-group">
-        <a href="" @click.prevent="setPage(n)" v-for="n in numOfPages" class="btn btn-default">{{n}}</a>
-      </div>
+    </div>
+    <div>
+      <button id="previousBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToPrevious">
+        Previous
+      </button>
+        Page {{currentPage}} of {{lastPage}}
+      <button id="nextBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToNext">
+        Next
+      </button>
     </div>
   </div>
 </template>
@@ -122,44 +128,76 @@
   import wishlist from '../services/wishlist'
   import cart from '../services/cart'
 
-  export default {
-    name: 'recentProduct',
-    data() {
-      return {
-        id: '',
-        name: '',
-        item: '',
-        image: '',
-        list: [],
-        currentPage: 1,
-        perPage: 9,
-        wishlists: [],
-        wishlists_id: []
+export default {
+  name: 'recentProduct',
+  data() {
+    return {
+      name: '',
+      item: '',
+      image: '',
+      list: [],
+      resource_url:'http://localhost:9004/products/pages/'+ this.$route.params.page,
+      currentPage: '',
+      lastPage: ''
+      wishlists: [],
+      wishlists_id: []
+    }
+  },
+  mounted: function() {
+    this.product(this.$route.params.page)
+    this.getWishlist();
+  },
+  methods: {
+    product: function(page) {
+      return axios.get('http://localhost:9004/products/pages/'+ this.$route.params.page, {})
+        .then((response) => {
+          console.log(response)
+          this.list = response.data.products
+          this.currentPage = response.data.currentPage
+          this.lastPage = response.data.lastPage
+        })
+        .catch(function(error) {
+          console.log(error)
+        })
+        
+    },
+      
+    updateResource(data){
+      this.list = data
+      this.lastPage = data.lastPage
+      this.currentPage = data.currentPage
+    },
+    checkDisable() {
+      if(this.currentPage==1 && this.$route.params.page!=1){
+        console.log('el'+this.currentPage + ' ' + this.$route.params.page);
+        document.getElementById("previousBtn").disabled = false;
+        document.getElementById("nextBtn").disabled = false;
+      }
+      else if (this.currentPage==1) {
+        console.log('pre'+this.currentPage + ' ' + this.$route.params.page);
+        document.getElementById("previousBtn").disabled = true;
+        document.getElementById("nextBtn").disabled = false;
+      }
+      else if(this.lastPage==this.$route.params.page){
+        console.log('last'+this.currentPage + ' ' + this.$route.params.page);
+        document.getElementById("nextBtn").disabled = true;
+        document.getElementById("previousBtn").disabled = false;
       }
     },
-    mounted: function () {
-      this.product();
-      this.getWishlist();
+    goToPrevious() {
+    this.$router.push({ name: 'products', params: { page: this.currentPage - 1 } });
     },
-    methods: {
-      product: function () {
-        axios.get('http://localhost:9004/products', {})
-          .then((response) => {
-            this.list = response.data
-          })
-          .catch(function (error) {
-            console.log(error)
-          })
-      },
-
-      getWishlist: function () {
+    goToNext() {
+    this.$router.push({ name: 'products', params: { page: this.currentPage + 1 } });
+    },
+    getWishlist: function () {
         axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {})
           .then((response) => {
             this.wishlists = response.data;
             var i = 0;
             for (i = 0; i < this.wishlists.length; i++) {
-              this.wishlists_id.push(this.wishlists[i].product_id);
             }
+              this.wishlists_id.push(this.wishlists[i].product_id);
           })
           .catch(function (error) {
             console.log(error)
@@ -178,30 +216,15 @@
       },
       addToCart (id, name) {
         cart.addToCart(id, name, this.$auth.user().id);
-      },
-    },
-    setPage(n) {
-      this.currentPage = n;
-    },
-
-    computed: {
-      offset: function () {
-        return ((this.currentPage - 1) * this.perPage);
-      },
-      limit: function () {
-        return (this.offset + this.perPage);
-      },
-      numOfPages: function () {
-        return Math.ceil(this.list.length / this.perPage);
-      },
-      computedProducts: function () {
-        if (this.offset > this.list.length) {
-          this.currentPage = this.numOfPages;
-        }
-        return this.list.slice(this.offset, this.limit);
       }
-
+  },
+  watch: {
+    '$route.params.page'(newpage, oldpage) {
+        this.product(newpage)
     }
+  },
+  components: {
+    VPaginator: VuePaginator
   }
 
 </script>

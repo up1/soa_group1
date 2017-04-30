@@ -29,7 +29,7 @@ var router = new Router({
       component: RecentProducts
     },
     {
-      path: '/products',
+      path: '/products/pages/:page',
       name: 'products',
       component: Products
     },
