@@ -24,19 +24,35 @@
       </form>
     </div> <!--/Profile form-->
 
+    <div id="wrapper" class="container">
+      <modal v-if="showModal" id="myModal">
+        <p slot="header" class="modal-title">
+          {{modalTitle}}
+        </p>
+        <div slot="body" class="modal-body">
+          <i class="fa fa-lock"></i>
+        </div>
+      </modal>
+    </div>
 
   </div>
 </template>
 
 <script>
   import axios from 'axios'
+  import Modal from '@/components/Modal'
   export default {
     name: 'userProfile',
+    components: {
+      Modal
+    },
     data () {
       return {
         header: 'Your profile',
         email: '',
         address: '',
+        showModal: '',
+        modalTitle: 'Update success'
       }
     },
     mounted: function () {
@@ -50,12 +66,12 @@
               console.log('in then', response.data);
               this.email = response.data.email
               this.address = response.data.address
+              this.showModal = false;
             }
           )
           .catch(
             (error) => {
               console.log('in catch', error);
-//              alert('Please try login again');
             }
           )
       },
@@ -63,8 +79,11 @@
         axios.put('http://localhost:9007/user/' + this.$route.params.userId , {email: this.email, address: this.address})
           .then(
             (response) => {
-                alert("Update finihed!!")
               axios.get('http://localhost:9007/user/' + this.$route.params.userId, {})
+              this.showModal = true;
+              setTimeout(function(){
+                $("#myModal").hide();
+              }, 3000);
             }
           )
           .catch(
@@ -76,3 +95,14 @@
     }
   }
 </script>
+<style>
+  .modal-title{
+    font-size: 20px;
+    text-align: center;
+  }
+  .modal-text{
+    font-size: 17px;
+    text-align: center;
+    margin-top: -20px;
+  }
+</style>
