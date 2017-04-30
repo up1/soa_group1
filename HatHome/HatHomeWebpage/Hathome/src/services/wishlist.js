@@ -5,7 +5,6 @@ class Wishlist {
 
   addToWishlist (productId, productName, userId) {
     //TODO : get current userId
-    // console.log(`Adding new product ${productId} to ${userId} wishlist`)
     axios.post('http://localhost:9005/wishlist', {
       user_id: userId,
       product_id: productId
@@ -13,7 +12,6 @@ class Wishlist {
       .then(
         (response) => {
           alert(`Added ${productName} to wishlist`)
-          console.log('in then', response.data);
         }
       )
       .catch(
@@ -23,12 +21,12 @@ class Wishlist {
       )
   }
 
-  deleteFromWishlist (wishlistId) {
+  deleteFromWishlist (productId, userId) {
     console.log(`DELETE`);
-    return axios.delete('http://localhost:9005/wishlist/' + wishlistId)
+    return axios.delete('http://localhost:9005/wishlist/' + productId + '/user/' + userId)
       .then(
         (response) => {
-          console.log('in then', response.data);
+          alert(`Deleted ${productName} to wishlist`)
         }
       )
       .catch(

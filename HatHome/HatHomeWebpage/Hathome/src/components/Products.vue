@@ -75,7 +75,7 @@
           <div class="tab-content">
             <div class="tab-pane fade active in">
               <!-- item1 -->
-              <div class="col-sm-4" v-for="item in list">
+              <div class="col-sm-4" v-for="(item, index) in list">
                 <div class="product-image-wrapper">
                   <div class="single-products">
                     <div class="productinfo text-center">
@@ -84,18 +84,22 @@
                         <h4>{{ item.name }}</h4>
                       </router-link>
                       <p>{{ item.price }} Baht</p>
-                      <a href="" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i
-                        class="fa fa-shopping-cart"></i></a>
-                      <div v-if="wishlists_id.indexOf( item.id ) < 0">
-                        <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
-                          <i class="fa fa-star"></i>
-                        </a>
-                      </div>
-                      <div v-else>
-                        {{item.wishlist_id}}
-                        <a href="" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.wishlist_id)">
-                          <i class="fa fa-star"></i>
-                        </a>
+                      <div>
+                        <div class="col-sm-7" align="right" style="border: 1px; margin-right: -5px">
+                          <a href="" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i
+                            class="fa fa-shopping-cart"></i></a>
+                        </div>
+                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
+                          <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
+                            <i class="fa fa-star"></i>
+                          </a>
+                        </div>
+                        <div v-else  class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
+                          <a href="" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
+                            <i class="fa fa-star"></i>
+                          </a>
+                        </div>
+                        <div class="col-sm-2"></div>
                       </div>
                     </div>
                   </div>
@@ -130,7 +134,7 @@
         currentPage: 1,
         perPage: 9,
         wishlists: [],
-        wishlists_id: [],
+        wishlists_id: []
       }
     },
     mounted: function () {
@@ -141,7 +145,6 @@
       product: function () {
         axios.get('http://localhost:9004/products', {})
           .then((response) => {
-            console.log('gade>> ' + response)
             this.list = response.data
           })
           .catch(function (error) {
@@ -153,12 +156,10 @@
         axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {})
           .then((response) => {
             this.wishlists = response.data;
-
             var i = 0;
             for (i = 0; i < this.wishlists.length; i++) {
               this.wishlists_id.push(this.wishlists[i].product_id);
             }
-
           })
           .catch(function (error) {
             console.log(error)
@@ -168,15 +169,13 @@
         wishlist.addToWishlist(id, name, this.$auth.user().id);
       },
 
-      deleteFromWishlist (id){
-        console.log(`DELETED`);
-        wishlist.deleteFromWishlist(id)
+      deleteFromWishlist (productId){
+        wishlist.deleteFromWishlist(productId, this.$auth.user().id)
           .then(() => {
-            this.wishlists = null
+            this.wishlists = []
             this.wishlist()
           })
       },
-
       addToCart (id, name) {
         cart.addToCart(id, name, this.$auth.user().id);
       },

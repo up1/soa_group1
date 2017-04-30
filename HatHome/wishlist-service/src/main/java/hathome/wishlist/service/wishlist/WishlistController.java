@@ -34,12 +34,10 @@ public class WishlistController {
         return "can post++++++++++" + wishlist.getWishlist_id();
     }
 
-    @RequestMapping(value = "/wishlist/{id}", method = RequestMethod.DELETE)
-    public String delete(@PathVariable int id) {
-        Wishlist wishlistItem = new Wishlist();
-        wishlistItem.setWishlist_id(id);
-        wishlistRepository.deleteWishlist(wishlistItem);
-        return "can delete----------" + wishlistItem.getWishlist_id();
+    @RequestMapping(value = "/wishlist/{pdId}/user/{usId}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("pdId") long productId, @PathVariable("usId") long userId) {
+        wishlistRepository.deleteWishlist(productId, userId);
+        return "can delete----------" + productId + "of" + userId;
     }
 
     @GetMapping
