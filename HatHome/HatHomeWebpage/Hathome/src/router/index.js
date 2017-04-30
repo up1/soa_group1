@@ -102,9 +102,6 @@ Vue.use(VueAuth, {
   },
   registerData: {
     url: 'http://localhost:9002/user'
-  },
-  logoutData: {
-    url: 'http://localhost:9002/logout'
   }
 })
 
