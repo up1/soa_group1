@@ -57,7 +57,7 @@
         var redirect = this.$auth.redirect()
         this.$auth.login({
           body: this.body,
-          redirect: {name: redirect ? redirect.from.name : 'products'},
+          redirect: {name: redirect ? redirect.from.name : 'recentProducts'},
           success(){
             console.log('success ' + this.context)
           },

@@ -138,7 +138,7 @@ export default {
       list: [],
       resource_url:'http://localhost:9004/products/pages/'+ this.$route.params.page,
       currentPage: '',
-      lastPage: ''
+      lastPage: '',
       wishlists: [],
       wishlists_id: []
     }
@@ -159,9 +159,9 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
-        
+
     },
-      
+
     updateResource(data){
       this.list = data
       this.lastPage = data.lastPage
@@ -222,9 +222,6 @@ export default {
     '$route.params.page'(newpage, oldpage) {
         this.product(newpage)
     }
-  },
-  components: {
-    VPaginator: VuePaginator
   }
-
+}
 </script>
