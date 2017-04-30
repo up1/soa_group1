@@ -43,7 +43,7 @@
       <div class="row">
         <div class="category-tab">
           <!--category-tab-->
-          <h2 class="title text-center">NEW PRODUCTS</h2>
+          <h2 class="title text-center">RECENT PRODUCTS</h2>
           <div class="tab-content">
             <div class="tab-pane fade active in">
               <!-- item -->
@@ -51,15 +51,15 @@
                 <div class="product-image-wrapper">
                   <div class="single-products">
                     <div class="productinfo text-center">
-                        <router-link :to="{ name: 'productDetail', params: { id: item.id}}">
+                        <router-link :to="{ name: 'productDetail', params: { id: item.id}}" style="text-decoration: none;">
                           <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'"/>
                           <h4>{{ item.name }}</h4>
                         </router-link>
                       <p>{{ item.price }} Baht</p>
-                      <a href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)">
-                        <i class="fa fa-shopping-cart"></i></a>
-                      <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
-                        <i class="fa fa-star"></i></a>
+                      <button href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)">
+                        <i class="fa fa-shopping-cart"></i></button>
+                      <button href="#" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
+                        <i class="fa fa-star"></i></button>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
       </div>
       <div class="row">
         <center>
-          <router-link to="/products"><button type="submit" class="btn btn-default view-all-btn"> View All Product</button></router-link>
+          <router-link to="/products" style="text-decoration: none;"><button type="submit" class="view-all-btn"> View All Product</button></router-link>
         </center>
       </div>
     </div>

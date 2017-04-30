@@ -87,8 +87,9 @@
 
                                   <p class="price-info"><b> {{price}} Baht</b></p>
 
-                                  <label>Quantity:</label>
-                                  <input type="text" value="1" />
+                                  <div style="text-align: left;">
+                                    <label>Quantity:</label>
+                                    <input type="text" value="1" />
 
                                   <button type="button" class="btn btn-default cart" v-on:click="addToCart">
                                     <i class="fa fa-shopping-cart"></i>
