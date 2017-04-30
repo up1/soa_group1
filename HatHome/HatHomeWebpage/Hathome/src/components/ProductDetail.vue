@@ -87,13 +87,16 @@
 
                                   <p class="price-info"><b> {{price}} Baht</b></p>
 
-                                  <label>Quantity:</label>
-                                  <input type="text" value="1" />
+                                  <div style="text-align: left;">
+                                    <label>Quantity:</label>
+                                    <input type="text" value="1" />
 
-                                  <button type="button" class="btn btn-fefault cart" v-on:click="addToCart">
-                                    <i class="fa fa-shopping-cart"></i>
-                  										Add to cart
-                  									</button>
+                                    <button type="button" class="btn btn-fefault cart" v-on:click="addToCart">
+                                      <i class="fa fa-shopping-cart"></i>
+                    										Add to cart
+                    									</button>
+                                  </div>
+
                                   <p class="product-amount"><b>Amount:</b> {{amount}}</p>
                                   <p class="product-brand"><b>Brand:</b> {{brand}}</p>
                                   <p class="product-color"><b>Color:</b> {{color}}</p>

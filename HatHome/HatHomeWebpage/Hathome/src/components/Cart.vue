@@ -18,40 +18,37 @@
             <tbody id="cart_item">
             <tr v-for="product in products">
               <td class="cart_product">
-                <a href="">
                   <router-link :to="{ name: 'productDetail', params: { id: product.product.id}}">
-                    <img
-                      v-bind:src="'https://storage.googleapis.com/hathome01/products/' + product.product.id +'.jpg'"/>
+                    <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + product.product.id +'.jpg'"/>
                   </router-link>
-                </a>
               </td>
-              <td class="cart_description">
-                <h4><a href="">
+              <td class="cart_description" style="vertical-align: middle;">
+                <h4 style="vertical-align: middle;"><a href="">
                   <router-link :to="{ name: 'productDetail', params: { id: product.product.id}}">
                     {{product.product.name}}
                   </router-link>
                 </a>
                 </h4>
               </td>
-              <td class="cart_price">
+              <td class="cart_price" style="vertical-align: middle;">
                 <p>{{product.product.price}} ฿</p>
               </td>
-              <td class="cart_quantity">
+              <td class="cart_quantity" style="vertical-align: middle; padding-top: 20px;">
                 <div class="btn-group">
                   <input type="number" class="form-control" min="1" max="50" v-model="product.amount">
                 </div>
               </td>
-              <td class="cart_total">
-                <p class="cart_total_price">{{product.amount * product.product.price}} ฿</p>
+              <td class="cart_total" style="vertical-align: middle; padding-top: 20px;">
+                <p class="cart_total_price" style="text-align: center;">{{product.amount * product.product.price}} ฿</p>
               </td>
-              <td class="cart_delete">
+              <td class="cart_delete" style="padding-top: 60px;">
                 <a class="cart_quantity_delete" v-on:click="remove(product.id, product.product.name)"><i
                   class="fa fa-times"></i></a>
               </td>
             </tr>
             </tbody>
           </table>
-          <a v-on:click="openModal" class="btn btn-default check_out">Check out your cart</a>
+          <a v-on:click="openModal" class="btn btn-default checkout-button">Check out your cart</a>
         </div>
         <div v-else>
           <div class="row">
@@ -64,16 +61,15 @@
     </div>
     <div id="wrapper" class="container">
       <modal v-if="showModal">
-        <h3 slot="header" class="modal-title">
-          Modal title
-        </h3>
+        <p slot="header" class="modal-title">
+          {{modalTitle}}
+        </p>
         <div slot="body" class="modal-body">
-          <h4>{{s}}</h4>
-          <h5>Please check your address.</h5>
+          <p class="modal-text">Please check your address.</p>
           <textarea v-model="address" placeholder="your address"></textarea>
         </div>
         <div slot="footer">
-          <button type="button" class="btn btn-outline-info" @click="closeModal()"> Close </button>
+          <button type="button" class="btn btn-primary" @click="closeModal()"> Close </button>
           <button type="button" class="btn btn-primary" data-dismiss="modal" @click="billing()">
             Submit
           </button>
@@ -98,7 +94,7 @@
         products: null,
         showModal: false,
         address: '',
-        s: 'Do you want to check out your cart?'
+        modalTitle: 'Do you want to check out your cart?'
       }
     },
     mounted: function () {
@@ -122,7 +118,7 @@
         )
       },
       get_address() {
-        axios.get('http://localhost:9001/user/' + this.$auth.user().id, {})
+        axios.get('http://localhost:9007/user/' + this.$auth.user().id, {})
           .then(
             (response) => {
               this.username = response.data.emmail;
@@ -175,3 +171,34 @@
     }
   }
 </script>
+
+<style>
+
+.checkout-button {
+  background:#FE980F;
+  border: 0 none;
+  border-radius: 0;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin-bottom: 25px;
+  float: right;
+  margin-top: 50px;
+}
+
+.checkout-button:hover {
+  background: #e6e6e6;
+  border: 0 none;
+  border-radius: 0;
+  color: #696763;
+}
+.modal-title{
+  font-size: 20px;
+  text-align: center;
+}
+.modal-text{
+  font-size: 17px;
+  text-align: center;
+  margin-top: -20px;
+}
+</style>

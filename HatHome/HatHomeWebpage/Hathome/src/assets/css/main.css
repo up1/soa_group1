@@ -10,6 +10,7 @@ body {
   font-family: 'Roboto', sans-serif;
   position: relative;
   font-weight: 400;
+  overflow-x:hidden;
 }
 
 ul li {
@@ -293,6 +294,8 @@ a#scrollUp i{
 .stylish-input-group button{
   background: #F0F0E9;
   border: medium none;
+  height: 35px;
+  width: 40px;
   color: #9d9d9d;
   outline: medium none;
 }
@@ -440,6 +443,7 @@ a#scrollUp i{
   font-weight: 500;
   margin-bottom: 22px;
   text-transform: uppercase;
+  align: left;
 }
 
 .single-widget h2 i{
@@ -626,6 +630,17 @@ a#scrollUp i{
   border: medium none;
   border-radius: 0;
   color: #FFFFFF;
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  padding: 6px 25px;
+  margin-bottom: 30px;
+}
+
+.view-all-btn:hover{
+  background: #e6e6e6;
+  border: medium none;
+  border-radius: 0;
+  color: #FE980F;
   display: block;
   font-family: 'Roboto', sans-serif;
   padding: 6px 25px;
@@ -895,6 +910,7 @@ h2.title {
   font-size: 20px;
   font-weight: 400;
   color: #696763;
+  text-align: center;
 }
 
 .productinfo img{
@@ -1188,7 +1204,7 @@ h2.title {
 
 .view-product img {
   border: 1px solid #e6e6e6;
-  height: 380px;
+  height: 350px;
   width: 100%;
 }
 
@@ -1247,12 +1263,14 @@ h2.title {
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   margin-top: 0;
+  text-align: left;
 }
 
 .product-information p {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   margin-bottom: 15px;
+  text-align: left;
 }
 
 
@@ -1471,20 +1489,6 @@ h2.title {
   width: 100%;
 }
 
- .signup-form form textarea{
-   background: #F0F0E9;
-   border: medium none;
-   color: #696763;
-   display: block;
-   font-family: 'Roboto', sans-serif;
-   font-size: 14px;
-   font-weight: 300;
-   margin-bottom: 10px;
-   outline: medium none;
-   padding-left: 10px;
-   width: 100%;
- }
-
 .login-form form span{
   line-height: 25px;
 }
@@ -1605,7 +1609,9 @@ h2.title {
 
 #cart_items .cart_info .cart_price p {
   color:#696763;
-  font-size: 18px
+  font-size: 20px;
+  padding-top: 20px;
+  text-align: center;
 }
 
 
@@ -1616,7 +1622,6 @@ h2.title {
 
 .cart_product {
   display: block;
-  margin: 0px -70px 10px 25px;
 }
 
 .cart_product a img{
