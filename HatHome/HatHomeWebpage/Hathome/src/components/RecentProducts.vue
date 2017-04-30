@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-blind="http://www.w3.org/1999/xhtml">
 <div class="recentproduct">
   <section id="slider">
     <!--  slider-->
@@ -43,23 +43,23 @@
       <div class="row">
         <div class="category-tab">
           <!--category-tab-->
-          <h2 class="title text-center">NEW PRODUCTS</h2>
+          <h2 class="title text-center">RECENT PRODUCTS</h2>
           <div class="tab-content">
             <div class="tab-pane fade active in">
               <!-- item -->
-              <div class="col-sm-3" v-for="item in list">
+              <div class="col-sm-3" v-for="item in wishlists">
                 <div class="product-image-wrapper">
                   <div class="single-products">
                     <div class="productinfo text-center">
-                        <router-link :to="{ name: 'productDetail', params: { id: item.id}}">
+                        <router-link :to="{ name: 'productDetail', params: { id: item.id}}" style="text-decoration: none;">
                           <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'"/>
                           <h4>{{ item.name }}</h4>
                         </router-link>
                       <p>{{ item.price }} Baht</p>
-                      <a href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)">
-                        <i class="fa fa-shopping-cart"></i></a>
-                      <a href="#" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
-                        <i class="fa fa-star"></i></a>
+                      <button href="#" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)">
+                        <i class="fa fa-shopping-cart"></i></button>
+                      <button href="#" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
+                        <i class="fa fa-star"></i></button>
                     </div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
       </div>
       <div class="row">
         <center>
-          <router-link to="/products"><button type="submit" class="btn btn-default view-all-btn"> View All Product</button></router-link>
+          <router-link :to="{ name: 'products', params: {page: 1 }}"><button type="submit" class="btn btn-default view-all-btn"> View All Product</button></router-link>
         </center>
       </div>
     </div>
@@ -91,7 +91,7 @@ export default {
       item: '',
       image: '',
       id: '',
-      list: []
+      wishlists: []
     }
   },
   mounted: function() {
@@ -101,8 +101,8 @@ export default {
     product: function() {
       axios.get('http://localhost:9004/recentproducts', {})
         .then((response) => {
-          console.log(response)
           this.list = response.data
+          this.wishlists = response.data
         })
         .catch(function(error) {
           console.log(error)
@@ -113,7 +113,15 @@ export default {
 
     },
     addToWishlist (id, name) {
-      wishlist.addToWishlist(id, name);
+      wishlist.addToWishlist(id, name, this.$auth.user().id);
+    },
+    deleteFromWishlist (id){
+      console.log(`DELETED`);
+      wishlist.deleteFromWishlist(id)
+        .then(() => {
+          this.wishlists = []
+          this.wishlist()
+        })
     },
     addToCart (id, name) {
       cart.addToCart(id, name, this.$auth.user().id);

@@ -33,4 +33,14 @@ public class UserRepository {
             throw new UserNotFoundException(userId);
         }
     }
+
+    public void updateProfile(User newUser, Long userId){
+        String sql = "UPDATE user SET email = ? , address = ? WHERE id = ?";
+        try {
+            this.jdbcTemplate.update(sql, newUser.getEmail(), newUser.getAddress(), userId);
+        }catch (Exception exception){
+            throw new UserUpdateException(userId, exception);
+        }
+
+    }
 }

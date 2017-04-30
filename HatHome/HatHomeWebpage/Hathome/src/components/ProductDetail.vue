@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-blind="http://www.w3.org/1999/xhtml">
   <div class="container">
               <div class="row">
                   <div class="col-sm-3">
@@ -87,13 +87,18 @@
 
                                   <p class="price-info"><b> {{price}} Baht</b></p>
 
-                                  <label>Quantity:</label>
-                                  <input type="text" value="1" />
+                                  <div style="text-align: left;">
+                                    <label>Quantity:</label>
+                                    <input type="text" value="1" />
 
-                                  <button type="button" class="btn btn-fefault cart" v-on:click="addToCart">
+                                  <button type="button" class="btn btn-default cart" v-on:click="addToCart">
                                     <i class="fa fa-shopping-cart"></i>
                   										Add to cart
-                  									</button>
+                                  </button>
+                                  <button type="button" class="btn btn-default custom-button" v-on:click="addToWishlist(id, name)">
+                                    <i class="fa fa-star"></i>
+                                    Add To Wishlist
+                                  </button>
                                   <p class="product-amount"><b>Amount:</b> {{amount}}</p>
                                   <p class="product-brand"><b>Brand:</b> {{brand}}</p>
                                   <p class="product-color"><b>Color:</b> {{color}}</p>
@@ -108,11 +113,14 @@
                   </div>
               </div>
           </div>
+        </div>
 </template>
 
 <script>
   import axios from 'axios'
   import cart from '../services/cart'
+  import wishlist from '../services/wishlist'
+
   export default {
     name: 'productDetail',
     data () {
@@ -150,6 +158,16 @@
           })
           .catch(function (error) {
             console.log(error)
+          })
+      },
+      addToWishlist (id, name) {
+        wishlist.addToWishlist(id, name, this.$auth.user().id);
+      },
+      deleteFromWishlist (id){
+        console.log(`DELETED`);
+        wishlist.deleteFromWishlist(id)
+          .then(() => {
+            this.wishlist()
           })
       },
       addToCart (){

@@ -5,18 +5,10 @@ package hathome.authentication.authen;
  */
 public class User {
     private String email;
-    private String password;
+    String password;
     private String address;
     private Long id;
 
-    public User() {
-    }
-
-    public User(Long id, String email, String address) {
-        this.email = email;
-        this.address = address;
-        this.id = id;
-    }
 
     public Long getId() {
         return id;
@@ -40,10 +32,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
