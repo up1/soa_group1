@@ -1,13 +1,10 @@
 package hathome.authentication.authen;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 @Repository
@@ -29,10 +26,9 @@ public class UserRepository {
         try {
             user  = this.jdbcTemplate.queryForObject(sql, new Object[]{}, new UserRowMapper());
             return user;
-        }catch (Exception e){
-            System.out.println(e);
+        }catch (Exception exception){
+            throw new UserNotFoundException(exception, email);
         }
-        return user;
     }
 
 }

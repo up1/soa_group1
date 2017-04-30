@@ -23,24 +23,28 @@
           <div class="col-sm-6">
             <div class="shop-menu pull-right">
               <ul class="nav navbar-nav">
-                <li>
-                    <router-link :to="{ name: 'wishlist', params: { userid: this.$auth.user().id}}">
-                    <i class="fa fa-star"></i> Wishlist</router-link>
-                </li>
-                <li>
-                  <router-link :to="{ name: 'cart', params: { userId: this.$auth.user().id}}">
-                  <a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a>
+                <li v-if="$auth.check()">
+                  <router-link :to="{ name: 'wishlist', params: { userid: this.$auth.user().id}}">
+                    <i class="fa fa-star"></i> Wishlist
                   </router-link>
                 </li>
-                <li>
+                <li v-if="$auth.check()">
+                  <router-link :to="{ name: 'cart', params: { userId: this.$auth.user().id}}">
+                    <a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a>
+                  </router-link>
+                </li>
+                <li v-if="$auth.check()">
                   <router-link :to="{ name: 'userProfile', params: { userId: this.$auth.user().id}}">
-                    <i class="fa fa-user"></i> Account</router-link>
+                    <i class="fa fa-user"></i> Account
+                  </router-link>
                 </li>
-                <li><router-link :to="{ name: 'login'}">
-                <i class="fa fa-lock"></i> Login</router-link>
+                <li v-if="$auth.check()">
+                  <a href="" @click.prevent="logout()"><i class="fa fa-lock"></i> Logout</a>
                 </li>
-                <li><router-link :to="{ name: 'userRegister'}">
-                  <i class="fa fa-lock"></i> Sign up</router-link>
+                <li v-if="!$auth.check()">
+                  <router-link :to="{ name: 'login'}">
+                    <i class="fa fa-lock"></i> Sign in
+                  </router-link>
                 </li>
               </ul>
             </div>
@@ -75,9 +79,26 @@
 
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+    data () {
+      return {}
+    },
+    methods: {
+      logout () {
+        this.$auth.logout({
+          success () {
+            console.log('success ' + this.context)
+          },
+          error () {
+            console.log('error ' + this.context)
+          }
+        })
+      }
+    }
   }
+
 </script>
+
 
 <style>
   #app {

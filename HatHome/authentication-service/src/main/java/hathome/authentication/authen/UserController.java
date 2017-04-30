@@ -1,12 +1,10 @@
 package hathome.authentication.authen;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,16 +43,16 @@ public class UserController {
         claims.put("address", user.getAddress());
 
         // Build JWT token
-        String JWT = Jwts.builder()
+        String jwt = Jwts.builder()
                 .setClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + JWTAuthenticationService.EXPIRATION_TIME))
                 .signWith(SignatureAlgorithm.HS512, JWTAuthenticationService.SECRET)
                 .compact();
 
-        HashMap<String, Object> mappingResponse = new HashMap<String, Object>() {{
-            put("access_token", JWT);
-            put("user", user);
-        }};
+        HashMap<String, Object> mappingResponse = new HashMap<>();
+
+                mappingResponse.put("access_token", jwt);
+                mappingResponse.put("user", user);
 
         return new ResponseEntity<>(mappingResponse, HttpStatus.OK) ;
 
