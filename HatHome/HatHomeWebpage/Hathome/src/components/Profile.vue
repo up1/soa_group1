@@ -60,7 +60,14 @@
           )
       },
       updateProfile(){
-          alert("mimi");
+        axios.put('http://localhost:9007/user/' + this.$route.params.userId , {email: this.email, address: this.address})
+          .then(
+            (response) => {
+              console.log('in then', response.data);
+              this.email = response.data.email
+              this.address = response.data.address
+            }
+          )
       }
     }
   }

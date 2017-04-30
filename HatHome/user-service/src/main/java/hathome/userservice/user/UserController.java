@@ -71,7 +71,7 @@ public class UserController {
 
         try {
             this.userRepository.updateProfile(user, userId);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
