@@ -34,10 +34,10 @@ public class UserRepository {
         }
     }
 
-    public User updateProfile(User oldeUser, User newUser, Long userId){
+    public void updateProfile(User newUser, Long userId){
         String sql = "UPDATE user SET email = ? , address = ? WHERE id = ?";
         try {
-            return  this.jdbcTemplate.update(sql, newUser.getEmail(), newUser.getAddress(), userId)
+            this.jdbcTemplate.update(sql, newUser.getEmail(), newUser.getAddress(), userId);
         }catch (Exception exception){
             throw new UserUpdateException(userId, exception);
         }

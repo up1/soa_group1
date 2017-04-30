@@ -38,10 +38,8 @@ public class UserController {
             this.userRepository.signup(user, password);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
-            System.out.println(e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     @GetMapping("/user/{userId}")
@@ -58,6 +56,24 @@ public class UserController {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(
+//            value = "/profile/{userId}/email/{email}/address/{address}",
+            value = "/user/{userId}",
+            method = RequestMethod.PUT)
+    public ResponseEntity updateProfile(@PathVariable Long userId ,
+                                        @RequestBody() Map<String, Object> bodyJSON ) throws JsonProcessingException {
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        User user = objectMapper.convertValue(bodyJSON, User.class);
+
+        try {
+            this.userRepository.updateProfile(user, userId);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
