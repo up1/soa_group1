@@ -18,7 +18,7 @@ public class WishlistRepository {
     }
 
     public List<Wishlist> findAllWishlist(Long id){
-        return this.jdbcTemplate.query("SELECT wishlistId, userId, productId FROM WISHLIST WHERE userId=?", new Object[]{id}, new WishlistRowMapper());
+        return this.jdbcTemplate.query("SELECT wishlistId, userId, productId FROM wishlist WHERE userId=?", new Object[]{id}, new WishlistRowMapper());
     }
 
     @Transactional

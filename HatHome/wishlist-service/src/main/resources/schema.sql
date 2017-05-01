@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS wishlist;
 
-CREATE TABLE WISHLIST (
+CREATE TABLE wishlist (
 	`wishlistId` INT NOT NULL AUTO_INCREMENT,
 	`userId` INT NOT NULL,
 	`productId` INT NOT NULL,
