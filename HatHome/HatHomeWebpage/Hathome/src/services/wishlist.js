@@ -3,15 +3,14 @@ import axios from 'axios'
 
 class Wishlist {
 
-   addToWishlist (productId, userId) { 
-    //TODO : get current userId
+  addToWishlist (productId, userId) {
     return axios.post('http://localhost:9005/wishlist', {
       user_id: userId,
       product_id: productId
     })
       .then(
         (response) => {
-          alert(`Added ${productId} to wishlist`)
+          // alert(`Added ${productId} to wishlist`)
         }
       )
       .catch(
@@ -26,7 +25,8 @@ class Wishlist {
     return axios.delete('http://localhost:9005/wishlist/' + productId + '/user/' + userId)
       .then(
         (response) => {
-          alert(`Deleted ${productId} to wishlist`)
+          console.log('ooooookkkkkk')
+          // alert(`Deleted ${productId} to wishlist`)
         }
       )
       .catch(
