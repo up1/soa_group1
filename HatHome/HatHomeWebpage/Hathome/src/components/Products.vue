@@ -65,7 +65,6 @@
             </div>
           </div>
           <!--/price-range-->
-
         </div>
       </div>
 
@@ -81,26 +80,57 @@
                     <div class="productinfo text-center">
                       <router-link :to="{ name: 'productDetail', params: { id: item.id}}">
                         <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'"/>
-                        <h4>{{ item.name }}</h4>
+                        <h4 id="productId">{{ item.name }}</h4>
                       </router-link>
                       <p>{{ item.price }} Baht</p>
-                      <div>
-                        <div class="col-sm-7" align="right" style="border: 1px; margin-right: -5px">
+
+
+                      <!-- ''' signin ''' -->
+                      <div v-if="$auth.check()" class="row">
+                        <div class="col-sm-7" align="right" style="margin-right: -5px">
                           <a href="" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i
                             class="fa fa-shopping-cart"></i></a>
                         </div>
-                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
-                          <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id, item.name)">
+                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="margin-left: -25px;"  align="left">
+                          <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </a>
                         </div>
-                        <div v-else  class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
+                        <div v-else class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
                           <a href="" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </a>
                         </div>
                         <div class="col-sm-2"></div>
                       </div>
+                      <!-- ''' end of sign in ''' -->
+
+
+                      <!-- ''' not signin ''' -->
+                      <div v-if="!$auth.check()" class="row">
+                        <div class="col-sm-7" align="right" style="margin-right: -5px">
+                          <router-link :to="{ name: 'login'}">
+                          <a href="" class="btn btn-default custom-button"><i
+                            class="fa fa-shopping-cart"></i></a>
+                          </router-link>
+                        </div>
+                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="margin-left: -25px;"  align="left">
+                          <router-link :to="{ name: 'login'}">
+                          <a href="" class="btn btn-default custom-button">
+                            <i class="fa fa-star"></i>
+                          </a>
+                          </router-link>
+                        </div>
+                        <div v-else class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
+                          <a href="" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
+                            <i class="fa fa-star"></i>
+                          </a>
+                        </div>
+                        <div class="col-sm-2"></div>
+                      </div>
+                      <!-- ''' end of not sign in ''' -->
+
+
                     </div>
                   </div>
                 </div>
@@ -145,9 +175,17 @@ export default {
   },
   mounted: function() {
     this.product(this.$route.params.page)
-    this.getWishlist();
+    this.checkUser();
+//    this.getWishlist()
   },
   methods: {
+    checkUser: function () {
+      if (this.$auth.user().id > 0){
+        console.log('kaaaaaaaaaaaaaooooo'+this.$auth.user().id)
+        this.getWishlist();
+      }
+      else {}
+    },
     product: function(page) {
       return axios.get('http://localhost:9004/products/pages/'+ this.$route.params.page, {})
         .then((response) => {
@@ -159,7 +197,6 @@ export default {
         .catch(function(error) {
           console.log(error)
         })
-
     },
 
     updateResource(data){
@@ -169,17 +206,14 @@ export default {
     },
     checkDisable() {
       if(this.currentPage==1 && this.$route.params.page!=1){
-        console.log('el'+this.currentPage + ' ' + this.$route.params.page);
         document.getElementById("previousBtn").disabled = false;
         document.getElementById("nextBtn").disabled = false;
       }
       else if (this.currentPage==1) {
-        console.log('pre'+this.currentPage + ' ' + this.$route.params.page);
         document.getElementById("previousBtn").disabled = true;
         document.getElementById("nextBtn").disabled = false;
       }
       else if(this.lastPage==this.$route.params.page){
-        console.log('last'+this.currentPage + ' ' + this.$route.params.page);
         document.getElementById("nextBtn").disabled = true;
         document.getElementById("previousBtn").disabled = false;
       }
@@ -196,27 +230,30 @@ export default {
             this.wishlists = response.data;
             var i = 0;
             for (i = 0; i < this.wishlists.length; i++) {
-            }
               this.wishlists_id.push(this.wishlists[i].product_id);
+            }
           })
           .catch(function (error) {
-            console.log(error)
           })
-      },
-      addToWishlist (id, name) {
-        wishlist.addToWishlist(id, name, this.$auth.user().id);
-      },
-
-      deleteFromWishlist (productId){
-        wishlist.deleteFromWishlist(productId, this.$auth.user().id)
-          .then(() => {
-            this.wishlists = []
-            this.wishlist()
-          })
-      },
-      addToCart (id, name) {
-        cart.addToCart(id, name, this.$auth.user().id);
-      }
+    },
+    addToWishlist (id) {
+      wishlist.addToWishlist(id, this.$auth.user().id)
+        .then(() => {
+          this.wishlists = []
+          this.getWishlist()
+          window.location.reload()
+        })
+    },
+    deleteFromWishlist (productId){
+      wishlist.deleteFromWishlist(productId, this.$auth.user().id)
+        .then(() => {
+          this.wishlists = []
+          this.getWishlist()
+        })
+    },
+    addToCart (id, name) {
+      cart.addToCart(id, name, this.$auth.user().id);
+    }
   },
   watch: {
     '$route.params.page'(newpage, oldpage) {

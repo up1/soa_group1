@@ -29,7 +29,7 @@
                   </div>
                 </td>
                 <td class="cart_delete" style="vertical-align: middle;">
-                  <a class="cart_quantity_delete" v-on:click="deleteFromWishlist(item.product_id, item.user_id)"><i class="fa fa-times"></i></a>
+                  <a class="cart_quantity_delete" v-on:click="deleteFromWishlist(item.product_id, item.user_id)"><i class="fa fa-times" id="deleteItem"></i></a>
                 </td>
               </tr>
               </tbody>
@@ -58,9 +58,15 @@
       }
     },
     mounted: function () {
-      this.wishlist()
+      this.checkUser()
     },
     methods: {
+      checkUser: function () {
+        if (this.$auth.user().id > 0){
+          this.wishlist();
+        }
+        else {}
+      },
       wishlist() {
         axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {
         })

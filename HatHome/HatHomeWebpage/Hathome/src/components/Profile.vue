@@ -6,13 +6,13 @@
       <div class="row">
         <div class="col-sm-1 left">email: </div>
         <div class="col-sm-4">
-          <input class="col-sm-12" type="email" v-model="email">
+          <input class="col-sm-12" type="email" v-model="email" id="email">
         </div>
       </div>
       <br>
       <div class="row">
         <div class="col-sm-1">address:</div>
-        <div class="col-sm-4"><textarea name="address" v-model="address" rows="8"></textarea></div>
+        <div class="col-sm-4"><textarea name="address" v-model="address" rows="8" id="address"></textarea></div>
       </div>
       <div class="row">
         <div class="col-md-2"></div>
@@ -83,7 +83,7 @@
               this.showModal = true;
               setTimeout(function(){
                 $("#myModal").hide();
-              }, 3000);
+              }, 1000);
             }
           )
           .catch(
