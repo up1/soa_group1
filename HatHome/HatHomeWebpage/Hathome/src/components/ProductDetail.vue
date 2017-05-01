@@ -189,8 +189,6 @@
         axios.get('http://localhost:9004/products/' + this.$route.params.id, {
         })
           .then((response) => {
-            console.log(response)
-            console.log(this.$route.params.id)
             this.name = response.data.name
             this.detail = response.data.detail
             this.image = response.data.image
