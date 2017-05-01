@@ -48,7 +48,7 @@
             </tr>
             </tbody>
           </table>
-          <a v-on:click="openModal" class="btn btn-default checkout-button">Check out your cart</a>
+          <a v-on:click="openModal" class="btn btn-default checkout-button" id="checkOut">Check out your cart</a>
         </div>
         <div v-else>
           <div class="row">

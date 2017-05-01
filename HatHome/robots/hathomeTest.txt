@@ -8,13 +8,40 @@ Library         Selenium2Library
 
 *** Test Cases ***
 
+3_Take Wishlist to cart
+    Open Browser              http://localhost:8080/    gc
+    Maximize Browser Window
+    Page Should Contain       Welcome thara
+    Set Selenium Speed        2
+    Click Link                Sign in
+    Set Selenium Speed        .5
+    Wait Until Page Contains  Login to your account
+    Input Text      email     mimi@mi
+    Input Password  password  mimi
+    Click Button              Login
+    Set Selenium Speed        2
+    Wait Until Page Contains  RECENT PRODUCTS
+    Click Link                Wishlist
+    Click Element             id=deleteItem
+    Click Button              Add to Cart
+    Alert Should Be Present
+    Choose Ok On Next Confirmation
+	Click Link                Cart
+    Set Selenium Speed        2
+    Wait Until Page Contains  MY CART
+    Click Element             id=checkOut
+    Set Selenium Speed        2
+    Click Button              Submit
+	Set Selenium Speed        0.5
+    Close Browser
+
 0_Open Website
     Open Browser              http://localhost:8080/    gc
     Title Should Be           hathome
     Page Should Contain       Welcome thara
     Close Browser
 
-4_LoginFlow
+4_Login Flow
     Open Browser              http://localhost:8080/    gc
     Page Should Contain       Welcome thara
     Set Selenium Speed        2
@@ -30,10 +57,10 @@ Library         Selenium2Library
     Set Selenium Speed        1
     Input Text      address   123 Road
     Click Button              save
-    Set Selenium Speed        2
+    Set Selenium Speed        0.5
     Close Browser
     
-5_RegisFlow
+5_Regis Flow
     Open Browser              http://localhost:8080/    gc
     Page Should Contain       Welcome thara
     Set Selenium Speed        2
