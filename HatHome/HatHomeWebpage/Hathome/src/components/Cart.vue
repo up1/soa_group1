@@ -1,4 +1,4 @@
-<template>
+<template xmlns:disabled="http://www.w3.org/1999/xhtml">
   <section id="cart_items">
     <div class="container">
       <h2 class="title text-center" style="margin-top:20px;">MY CART</h2>
@@ -48,7 +48,7 @@
             </tr>
             </tbody>
           </table>
-          <a v-on:click="openModal" class="btn btn-primary checkout-button" style="margin-bottom:60px;margin-top:40px;">
+          <a :disabled="this.products[0]!==null" v-on:click="openModal" class="btn btn-primary checkout-button" style="margin-bottom:60px;margin-top:40px;">
             Check out your cart
           </a>
         </div>
@@ -72,7 +72,7 @@
         </div>
         <div slot="footer">
           <button type="button" class="btn btn-primary" @click="closeModal()"> Close </button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" @click="billing()">
+          <button :disabled="submitClicked" type="button" class="btn btn-primary" data-dismiss="modal" @click="billing()">
             Submit
           </button>
         </div>
@@ -97,7 +97,8 @@
         showModal: false,
         username: '',
         address: '',
-        modalTitle: 'Do you want to check out your cart?'
+        modalTitle: 'Do you want to check out your cart?',
+        submitClicked: false
       }
     },
     mounted: function () {
@@ -134,6 +135,8 @@
             });
       },
       billing() {
+        this.submitClicked=true
+        console.log(this.submitClicked)
         console.log(this.username)
         axios.post('http://localhost:9006/bill', {
           userId: this.$auth.user().id,
