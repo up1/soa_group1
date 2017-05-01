@@ -85,11 +85,9 @@
                                   <p>{{detail}}</p>
 
                                   <p class="price-info"><b> {{price}} Baht</b></p>
-                                <div style="text-align: left;"><label>Quantity:</label></div>
-                                <div class="row">
-                                  <div class="col-sm-4" style="horiz-align: center; text-align: left;">
-                                    <input type="text" value="1" />
-                                  </div>
+
+                                <!-- ''' signin ''' -->
+                                <div v-if="$auth.check()" class="row">
                                   <div class="col-sm-4" style="horiz-align: center; text-align: left;">
                                     <button type="button" class="btn btn-default cart" v-on:click="addToCart">
                                       <i class="fa fa-shopping-cart"></i>
@@ -109,6 +107,36 @@
                                     </button>
                                   </div>
                                 </div>
+                                <!-- ''' end of sign in ''' -->
+
+
+                                <!-- ''' not signin ''' -->
+                                <div v-if="!$auth.check()" class="row">
+                                  <div class="col-sm-4" style="horiz-align: center; text-align: left;">
+                                    <router-link :to="{ name: 'login'}">
+                                      <button type="button" class="btn btn-default cart">
+                                      <a class="fa fa-shopping-cart" style="color: black"></a>
+                                      <!--Add to cart-->
+                                    </button>
+                                    </router-link>
+                                  </div>
+                                  <div v-if="wishlists_id.indexOf(id) < 0" class="col-sm-4" style="horiz-align: center; text-align: left;">
+                                    <router-link :to="{ name: 'login'}">
+                                    <button type="button" class="btn btn-default custom-button">
+                                      <a class="fa fa-star" style="color: black"></a>
+                                      <!--Add To Wishlist-->
+                                    </button>
+                                    </router-link>
+                                  </div>
+                                  <div v-else class="col-sm-4" style="horiz-align: center; text-align: left;">
+                                    <button type="button" class="btn wlclicked-button" v-on:click="deleteFromWishlist(id)">
+                                      <i class="fa fa-star"></i>
+                                      <!--Delete To Wishlist-->
+                                    </button>
+                                  </div>
+                                </div>
+                                <!-- ''' end of not sign in ''' -->
+
                                 <div style="text-align: left;">
                                   <p class="product-amount"><b>Amount:</b> {{amount}}</p>
                                   <p class="product-brand"><b>Brand:</b> {{brand}}</p>
@@ -153,10 +181,9 @@
     },
     methods: {
       checkUser: function () {
-        if (this.$auth.user().id > 0){
+        if (this.$auth.user().id > 0) {
           this.getWishlist();
         }
-        else {}
       },
       product: function () {
         axios.get('http://localhost:9004/products/' + this.$route.params.id, {
