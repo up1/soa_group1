@@ -28,21 +28,20 @@ public class BillController {
 //    get bill by bill id
     @GetMapping("/bill/{id}")
     public Bill getBillById(@PathVariable long id){
-        System.out.println(id);
-        Bill bill = billRepository.findById(id);
-        return bill;
+        return billRepository.findById(id);
     }
 
 //    save bill
     @RequestMapping(value = "/bill", method =  RequestMethod.POST)
     public ResponseEntity<BillStatus> saveBill(@RequestBody BillStoreRequest request) throws MessagingException {
+
         Bill bill = billRepository.addBill(request);
         BillStatus billStatus = new BillStatus();
         billStatus.setStatus("success");
         billStatus.setId(bill.getId());
         emailService.sendEmailMessage(bill);
         CartAdapter cartAdapter = new CartAdapter();
-        cartAdapter.checkOutFromCart(request.getUser_id());
+        cartAdapter.checkOutFromCart(request.getUserId());
         return new ResponseEntity<>(billStatus, HttpStatus.CREATED);
     }
 }

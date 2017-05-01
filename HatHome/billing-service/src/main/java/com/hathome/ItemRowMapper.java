@@ -1,7 +1,5 @@
 package com.hathome;
 
-import com.hathome.adapter.Product;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,7 +10,7 @@ public class ItemRowMapper implements org.springframework.jdbc.core.RowMapper<It
     @Override
     public Item mapRow(ResultSet resultSet, int i) throws SQLException {
         Item item = new Item();
-        item.setProduct_id(resultSet.getLong("product_id"));
+        item.setProductId(resultSet.getLong("productId"));
         item.setAmount(resultSet.getLong("amount"));
         return item;
     }

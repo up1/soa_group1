@@ -3,7 +3,7 @@
     <div class="container">
       <h2 class="title text-center" style="margin-top:20px;">MY CART</h2>
       <div class="table-responsive cart_info">
-        <div v-if="this.products[0]">
+        <div v-if="this.products !== null">
           <table class="table table-condensed cart_table">
             <thead>
             <tr class="cart_menu">
@@ -93,6 +93,7 @@
       return {
         products: null,
         showModal: false,
+        username: '',
         address: '',
         modalTitle: 'Do you want to check out your cart?'
       }
@@ -121,7 +122,7 @@
         axios.get('http://localhost:9007/user/' + this.$auth.user().id, {})
           .then(
             (response) => {
-              this.username = response.data.emmail;
+              this.username = response.data.email;
               this.address = response.data.address;
             }
           )
@@ -131,9 +132,10 @@
             });
       },
       billing() {
+        console.log(this.username)
         axios.post('http://localhost:9006/bill', {
-          user_id: this.$auth.user().id,
-          username: this.email,
+          userId: this.$auth.user().id,
+          username: this.username,
           address: this.address
         })
           .then(

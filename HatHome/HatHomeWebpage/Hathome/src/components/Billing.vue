@@ -4,11 +4,11 @@
       <div class="container">
         <h2 class="title text-center" text-centerstyle="margin-top:20px;">Billing</h2>
         <div class="bill-infomation">
-          <p align="left" class="user-id"><b>User ID: </b> {{user_id}} </p>
+          <p align="left" class="user-id"><b>User ID: </b> {{userId}} </p>
           <p align="left" class="user-name"><b>Name: </b> {{username}} </p>
-          <p align="left" class="bill-address"><b>Address: </b> {{bill_address}} </p>
-          <p align="left" class="bill-no"><b>Bill No: </b> {{bill_id}} </p>
-          <p align="left" class="bill-date"><b>Bill Date: </b> {{bill_date}} </p>
+          <p align="left" class="bill-address"><b>Address: </b> {{billAddress}} </p>
+          <p align="left" class="bill-no"><b>Bill No: </b> {{billId}} </p>
+          <p align="left" class="bill-date"><b>Bill Date: </b> {{billDate}} </p>
         </div>
 
         <div class="table-responsive cart_info">
@@ -48,11 +48,11 @@
                 <table class="table table-condensed total-result">
                   <tr>
                     <td>Cart Sub Total</td>
-                    <td>฿{{ cart_price }}</td>
+                    <td>฿{{ cartPrice }}</td>
                   </tr>
                   <tr class="shipping-cost">
                     <td>Shipping Cost</td>
-                    <td>฿{{ shipping_cost }}</td>
+                    <td>฿{{ shippingCost }}</td>
                   </tr>
                   <tr>
                     <td style="font-size:20px;">Total</td>
@@ -79,13 +79,13 @@
     name: 'billing',
     data () {
       return {
-        user_id: '',
+        userId: '',
         username: '',
-        bill_id: '',
-        bill_address: '',
-        bill_date: '',
-        cart_price: '',
-        shipping_cost: '',
+        billId: '',
+        billAddress: '',
+        billDate: '',
+        cartPrice: '',
+        shippingCost: '',
         total: '',
         image: '',
         cart: '',
@@ -100,13 +100,13 @@
         axios.get('http://localhost:9006/bill/' + this.$route.params.id , {})
           .then((response) => {
             console.log(response)
-            this.bill_id = response.data.id
-            this.user_id = response.data.user_id
+            this.billId = response.data.id
+            this.userId = response.data.userId
             this.username = response.data.username
-            this.bill_address = response.data.address
-            this.bill_date = response.data.date
-            this.cart_price = response.data.cart_price
-            this.shipping_cost = response.data.shipping_cost
+            this.billAddress = response.data.address
+            this.billDate = response.data.date
+            this.cartPrice = response.data.cartPrice
+            this.shippingCost = response.data.shippingCost
             this.total = response.data.total
             this.products = response.data.cart.products
            })

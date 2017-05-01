@@ -1,6 +1,8 @@
 package com.hathome;
 
 import com.hathome.adapter.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.util.Properties;
@@ -40,8 +42,7 @@ public class EmailService{
     @Value("${mail.smtp.auth}")
     private String smtpAuth;
 
-    public EmailService() {
-    }
+    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     public boolean sendEmailMessage(Bill bill) throws MessagingException {
 
@@ -74,22 +75,22 @@ public class EmailService{
             Transport transport = session.getTransport("smtp");
             transport.connect(smtpHost, smtpUser, smtpPassword);
             transport.sendMessage(message, message.getAllRecipients());
-
-            System.out.println("send mail success!!!");
+            logger.info("send mail success!!!");
             return true;
         }catch (Exception e){
-            System.out.println(e);
+            logger.warn(e.toString());
             return false;
         }
     }
 
     private String translateBillToHtml(Bill bill){
-        String message = "<div class=\"billing\">\n" +
+        String message = new String();
+        message+=("<div class=\"billing\">\n" +
                 "    <section id=\"cart_items\">\n" +
                 "      <div class=\"container\">\n" +
                 "        <h2 class=\"title text-center\" text-centerstyle=\"margin-top:20px;\">Thank you for your shopping with us!</h2>\n" +
                 "        <div class=\"bill-infomation\">\n" +
-                "          <p align=\"left\" class=\"user-id\"><b>User ID: </b> " + bill.getUser_id() + " </p>\n" +
+                "          <p align=\"left\" class=\"user-id\"><b>User ID: </b> " + bill.getUserId() + " </p>\n" +
                 "          <p align=\"left\" class=\"user-name\"><b>Name: </b>" + bill.getUsername() + " </p>\n" +
                 "          <p align=\"left\" class=\"bill-address\"><b>Address: </b>" + bill.getAddress() + "</p>\n" +
                 "          <p align=\"left\" class=\"bill-no\"><b>Bill No: </b>" + bill.getId() + "</p>\n" +
@@ -106,10 +107,12 @@ public class EmailService{
                 "              <td class=\"total\"><b>Total</b></td>\n" +
                 "            </tr>\n" +
                 "            </thead>\n" +
-                "            <tbody style=\"padding:8px; text-align: center; width:100%;\">\n";
+                "            <tbody style=\"padding:8px; text-align: center; width:100%;\">\n");
+
+
 
         for (Product product: bill.getCart().getProducts()) {
-            message += "            <tr>\n" +
+            message+=("            <tr>\n" +
                     "              <td class=\"cart_description\">\n" +
                     "                <h4>" + product.getName() + "</h4>\n" +
                     "              </td>\n" +
@@ -124,24 +127,24 @@ public class EmailService{
                     "              </td>\n" +
                     "\n" +
                        "            </tr>\n" +
-                    "\n";
+                    "\n");
         }
 
-        message += "            <tr>\n" +
+        message+=("            <tr>\n" +
                 "              <td colspan=\"3\">&nbsp;</td>\n" +
                 "              <td colspan=\"1\">\n" +
                 "                <table class=\"table table-condensed total-result\">\n" +
                 "                  <tr>\n" +
                 "                    <td>Cart Sub Total</td>\n" +
-                "                    <td>฿" + bill.getCart_price() + "</td>\n" +
+                "                    <td>฿" + bill.getCartPrice() + "</td>\n" +
                 "                  </tr>\n" +
                 "                  <tr class=\"shipping-cost\">\n" +
                 "                    <td>Shipping Cost</td>\n" +
-                "                    <td>฿" + bill.getShipping_cost() + "</td>\n" +
+                "                    <td>฿" + bill.getShippingCost() + "</td>\n" +
                 "                  </tr>\n" +
                 "                  <tr>\n" +
                 "                    <td style=\"font-size:20px;\">Total</td>\n" +
-                "                    <td><span style=\"font-size:20px;\">" + (bill.getCart_price() + bill.getShipping_cost()) + "</span></td>\n" +
+                "                    <td><span style=\"font-size:20px;\">" + (bill.getCartPrice() + bill.getShippingCost()) + "</span></td>\n" +
                 "                  </tr>\n" +
                 "\n" +
                 "                </table>\n" +
@@ -154,7 +157,7 @@ public class EmailService{
                 "        </div>\n" +
                 "      </div>\n" +
                 "    </section>\n" +
-                "  </div>";
+                "  </div>");
         return message;
     }
 }

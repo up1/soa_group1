@@ -10,7 +10,6 @@ public class UserAdapter {
     public User getUserById(long userId){
         RestTemplate restTemplate = new RestTemplate();
         String url = "http://localhost:9007/user/" + userId;
-        User user = restTemplate.getForObject(url, User.class);
-        return user;
+        return restTemplate.getForObject(url, User.class);
     }
 }

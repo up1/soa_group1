@@ -5,8 +5,8 @@ package com.hathome.adapter;
  */
 public class CartItem {
     private Integer id;
-    private Long user_id;
-    private long product_id;
+    private Long userId;
+    private long productId;
     private Integer amount;
     private String status;
     private Product product;
@@ -19,20 +19,20 @@ public class CartItem {
         this.id = id;
     }
 
-    public Long getUser_id() {
-        return user_id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Long user_id) {
-        this.user_id = user_id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     public Integer getAmount() {
