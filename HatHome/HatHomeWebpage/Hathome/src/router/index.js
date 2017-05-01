@@ -21,7 +21,7 @@ var router = new Router({
     {
       path: '/',
       name: 'Hello',
-      component: Hello
+      component: RecentProducts
     },
     {
       path: '/recentProducts',
