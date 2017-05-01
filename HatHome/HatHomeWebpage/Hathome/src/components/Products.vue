@@ -163,7 +163,7 @@ export default {
       checkedColor: [],
       checkedBrand:[],
       checkedHat: [],
-      checkedPrice: "0-200"
+      checkedPrice: "0-10000"
     }
   },
   watch: {
