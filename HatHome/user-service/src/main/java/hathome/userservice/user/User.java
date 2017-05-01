@@ -9,15 +9,6 @@ public class User {
     private String address;
     private Long id;
 
-    public User() {
-    }
-
-    public User(Long id, String email, String address) {
-        this.email = email;
-        this.address = address;
-        this.id = id;
-    }
-
     public Long getId() {
         return id;
     }

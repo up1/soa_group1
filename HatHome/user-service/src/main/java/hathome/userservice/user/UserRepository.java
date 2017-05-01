@@ -18,8 +18,7 @@ public class UserRepository {
             return true;
 
         }catch (Exception e){
-            System.out.print(e);
-            return false;
+            throw new UserSignupException(e, user.getEmail());
         }
     }
 
@@ -30,7 +29,7 @@ public class UserRepository {
             return this.jdbcTemplate.queryForObject(sql,
                     new Object[]{userId}, new UserRowMapper());
         }catch (Exception exception) {
-            throw new UserNotFoundException(userId);
+            throw new UserNotFoundException(userId, exception);
         }
     }
 

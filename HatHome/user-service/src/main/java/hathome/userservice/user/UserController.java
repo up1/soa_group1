@@ -38,7 +38,7 @@ public class UserController {
             this.userRepository.signup(user, password);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new UserSignupException(e, user.getEmail());
         }
     }
 
@@ -73,7 +73,7 @@ public class UserController {
             this.userRepository.updateProfile(user, userId);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new UserUpdateException(user.getId(), e);
         }
     }
 
