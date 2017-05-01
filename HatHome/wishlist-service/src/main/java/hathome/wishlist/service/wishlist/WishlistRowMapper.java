@@ -12,9 +12,9 @@ public class WishlistRowMapper implements RowMapper<Wishlist> {
 
     public Wishlist mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
         Wishlist wishlist = new Wishlist();
-        wishlist.setWishlist_id(resultSet.getLong("wishlist_id"));
-        wishlist.setUser_id(resultSet.getLong("user_id"));
-        wishlist.setProduct_id(resultSet.getLong("product_id"));
+        wishlist.setWishlistId(resultSet.getLong("wishlist_id"));
+        wishlist.setUserId(resultSet.getLong("user_id"));
+        wishlist.setProductId(resultSet.getLong("product_id"));
         return wishlist;
     }
 }

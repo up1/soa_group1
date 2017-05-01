@@ -4,7 +4,7 @@ package hathome.wishlist.service.wishlist;
  * Created by Plern on 5/3/2560.
  */
 
-import hathome.wishlist.service.wishlist.Adapter.ProductAdapter;
+import hathome.wishlist.service.wishlist.adapter.ProductAdapter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,17 +21,16 @@ public class WishlistController {
         this.productAdapter = new ProductAdapter();
     }
 
-    @GetMapping("/wishlist/user/{user_id}")
-    public List<Wishlist> getWishlist(@PathVariable int user_id) {
-        List<Wishlist> wishlists = this.wishlistRepository.findAllWishlist((long) user_id);
+    @GetMapping("/wishlist/user/{userId}")
+    public List<Wishlist> getWishlist(@PathVariable int userId) {
+        List<Wishlist> wishlists = this.wishlistRepository.findAllWishlist((long) userId);
         return getProductDetail(wishlists);
-//        return this.wishlistRepository.findById((long) user_id);
     }
 
     @RequestMapping(value = "/wishlist", method = RequestMethod.POST)
     public String insert(@RequestBody Wishlist wishlist) {
         wishlistRepository.addWishlist(wishlist);
-        return "can post++++++++++" + wishlist.getWishlist_id();
+        return "can post++++++++++" + wishlist.getWishlistId();
     }
 
     @RequestMapping(value = "/wishlist/{pdId}/user/{usId}", method = RequestMethod.DELETE)
@@ -47,7 +46,7 @@ public class WishlistController {
         } else {
             System.out.println("size" + wishlists.size());
             for (Wishlist w : wishlists) {
-                w.setProduct(this.productAdapter.getProductDetail(w.getProduct_id()));
+                w.setProduct(this.productAdapter.getProductDetail(w.getProductId()));
             }
         }
         return wishlists;
