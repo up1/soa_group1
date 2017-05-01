@@ -35,7 +35,7 @@
               </td>
               <td class="cart_quantity" style="vertical-align: middle; padding-top: 20px;">
                 <div class="btn-group">
-                  <input type="number" class="form-control" min="1" max="50" v-model="product.amount">
+                  <input id="amount" type="number" class="form-control" min="1" max="50" v-model="product.amount">
                 </div>
               </td>
               <td class="cart_total" style="vertical-align: middle; padding-top: 20px;">
@@ -43,12 +43,12 @@
               </td>
               <td class="cart_delete" style="padding-top: 60px;">
                 <a class="cart_quantity_delete" v-on:click="remove(product.id, product.product.name)"><i
-                  class="fa fa-times"></i></a>
+                   id="deleteItem" class="fa fa-times"></i></a>
               </td>
             </tr>
             </tbody>
           </table>
-          <a v-on:click="openModal" class="btn btn-default checkout-button">Check out your cart</a>
+          <a v-on:click="openModal" class="btn btn-default checkout-button" id="checkOut">Check out your cart</a>
         </div>
         <div v-else>
           <div class="row">

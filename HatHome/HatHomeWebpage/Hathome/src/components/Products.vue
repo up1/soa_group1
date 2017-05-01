@@ -81,7 +81,7 @@
                     <div class="productinfo text-center">
                       <router-link :to="{ name: 'productDetail', params: { id: item.id}}">
                         <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'"/>
-                        <h4>{{ item.name }}</h4>
+                        <h4 id="productId">{{ item.name }}</h4>
                       </router-link>
                       <p>{{ item.price }} Baht</p>
                       <div>
