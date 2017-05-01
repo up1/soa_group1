@@ -117,25 +117,23 @@
                 <div class="product-image-wrapper">
                   <div class="single-products">
                     <div class="productinfo text-center">
-                      <router-link :to="{ name: 'productDetail', params: { id: item.id}}">
+                      <router-link :to="{ name: 'productDetail', params: { id: item.id}}" style="text-decoration: none;">
                         <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'"/>
                         <h4 id="productId">{{ item.name }}</h4>
                       </router-link>
                       <p>{{ item.price }} Baht</p>
-
-
                       <!-- ''' signin ''' -->
                       <div v-if="$auth.check()" class="row">
-                        <div class="col-sm-7" align="right" style="margin-right: -5px">
+                        <div class="col-sm-8" style="margin-left: 25px;">
                           <a href="" class="btn btn-default custom-button" v-on:click="addToCart(item.id, item.name)"><i
                             class="fa fa-shopping-cart"></i></a>
                         </div>
-                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="margin-left: -25px;"  align="left">
+                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-4" style="margin-left: -80px;"  align="left">
                           <a href="" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </a>
                         </div>
-                        <div v-else class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
+                        <div v-else class="col-sm-4" style="border: 1px; margin-left: -80px;"  align="left">
                           <a href="" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </a>
@@ -147,20 +145,20 @@
 
                       <!-- ''' not signin ''' -->
                       <div v-if="!$auth.check()" class="row">
-                        <div class="col-sm-7" align="right" style="margin-right: -5px">
+                        <div class="col-sm-8" style="margin-left: 25px;">
                           <router-link :to="{ name: 'login'}">
                             <a href="" class="btn btn-default custom-button"><i
-                              class="fa fa-shopping-cart"></i></a>
+                              class="fa fa-shopping-cart"></i></a>not sign in{{item.id}}
                           </router-link>
                         </div>
-                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="margin-left: -25px;"  align="left">
+                        <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-4" style="margin-left: -80px;"  align="left">
                           <router-link :to="{ name: 'login'}">
                             <a href="" class="btn btn-default custom-button">
                               <i class="fa fa-star"></i>
                             </a>
                           </router-link>
                         </div>
-                        <div v-else class="col-sm-5" style="border: 1px; margin-left: -25px;"  align="left">
+                        <div v-else class="col-sm-4" style="border: 1px; margin-left: -80px;"  align="left">
                           <a href="" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </a>
@@ -180,8 +178,8 @@
         <!--/all product-->
       </div>
     </div>
-    <div>
-      <button id="previousBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToPrevious">
+    <div class="page">
+      <button id="previousBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToPrevious" style="vertical-align: middle;">
         Previous
       </button>
       Page {{currentPage}} of {{lastPage}}
@@ -287,7 +285,7 @@
             this.wishlists = response.data;
             var i = 0;
             for (i = 0; i < this.wishlists.length; i++) {
-              this.wishlists_id.push(this.wishlists[i].product_id);
+              this.wishlists_id.push(this.wishlists[i].productId);
             }
           })
           .catch(function (error) {
@@ -355,3 +353,18 @@
     }
   }
 </script>
+<style>
+  .page{
+    margin-bottom: 20px;
+  }
+  .page-text{
+    display:inline;
+    font-family: 'roboto';
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: top;
+
+  }
+</style>
