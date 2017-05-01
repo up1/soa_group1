@@ -149,9 +149,15 @@
     },
     mounted: function () {
       this.product();
-      this.getWishlist();
+      this.checkUser();
     },
     methods: {
+      checkUser: function () {
+        if (this.$auth.user().id > 0){
+          this.getWishlist();
+        }
+        else {}
+      },
       product: function () {
         axios.get('http://localhost:9004/products/' + this.$route.params.id, {
         })
@@ -186,16 +192,20 @@
           })
       },
       addToWishlist (id) {
-        wishlist.addToWishlist(id, this.$auth.user().id);
-
+        wishlist.addToWishlist(id, this.$auth.user().id)
+          .then(() => {
+            this.wishlists = []
+            this.getWishlist()
+            window.location.reload()
+          })
       },
       deleteFromWishlist (productId){
         console.log(`DELETED`);
         wishlist.deleteFromWishlist(productId, this.$auth.user().id)
           .then(() => {
-            console.log('aaaa');
             this.wishlists = []
             this.getWishlist()
+            window.location.reload()
           })
       },
       addToCart (){
