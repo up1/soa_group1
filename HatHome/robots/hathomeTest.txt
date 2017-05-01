@@ -8,8 +8,19 @@ Library         Selenium2Library
 
 *** Test Cases ***
     
-Open Website
+0_Open Website
     Open Browser              http://localhost:8080/    gc
     Title Should Be           hathome
     Page Should Contain       Welcome thara
     Close Browser
+
+4_LoginFlow
+    Open Browser              http://localhost:8080/    gc
+    Page Should Contain       Welcome thara
+    Set Selenium Speed        2
+    Click Link                Sign in
+    Set Selenium Speed        .5
+    Wait Until Page Contains  Login to your account
+    Input Text      email     mimi@mi
+    Input Password  password  mimi
+    Click Button              Login
