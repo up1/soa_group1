@@ -32,3 +32,11 @@ Library         Selenium2Library
     Click Button              save
     Set Selenium Speed        2
     Close Browser
+
+6_ViewProductDetail
+    Open Browser              http://localhost:8080/recentproducts/    gc
+    Page Should Contain       RECENT PRODUCTS
+    Set Selenium Speed        2
+    Click Button              View All Product
+    Click Element             id=productId
+    Close Browser
