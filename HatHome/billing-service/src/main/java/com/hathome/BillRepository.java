@@ -31,7 +31,7 @@ public class BillRepository {
 
     @Transactional(readOnly = true)
     public Bill findById(long id){
-        String sqlBill = "SELECT id, userId, address, date, cartPrice, shippingCost, total FROM BILLS WHERE id=?";
+        String sqlBill = "SELECT id, userId, address, date, cartPrice, shippingCost, total FROM bills WHERE id=?";
         Bill bill = this.jdbcTemplate.queryForObject(sqlBill, new Object[]{id}, new BillRowMapper());
         Cart cart = new Cart();
 
@@ -41,7 +41,7 @@ public class BillRepository {
         bill.setUsername(user.getEmail());
 
         //get product detail
-        String sqlItem = "SELECT productId, amount FROM ITEMS WHERE billId=?";
+        String sqlItem = "SELECT productId, amount FROM items WHERE billId=?";
         List<Item> items = this.jdbcTemplate.query(sqlItem, new Object[]{id}, new ItemRowMapper());
         List<Product> products = new ArrayList<>();
         for (Item item: items) {
