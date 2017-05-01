@@ -8,9 +8,9 @@
           <h2 class="header">{{header}}</h2>
           <div class="form-regis">
             <form method="POST" v-on:submit.prevent="register()">
-            <input class="form-input" type="email" placeholder="Email Address" v-model="email" />
-            <input class="form-input" type="password" placeholder="Password" v-model="password" />
-            <textarea class="form-address" name="address" placeholder="Address" v-model="address" rows="8"></textarea>
+            <input class="form-input" type="email" placeholder="Email Address" v-model="email" id="email" />
+            <input class="form-input" type="password" placeholder="Password" v-model="password" id="password"/>
+            <textarea class="form-address" name="address" placeholder="Address" v-model="address" rows="8" id="address"></textarea>
             <div class="col-md-4"></div>
             <div class="col-md-4">
               <button type="submit" class="btn btn-primary signup-btn" style="margin-bottom:100px;">

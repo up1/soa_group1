@@ -7,7 +7,7 @@ Library         Selenium2Library
 *** Variables ***
 
 *** Test Cases ***
-    
+
 0_Open Website
     Open Browser              http://localhost:8080/    gc
     Title Should Be           hathome
@@ -32,11 +32,25 @@ Library         Selenium2Library
     Click Button              save
     Set Selenium Speed        2
     Close Browser
+    
+5_RegisFlow
+    Open Browser              http://localhost:8080/    gc
+    Page Should Contain       Welcome thara
+    Set Selenium Speed        2
+    Click Link                Sign in
+    Click Element             id=regis
+    Input Text      email     somkiat@cc
+    Input Password  password  somkiat
+    Input Text      address   http://www.somkiat.cc/
+    Click Button              Sign up
+    Wait Until Page Contains  Login to your account
+    Close Browser 
 
 6_ViewProductDetail
     Open Browser              http://localhost:8080/recentproducts/    gc
     Page Should Contain       RECENT PRODUCTS
     Set Selenium Speed        2
     Click Button              View All Product
+    Set Selenium Speed        1
     Click Element             id=productId
-    Close Browser
+    Close Browser 
