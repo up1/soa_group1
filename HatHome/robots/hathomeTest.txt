@@ -1,0 +1,18 @@
+# Structure
+*** Settings ***
+Library         Selenium2Library
+
+
+*** Keywords ***
+Searching
+    [Arguments]     ${Keyword-Search}
+    Input Text      lst-ib      ${Keyword-Search}
+    Press Key       lst-ib      \\13
+
+*** Variables ***
+${Keyword-Search}   Robot Framework
+
+*** Test Cases ***
+Test Robot Framework
+    Open Browser    https://www.google.com    ie
+    Searching       Robot Framework
