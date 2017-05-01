@@ -58,9 +58,15 @@
       }
     },
     mounted: function () {
-      this.wishlist()
+      this.checkUser()
     },
     methods: {
+      checkUser: function () {
+        if (this.$auth.user().id > 0){
+          this.wishlist();
+        }
+        else {}
+      },
       wishlist() {
         axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {
         })
