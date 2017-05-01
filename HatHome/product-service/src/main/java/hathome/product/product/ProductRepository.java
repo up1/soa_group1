@@ -30,21 +30,13 @@ public class ProductRepository {
     }
 
 
-    public List<Product> searchProduct(String keyword, String price, String color, String brand, String type){
-        String[] priceParts = price.split("-");
-        Double start = Double.parseDouble(priceParts[0]);
-        Double end = Double.parseDouble(priceParts[1]);
+    public List<Product> searchProduct(String keyword){
 
         return this.jdbcTemplate.query("SELECT id, name, detail, price, color, brand, amount, type FROM PRODUCT" +
                 " WHERE (NAME LIKE '%" + keyword + "%'" +
                 " OR DETAIL LIKE '%" + keyword + "%'" +
                 " OR BRAND LIKE '%" + keyword + "%'" +
                 " OR TYPE LIKE '%" + keyword + "%')" +
-//                " AND ((PRICE >= " + start + ") AND (PRICE <= " + end + "))" +
-//                " AND COLOR LIKE '%" + color + "%'" +
-//                " AND BRAND LIKE '%" + brand + "%'" +
-//                " AND TYPE LIKE '%" + type + "%'" +
-//                " AND TYPE LIKE '%" + "cap" + "%'" +
                 "ORDER BY ID DESC"
                 , new ProductRowMapper());
     }
