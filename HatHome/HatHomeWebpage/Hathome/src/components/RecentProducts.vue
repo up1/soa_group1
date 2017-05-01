@@ -61,7 +61,7 @@
                           <i class="fa fa-shopping-cart"></i>
                         </button>
                       </div>
-                      <div v-if="wishlists_id.indexOf( item.id ) < 0"  class="col-sm-5" style="margin-left: -25px;"  align="left">
+                      <div v-if="wishlists_id.indexOf(item.id) < 0"  class="col-sm-5" style="margin-left: -25px;"  align="left">
                         <button type="button" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id)">
                           <i class="fa fa-star"></i>
                         </button>
@@ -103,15 +103,21 @@ export default {
       image: '',
       id: '',
       lists: [],
-      wishlists: [],
+      wishlists: null,
       wishlists_id: []
     }
   },
   mounted: function() {
     this.product()
-    this.getWishlist();
+    this.checkUser()
   },
   methods: {
+    checkUser: function () {
+      if (this.$auth.user().id > 0){
+        this.getWishlist();
+      }
+      else {}
+    },
     product: function() {
       axios.get('http://localhost:9004/recentproducts', {})
         .then((response) => {
@@ -123,13 +129,11 @@ export default {
     },
     scrollBehavior: function(to, from, savedPosition) {
       return {x: 0,  y: 0}
-
     },
     getWishlist: function () {
-      axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {})
+      axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id)
         .then((response) => {
           this.wishlists = response.data
-          console.log('cannnnnn');
           var i = 0;
           for (i = 0; i < this.wishlists.length; i++) {
             this.wishlists_id.push(this.wishlists[i].product_id);
@@ -140,14 +144,19 @@ export default {
         })
     },
     addToWishlist (id) {
-      wishlist.addToWishlist(id, this.$auth.user().id);
+      wishlist.addToWishlist(id, this.$auth.user().id)
+        .then(() => {
+        this.wishlists_id = []
+        this.getWishlist()
+        window.location.reload()
+      })
     },
     deleteFromWishlist (id){
-      console.log(`DELETED`+id);
       wishlist.deleteFromWishlist(id, this.$auth.user().id)
-        .then(() => {
-          this.wishlists = []
+        .then((response) => {
+          this.wishlists_id = []
           this.getWishlist()
+          window.location.reload()
         })
     },
     addToCart (id, name) {
