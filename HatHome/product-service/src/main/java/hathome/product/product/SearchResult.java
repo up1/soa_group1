@@ -7,10 +7,6 @@ import java.util.List;
  */
 public class SearchResult {
     private String keyword;
-    private String price;
-    private String color;
-    private String brand;
-    private String type;
     private List<Product> results;
 
     public String getKeyword() {
@@ -19,38 +15,6 @@ public class SearchResult {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public List<Product> getResults() {
