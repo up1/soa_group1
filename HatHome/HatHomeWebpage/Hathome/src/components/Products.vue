@@ -26,22 +26,22 @@
                 <h2>{{checkedBrand}}</h2>
                 <div class="brands-name">
                   <div class="cat-product checkbox">
-                    <label><input type="checkbox" id="newEra" value="newEra" v-model="checkedBrand">New Era</label>
+                    <label><input type="checkbox" id="newEra" value="new Era" v-model="checkedBrand">New Era</label>
                   </div>
                   <div class="cat-product checkbox">
-                    <label><input type="checkbox" id="converse" value="converse" v-model="checkedBrand">Converse</label>
+                    <label><input type="checkbox" id="converse" value="Converse" v-model="checkedBrand">Converse</label>
                   </div>
                   <div class="cat-product checkbox">
-                    <label><input type="checkbox" id="jaxon" value="jaxon" v-model="checkedBrand">Jaxon</label>
+                    <label><input type="checkbox" id="jaxon" value="Jaxon" v-model="checkedBrand">Jaxon</label>
                   </div>
                   <div class="cat-product checkbox">
-                    <label><input type="checkbox" id="feltManishHat" value="feltManishHat" v-model="checkedBrand">Felt Manish Hat</label>
+                    <label><input type="checkbox" id="feltManishHat" value="Felt Manish Hat" v-model="checkedBrand">Felt Manish Hat</label>
                   </div>
                   <div class="cat-product checkbox">
-                    <label><input type="checkbox" id="bartsHats" value="bartsHats" v-model="checkedBrand">Barts Hats</label>
+                    <label><input type="checkbox" id="bartsHats" value="Barts Hats" v-model="checkedBrand">Barts Hats</label>
                   </div>
                   <div class="cat-product checkbox">
-                    <label><input type="checkbox" id="goorinBros" value="goorinBros" v-model="checkedBrand">Goorin Bros</label>
+                    <label><input type="checkbox" id="goorinBros" value="Goorin Bros" v-model="checkedBrand">Goorin Bros</label>
                   </div>
                 </div>
               </div>
@@ -90,8 +90,10 @@
             </div>
           </div>
 
-
-        <div class="col-sm-9 padding-right">
+        <div v-if="computedProducts.length==0" class="col-sm-9 padding-right">
+          <h5 style="margin-top: 200px">Sorry, we didn't find any results matching this search.</h5>
+        </div>
+        <div v-else class="col-sm-9 padding-right">
           <div class="all-product">
             <div class="tab-content">
               <div class="tab-pane fade active in">
@@ -140,7 +142,7 @@ export default {
       list: [],
       currentPage: 1,
       perPage: 9,
-      keyword: this.$route.query.keyword,
+      keyword: '',
       checkedColor: [],
       checkedBrand:[],
       checkedHat: []
@@ -152,7 +154,7 @@ export default {
     }
   },
   mounted: function() {
-    if(this.keyword===null){
+    if(this.keyword===''){
       this.product()
     }else {
       this.search()
@@ -178,8 +180,8 @@ export default {
       cart.addToCart(id, name, this.$auth.user().id);
     },
     search: function() {
-        console.log(this.keyword)
-      axios.get('http://localhost:9004/search?keyword='+this.keyword+'&type='+this.checkedHat, {})
+      console.log(this.keyword)
+      axios.get('http://localhost:9004/search?keyword='+this.keyword, {})
         .then((response) => {
           console.log(response)
           this.list = response.data.results
@@ -197,13 +199,34 @@ export default {
       return (this.offset + this.perPage);
     },
     numOfPages: function() {
-      return Math.ceil(this.list.length / this.perPage);
+      return Math.ceil(this.colorFilter.length / this.perPage);
     },
     computedProducts: function() {
-      if (this.offset > this.list.length) {
+      if (this.offset > this.colorFilter.length) {
         this.currentPage = this.numOfPages;
       }
-      return this.list.slice(this.offset, this.limit);
+      return this.colorFilter.slice(this.offset, this.limit);
+    },
+    colorFilter: function(){
+        if(this.checkedColor.length > 0){
+          return this.brandFilter.filter(product => this.checkedColor.indexOf(product.color)!==-1);
+        }else{
+            return this.brandFilter
+        }
+    },
+    brandFilter: function(){
+      if(this.checkedBrand.length > 0){
+        return this.hatFilter.filter(product => this.checkedBrand.indexOf(product.brand)!==-1);
+      }else{
+        return this.hatFilter
+      }
+    },
+    hatFilter: function(){
+      if(this.checkedHat.length > 0){
+        return this.list.filter(product => this.checkedHat.indexOf(product.type)!==-1);
+      }else{
+        return this.list
+      }
     }
   }
 
