@@ -40,10 +40,10 @@ public class ProductRepository {
                 " OR DETAIL LIKE '%" + keyword + "%'" +
                 " OR BRAND LIKE '%" + keyword + "%'" +
                 " OR TYPE LIKE '%" + keyword + "%')" +
-                " AND ((PRICE >= " + start + ") AND (PRICE <= " + end + "))" +
-                " AND COLOR LIKE '%" + color + "%'" +
-                " AND BRAND LIKE '%" + brand + "%'" +
-                " AND TYPE LIKE '%" + type + "%'" +
+//                " AND ((PRICE >= " + start + ") AND (PRICE <= " + end + "))" +
+//                " AND COLOR LIKE '%" + color + "%'" +
+//                " AND BRAND LIKE '%" + brand + "%'" +
+//                " AND TYPE LIKE '%" + type + "%'" +
 //                " AND TYPE LIKE '%" + "cap" + "%'" +
                 "ORDER BY ID DESC"
                 , new ProductRowMapper());

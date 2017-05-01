@@ -5,7 +5,7 @@
           <div class="col-sm-3">
             <div class="left-sidebar">
 
-              <h2>{{checkedHat}}</h2>
+              <h2>Category</h2>
               <div class="panel-group category-products">
                 <!--category-products-->
                 <div class="cat-product checkbox">
@@ -23,7 +23,7 @@
 
               <div class="brands_products">
                 <!--brands_products-->
-                <h2>{{checkedBrand}}</h2>
+                <h2>Brand</h2>
                 <div class="brands-name">
                   <div class="cat-product checkbox">
                     <label><input type="checkbox" id="newEra" value="new Era" v-model="checkedBrand">New Era</label>
@@ -49,7 +49,7 @@
 
               <div class="color_products">
                 <!--color-->
-                <h2>{{checkedColor}}</h2>
+                <h2>Color</h2>
                 <div class="color-name">
                   <div class="cat-product checkbox">
                     <label><input type="checkbox" id="black" value="black" v-model="checkedColor">black</label>
@@ -79,10 +79,26 @@
 
               <div class="price-range">
                 <!--price-range-->
-                <h2>Price Range</h2>
-                <div clanpmss="price-slider">
-                  <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2"><br />
-                  <b>฿ 0</b> <b class="pull-right">฿ 600</b>
+                <h2>Price</h2>
+                <div class="price-name">
+                  <div class="cat-product radio">
+                    <label><input type="radio" id="price0" value="0-10000" v-model="checkedPrice" checked>all price</label>
+                  </div>
+                  <div class="cat-product radio">
+                    <label><input type="radio" id="price1" value="0-200" v-model="checkedPrice">less than 200</label>
+                  </div>
+                  <div class="cat-product radio">
+                    <label><input type="radio" id="price2" value="200-400" v-model="checkedPrice">200 - 400</label>
+                  </div>
+                  <div class="cat-product radio">
+                    <label><input type="radio" id="price3" value="400-600" v-model="checkedPrice">400 - 600</label>
+                  </div>
+                  <div class="cat-product radio">
+                    <label><input type="radio" id="price4" value="600-800" v-model="checkedPrice">600 - 800</label>
+                  </div>
+                  <div class="cat-product radio">
+                    <label><input type="radio" id="price5" value="800-10000" v-model="checkedPrice">more than 800</label>
+                  </div>
                 </div>
               </div>
               <!--/price-range-->
@@ -90,7 +106,7 @@
             </div>
           </div>
 
-        <div v-if="computedProducts.length==0" class="col-sm-9 padding-right">
+        <div v-if="computedProducts.length===0" class="col-sm-9 padding-right">
           <h5 style="margin-top: 200px">Sorry, we didn't find any results matching this search.</h5>
         </div>
         <div v-else class="col-sm-9 padding-right">
@@ -130,6 +146,7 @@
 import axios from 'axios'
 import wishlist from '../services/wishlist'
 import cart from '../services/cart'
+import vueSlider from 'vue-slider-component';
 
 export default {
   name: 'recentProduct',
@@ -145,7 +162,8 @@ export default {
       keyword: '',
       checkedColor: [],
       checkedBrand:[],
-      checkedHat: []
+      checkedHat: [],
+      checkedPrice: "0-200"
     }
   },
   watch: {
@@ -223,11 +241,16 @@ export default {
     },
     hatFilter: function(){
       if(this.checkedHat.length > 0){
-        return this.list.filter(product => this.checkedHat.indexOf(product.type)!==-1);
+        return this.priceFilter.filter(product => this.checkedHat.indexOf(product.type)!==-1);
       }else{
-        return this.list
+        return this.priceFilter
       }
+    },
+    priceFilter: function(){
+      let price_str = this.checkedPrice.split("-")
+      return this.list.filter(product => price_str[0] < product.price && product.price < price_str[1]);
     }
+
   }
 
 }
