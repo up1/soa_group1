@@ -144,9 +144,15 @@ export default {
   },
   mounted: function() {
     this.product(this.$route.params.page)
-    this.getWishlist();
+    this.checkUser;
   },
   methods: {
+    checkUser: function () {
+      if (this.$auth.user().id > 0){
+        this.getWishlist();
+      }
+      else {}
+    },
     product: function(page) {
       return axios.get('http://localhost:9004/products/pages/'+ this.$route.params.page, {})
         .then((response) => {
