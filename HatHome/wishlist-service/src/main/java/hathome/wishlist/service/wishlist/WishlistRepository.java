@@ -31,8 +31,8 @@ public class WishlistRepository {
         this.jdbcTemplate.update(sql, wishlist.getUser_id(), wishlist.getProduct_id());
     }
 
-    public void deleteWishlist(Wishlist wishlist){
-        String sql = "DELETE FROM wishlist WHERE wishlist_id = ?";
-        this.jdbcTemplate.update(sql, wishlist.getWishlist_id());
+    public void deleteWishlist(long product_id, long user_id){
+        String sql = "DELETE FROM wishlist WHERE product_id = ? and user_id = ?";
+        this.jdbcTemplate.update(sql, product_id, user_id);
     }
 }

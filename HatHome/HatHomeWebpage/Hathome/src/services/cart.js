@@ -2,7 +2,7 @@ import axios from 'axios'
 
 class Cart {
 
-  addToCart (productId, productName, userName) {
+  addToCart(productId, productName, userName) {
     let userId = userName
     //TODO : get current userId
     console.log(`Adding new product ${productId} to ${userId} cart`)
@@ -23,8 +23,7 @@ class Cart {
       )
   }
 
-  removeInCart (cartItemId, productName){
-
+  removeInCart(cartItemId, productName) {
     console.log(`Removing ${cartItemId} - ${productName} from cart`)
     return axios.delete('http://localhost:9003/cart/' + cartItemId)
       .then(
@@ -32,10 +31,30 @@ class Cart {
           alert(`Removed ${productName} from cart`)
         }
       ).catch(
-      (error) => {
-        console.log('in catch', error);
-      }
-    )
+        (error) => {
+          console.log('in catch', error);
+        }
+      )
+  }
+
+  updateItemInCart(updateList) {
+    let list = updateList.map(function (obj) {
+      return {
+        id: obj.id,
+        amount: obj.amount
+      };
+    });
+    axios.put('http://localhost:9003/cart', list)
+      .then(
+        (response) => {
+          console.log('cart updated');
+        }
+      )
+      .catch(
+        (error) => {
+          console.log('in catch', error);
+        }
+      )
   }
 }
 

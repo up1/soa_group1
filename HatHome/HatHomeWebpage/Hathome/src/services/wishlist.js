@@ -3,18 +3,30 @@ import axios from 'axios'
 
 class Wishlist {
 
-  addToWishlist (productId, productName) {
-    let userId = 1
-    //TODO : get current userId
-    console.log(`Adding new product ${productId} to ${userId} wishlist`)
-    axios.post('http://localhost:9005/wishlist', {
+  addToWishlist (productId, userId) {
+    return axios.post('http://localhost:9005/wishlist', {
       user_id: userId,
       product_id: productId
     })
       .then(
         (response) => {
-          alert(`Added ${productName} to wishlist`)
-          console.log('in then', response.data);
+          // alert(`Added ${productId} to wishlist`)
+        }
+      )
+      .catch(
+        (error) => {
+          console.log('in catch', error);
+        }
+      )
+  }
+
+  deleteFromWishlist (productId, userId) {
+    console.log(`DELETE`);
+    return axios.delete('http://localhost:9005/wishlist/' + productId + '/user/' + userId)
+      .then(
+        (response) => {
+          console.log('ooooookkkkkk')
+          // alert(`Deleted ${productId} to wishlist`)
         }
       )
       .catch(

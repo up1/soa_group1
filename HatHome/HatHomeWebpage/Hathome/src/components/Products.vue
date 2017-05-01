@@ -351,6 +351,11 @@
         return this.list.filter(product => price_str[0] < product.price && product.price < price_str[1]);
       }
     }
+  },
+  watch: {
+    '$route.params.page'(newpage, oldpage) {
+        this.product(newpage)
+    }
   }
 </script>
 <style>
