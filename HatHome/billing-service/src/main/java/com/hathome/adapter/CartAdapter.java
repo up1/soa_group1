@@ -1,13 +1,12 @@
 package com.hathome.adapter;
 
-import com.hathome.Bill;
 import org.springframework.http.*;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import javax.print.attribute.standard.Media;
+
 import java.util.*;
 
 /**
@@ -46,11 +45,10 @@ public class CartAdapter {
         HttpEntity<MultiValueMap<String, Long>> requestEntity = new HttpEntity<>(params, requestHeader);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class, userId);
         Object object = response.getBody();
-        if(object == null){
+        if (object==null){
             return false;
-        }else{
-            return true;
         }
+        return true;
     }
 }
 

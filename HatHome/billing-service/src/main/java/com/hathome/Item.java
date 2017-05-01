@@ -5,8 +5,8 @@ package com.hathome;
  */
 public class Item {
     private long id;
-    private long bill_id;
-    private long product_id;
+    private long billId;
+    private long productId;
     private long amount;
 
     public long getId() {
@@ -17,20 +17,20 @@ public class Item {
         this.id = id;
     }
 
-    public long getBill_id() {
-        return bill_id;
+    public long getBillId() {
+        return billId;
     }
 
-    public void setBill_id(long bill_id) {
-        this.bill_id = bill_id;
+    public void setBillId(long billId) {
+        this.billId = billId;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(long product_id) {
-        this.product_id = product_id;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     public long getAmount() {

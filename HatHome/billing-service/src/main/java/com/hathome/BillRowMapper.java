@@ -13,11 +13,11 @@ public class BillRowMapper implements RowMapper<Bill> {
     public Bill mapRow(ResultSet resultSet, int i) throws SQLException {
         Bill bill = new Bill();
         bill.setId(resultSet.getLong("id"));
-        bill.setUser_id(resultSet.getLong("user_id"));
+        bill.setUserId(resultSet.getLong("userId"));
         bill.setAddress(resultSet.getString("address"));
         bill.setDate(resultSet.getString("date"));
-        bill.setCart_price(resultSet.getDouble("cart_price"));
-        bill.setShipping_cost(resultSet.getDouble("shipping_cost"));
+        bill.setCartPrice(resultSet.getDouble("cartPrice"));
+        bill.setShippingCost(resultSet.getDouble("shippingCost"));
         bill.setTotal(resultSet.getDouble("total"));
         return bill;
     }
