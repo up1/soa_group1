@@ -17,7 +17,7 @@
               </div>
               <div class="col-md-6">
                                 <span>
-                                <a href="register.html"><p>Not a member yet?</p></a>
+                                <router-link :to="{ name: 'userRegister'}"> <a href="register.html"><p id="regis">Not a member yet?</p></a></router-link>
                                 </span>
               </div>
 
@@ -45,8 +45,8 @@
       return {
         context: 'login context',
         body: {
-          email: '1',
-          password: '2'
+          email: '',
+          password: ''
         },
         header: 'Login to your account',
         checked: '',
@@ -57,7 +57,7 @@
         var redirect = this.$auth.redirect()
         this.$auth.login({
           body: this.body,
-          redirect: {name: redirect ? redirect.from.name : 'products'},
+          redirect: {name: redirect ? redirect.from.name : 'recentProducts'},
           success(){
             console.log('success ' + this.context)
           },

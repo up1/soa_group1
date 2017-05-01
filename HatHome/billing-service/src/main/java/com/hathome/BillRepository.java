@@ -31,22 +31,22 @@ public class BillRepository {
 
     @Transactional(readOnly = true)
     public Bill findById(long id){
-        String sqlBill = "SELECT id, user_id, address, date, cart_price, shipping_cost, total FROM BILLS WHERE id=?";
+        String sqlBill = "SELECT id, userId, address, date, cartPrice, shippingCost, total FROM BILLS WHERE id=?";
         Bill bill = this.jdbcTemplate.queryForObject(sqlBill, new Object[]{id}, new BillRowMapper());
         Cart cart = new Cart();
 
         //set username
         UserAdapter userAdapter = new UserAdapter();
-        User user = userAdapter.getUserById(bill.getUser_id());
+        User user = userAdapter.getUserById(bill.getUserId());
         bill.setUsername(user.getEmail());
 
         //get product detail
-        String sqlItem = "SELECT product_id, amount FROM ITEMS WHERE bill_id=?";
+        String sqlItem = "SELECT productId, amount FROM ITEMS WHERE billId=?";
         List<Item> items = this.jdbcTemplate.query(sqlItem, new Object[]{id}, new ItemRowMapper());
         List<Product> products = new ArrayList<>();
         for (Item item: items) {
             ProductAdapter productAdapter = new ProductAdapter();
-            Product product = productAdapter.getProductById(item.getProduct_id());
+            Product product = productAdapter.getProductById(item.getProductId());
             product.setAmount(item.getAmount());
             products.add(product);
         }
@@ -56,10 +56,10 @@ public class BillRepository {
     }
 
     @Transactional(readOnly = false)
-    public BillStatus addBill(BillStoreRequest request){
+    public Bill addBill(BillStoreRequest request){
 
         Bill bill = new Bill();
-        bill.setUser_id(request.getUser_id());
+        bill.setUserId(request.getUserId());
 
         //set user
         bill.setUsername(request.getUsername());
@@ -70,27 +70,26 @@ public class BillRepository {
 
         //set cart
         CartAdapter cartAdapter = new CartAdapter();
-        bill.setCart(cartAdapter.getCartById(bill.getUser_id()));
+        bill.setCart(cartAdapter.getCartById(bill.getUserId()));
 
         //set price
-        bill.setCart_price(bill.getCart().getPrice());
-        bill.setShipping_cost(0);
-        bill.setTotal(bill.getCart_price() + bill.getShipping_cost());
+        bill.setCartPrice(bill.getCart().getPrice());
+        bill.setShippingCost(0);
+        bill.setTotal(bill.getCartPrice() + bill.getShippingCost());
 
-        BillStatus billStatus = new BillStatus();
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         //insert to bills
-        String sqlBill = "INSERT INTO bills (user_id, address, date, cart_price, shipping_cost, total) VALUES (?, ?, ?, ?, ?, ?)";
+        String sqlBill = "INSERT INTO bills (userId, address, date, cartPrice, shippingCost, total) VALUES (?, ?, ?, ?, ?, ?)";
         this.jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement preparedStatement = connection.prepareStatement(sqlBill, Statement.RETURN_GENERATED_KEYS);
-                preparedStatement.setLong(1, bill.getUser_id());
+                preparedStatement.setLong(1, bill.getUserId());
                 preparedStatement.setString(2, bill.getAddress());
                 preparedStatement.setString(3, bill.getDate());
-                preparedStatement.setDouble(4, bill.getCart_price());
-                preparedStatement.setDouble(5, bill.getShipping_cost());
+                preparedStatement.setDouble(4, bill.getCartPrice());
+                preparedStatement.setDouble(5, bill.getShippingCost());
                 preparedStatement.setDouble(6, bill.getTotal());
                 return preparedStatement;
             }
@@ -99,7 +98,7 @@ public class BillRepository {
         bill.setId(keyHolder.getKey().longValue());
 
         //insert to items
-        String sqlItem = "INSERT INTO items (bill_id, product_id, amount) VALUES (?, ?, ?)";
+        String sqlItem = "INSERT INTO items (billId, productId, amount) VALUES (?, ?, ?)";
         for (Product product: bill.getCart().getProducts()) {
             this.jdbcTemplate.update(new PreparedStatementCreator() {
                 @Override
@@ -113,11 +112,7 @@ public class BillRepository {
             });
 
         }
-
-        billStatus.setStatus("success");
-        billStatus.setId(bill.getId());
-        EmailService.SendSimpleMessage();
-        return billStatus;
+        return bill;
     }
 
     private String getCurrentDate(){
