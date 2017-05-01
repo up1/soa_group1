@@ -14,7 +14,7 @@ public class ProductAdapter {
 
     public Product getProductDetail(long productId){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9004/products/" + productId;
+        String url = "http://128.199.126.179:9004/products/" + productId;
         Product productItem = restTemplate.getForObject(url, Product.class);
 
         return  productItem;
