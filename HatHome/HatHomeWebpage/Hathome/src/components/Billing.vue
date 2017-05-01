@@ -79,16 +79,16 @@
     name: 'billing',
     data () {
       return {
-        user_id: 1,
-        username: 'username',
-        bill_id: 1,
-        bill_address: 'bill_address',
-        bill_date: 'bill_date',
-        cart_price: 1,
-        shipping_cost: 1,
-        total: 2,
-        image: "",
-        cart: "",
+        user_id: '',
+        username: '',
+        bill_id: '',
+        bill_address: '',
+        bill_date: '',
+        cart_price: '',
+        shipping_cost: '',
+        total: '',
+        image: '',
+        cart: '',
         products: []
       }
     },

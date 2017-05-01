@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
+
 /**
  * Created by Acer on 6/4/2560.
  */
@@ -15,17 +17,21 @@ import org.springframework.web.bind.annotation.*;
 public class BillController {
 
     private  final  BillRepository billRepository;
+    private EmailService emailService;
 
     @Autowired
-    public BillController(BillRepository billRepository) {
+    public BillController(BillRepository billRepository,EmailService emailService) {
         this.billRepository = billRepository;
+        this.emailService = emailService;
     }
 
 //    get bill by bill id
     @GetMapping("/bill/{id}")
-    public Bill getBillById(@PathVariable long id){
+    public Bill getBillById(@PathVariable long id) throws MessagingException {
         System.out.println(id);
-        return billRepository.findById(id);
+        Bill bill = billRepository.findById(id);
+        emailService.sendEmailMessage(bill);
+        return bill;
     }
 
 //    save bill
@@ -34,6 +40,6 @@ public class BillController {
         BillStatus billStatus = billRepository.addBill(request);
         CartAdapter cartAdapter = new CartAdapter();
         cartAdapter.checkOutFromCart(request.getUser_id());
-        return new ResponseEntity<BillStatus>(billStatus, HttpStatus.CREATED);
+        return new ResponseEntity<>(billStatus, HttpStatus.CREATED);
     }
 }

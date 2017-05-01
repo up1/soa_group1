@@ -39,11 +39,11 @@ public class CartAdapter {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         String url = "http://localhost:9003/cart/{userId}";
-        MultiValueMap<String, Long> params = new LinkedMultiValueMap<String, Long>();
+        MultiValueMap<String, Long> params = new LinkedMultiValueMap<>();
         params.add("userId", userId);
         HttpHeaders requestHeader = new HttpHeaders();
         requestHeader.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<MultiValueMap<String, Long>> requestEntity = new HttpEntity<MultiValueMap<String, Long>>(params, requestHeader);
+        HttpEntity<MultiValueMap<String, Long>> requestEntity = new HttpEntity<>(params, requestHeader);
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, String.class, userId);
         Object object = response.getBody();
         if(object == null){

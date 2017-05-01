@@ -116,7 +116,6 @@ public class BillRepository {
 
         billStatus.setStatus("success");
         billStatus.setId(bill.getId());
-        EmailService.SendSimpleMessage();
         return billStatus;
     }
 
