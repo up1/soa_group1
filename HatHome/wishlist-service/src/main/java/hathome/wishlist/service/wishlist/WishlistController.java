@@ -41,7 +41,9 @@ public class WishlistController {
 
     @GetMapping
     private List<Wishlist> getProductDetail(List<Wishlist> wishlists) {
-        if (wishlists != null) {
+        if (wishlists == null || wishlists.isEmpty()) {
+        }
+        else{
             for (Wishlist w : wishlists) {
                 w.setProduct(this.productAdapter.getProductDetail(w.getProductId()));
             }
