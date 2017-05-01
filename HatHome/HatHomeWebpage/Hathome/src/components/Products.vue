@@ -79,7 +79,7 @@
                 <div class="product-image-wrapper">
                   <div class="single-products">
                     <div class="productinfo text-center">
-                      <router-link :to="{ name: 'productDetail', params: { id: item.id}}">
+                      <router-link :to="{ name: 'productDetail', params: { id: item.id}}" style="text-decoration: none;">
                         <img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.id + '.jpg'"/>
                         <h4>{{ item.name }}</h4>
                       </router-link>
@@ -111,12 +111,12 @@
         <!--/all product-->
       </div>
     </div>
-    <div>
-      <button id="previousBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToPrevious">
+    <div class="page">
+      <button id="previousBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToPrevious" style="vertical-align: middle;">
         Previous
       </button>
-        Page {{currentPage}} of {{lastPage}}
-      <button id="nextBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToNext">
+        <p class="page-text">Page {{currentPage}} of {{lastPage}}</p>
+      <button id="nextBtn" class="btn btn-default" v-bind="checkDisable()" @click="goToNext" style="vertical-align: middle;">
         Next
       </button>
     </div>
@@ -225,3 +225,18 @@ export default {
   }
 }
 </script>
+<style>
+  .page{
+    margin-bottom: 20px;
+  }
+  .page-text{
+    display:inline;
+    font-family: 'roboto';
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 10px;
+    margin-right: 10px;
+    vertical-align: top;
+
+  }
+</style>
