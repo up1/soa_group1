@@ -24,3 +24,11 @@ Library         Selenium2Library
     Input Text      email     mimi@mi
     Input Password  password  mimi
     Click Button              Login
+    Set Selenium Speed        2
+    Wait Until Page Contains  RECENT PRODUCTS
+    Click Link                Account
+    Set Selenium Speed        1
+    Input Text      address   123 Road
+    Click Button              save
+    Set Selenium Speed        2
+    Close Browser
