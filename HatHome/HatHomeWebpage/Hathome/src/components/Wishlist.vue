@@ -20,16 +20,16 @@
               <tbody>
               <tr v-for="(item, index) in wishlists">
                 <td style="vertical-align: middle;">{{index+1}}</td>
-                <td><img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.product_id + '.jpg'" style="width: 120px; height: 120px;" /></td>
+                <td><img v-bind:src="'https://storage.googleapis.com/hathome01/products/' + item.productId + '.jpg'" style="width: 120px; height: 120px;" /></td>
                 <td style="vertical-align: middle;">{{item.product.name}}</td>
                 <td style="vertical-align: middle;">{{item.product.price}}</td>
                 <td style="vertical-align: middle;">
                   <div id="add-cart">
-                    <button v-on:click="addToCart(item.product_id, item.product.name)" class="btn btn-default check_out">Add to Cart</button>
+                    <button v-on:click="addToCart(item.productId, item.product.name)" class="btn btn-default check_out">Add to Cart</button>
                   </div>
                 </td>
                 <td class="cart_delete" style="vertical-align: middle;">
-                  <a class="cart_quantity_delete" v-on:click="deleteFromWishlist(item.product_id, item.user_id)"><i class="fa fa-times"></i></a>
+                  <a class="cart_quantity_delete" v-on:click="deleteFromWishlist(item.productId, item.userId)"><i class="fa fa-times"></i></a>
                 </td>
               </tr>
               </tbody>

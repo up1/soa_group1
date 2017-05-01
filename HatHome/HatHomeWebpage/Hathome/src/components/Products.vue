@@ -197,7 +197,7 @@ export default {
             var i = 0;
             for (i = 0; i < this.wishlists.length; i++) {
             }
-              this.wishlists_id.push(this.wishlists[i].product_id);
+              this.wishlists_id.push(this.wishlists[i].productId);
           })
           .catch(function (error) {
             console.log(error)
