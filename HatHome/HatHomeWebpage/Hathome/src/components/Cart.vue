@@ -48,7 +48,7 @@
             </tr>
             </tbody>
           </table>
-          <a :disabled="this.products[0]!==null" v-on:click="openModal" class="btn btn-primary checkout-button" style="margin-bottom:60px;margin-top:40px;">
+          <a :disabled="this.products.length===0" v-on:click="openModal" class="btn btn-primary checkout-button" style="margin-bottom:60px;margin-top:40px;">
             Check out your cart
           </a>
         </div>
