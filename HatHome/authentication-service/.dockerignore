@@ -4,3 +4,4 @@ src
 pom.xml
 README.md
 *.iml
+dist
