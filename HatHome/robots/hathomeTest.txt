@@ -10,6 +10,7 @@ Library         Selenium2Library
 
 0_Open Website
     Open Browser              http://localhost:8080/    gc
+    Maximize Browser Window
     Title Should Be           hathome
     Page Should Contain       Welcome thara
     Close Browser
@@ -69,6 +70,7 @@ Library         Selenium2Library
 
 4_Login Flow
     Open Browser              http://localhost:8080/    gc
+    Maximize Browser Window
     Page Should Contain       Welcome thara
     Set Selenium Speed        2
     Click Link                Sign in
@@ -88,6 +90,7 @@ Library         Selenium2Library
     
 5_Regis Flow
     Open Browser              http://localhost:8080/    gc
+    Maximize Browser Window
     Page Should Contain       Welcome thara
     Set Selenium Speed        2
     Click Link                Sign in
@@ -101,6 +104,7 @@ Library         Selenium2Library
 
 6_ViewProductDetail
     Open Browser              http://localhost:8080/recentproducts/    gc
+    Maximize Browser Window
     Page Should Contain       RECENT PRODUCTS
     Set Selenium Speed        2
     Click Button              View All Product
