@@ -13,7 +13,7 @@ import javax.mail.MessagingException;
  */
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin
 public class BillController {
 
     private  final  BillRepository billRepository;
