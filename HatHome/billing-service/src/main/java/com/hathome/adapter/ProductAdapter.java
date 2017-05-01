@@ -9,7 +9,7 @@ public class ProductAdapter {
 
     public Product getProductById(long id){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9004/products/" + id;
+        String url = "http://128.199.126.179:9004/products/" + id;
         return restTemplate.getForObject(url, Product.class);
     }
 }

@@ -16,7 +16,7 @@ public class CartAdapter {
     public Cart getCartById(long userId){
         Cart cart = new Cart();
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9003/cart/" + userId;
+        String url = "http://128.199.155.128:9003/cart/" + userId;
         ResponseEntity<CartItem[]> responseEntity = restTemplate.getForEntity(url, CartItem[].class);
         CartItem[] cartObj = responseEntity.getBody();
         List<CartItem> cartItems = new ArrayList<>(Arrays.asList(cartObj));
@@ -37,7 +37,7 @@ public class CartAdapter {
     public boolean checkOutFromCart(long userId){
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-        String url = "http://localhost:9003/cart/{userId}";
+        String url = "http://128.199.155.128:9003/cart/{userId}";
         MultiValueMap<String, Long> params = new LinkedMultiValueMap<>();
         params.add("userId", userId);
         HttpHeaders requestHeader = new HttpHeaders();
