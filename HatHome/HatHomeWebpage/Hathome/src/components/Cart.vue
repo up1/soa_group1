@@ -48,7 +48,9 @@
             </tr>
             </tbody>
           </table>
-          <a v-on:click="openModal" class="btn btn-default checkout-button" id="checkOut">Check out your cart</a>
+          <a v-on:click="openModal" class="btn btn-primary checkout-button" style="margin-bottom:60px;margin-top:40px;">
+            Check out your cart
+          </a>
         </div>
         <div v-else>
           <div class="row">
@@ -181,7 +183,7 @@
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 50px;
   float: right;
   margin-top: 50px;
 }

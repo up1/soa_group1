@@ -1,4 +1,4 @@
-package hathome.wishlist.service.wishlist.Adapter;
+package hathome.wishlist.service.wishlist.adapter;
 
 /**
  * Created by Plern on 20/4/2560.
