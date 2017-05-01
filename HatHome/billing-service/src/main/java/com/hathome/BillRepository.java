@@ -56,7 +56,7 @@ public class BillRepository {
     }
 
     @Transactional(readOnly = false)
-    public BillStatus addBill(BillStoreRequest request){
+    public Bill addBill(BillStoreRequest request){
 
         Bill bill = new Bill();
         bill.setUser_id(request.getUser_id());
@@ -113,11 +113,7 @@ public class BillRepository {
             });
 
         }
-
-        billStatus.setStatus("success");
-        billStatus.setId(bill.getId());
-        EmailService.SendSimpleMessage();
-        return billStatus;
+        return bill;
     }
 
     private String getCurrentDate(){
