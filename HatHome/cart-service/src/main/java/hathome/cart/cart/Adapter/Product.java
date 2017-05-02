@@ -1,4 +1,4 @@
-package hathome.cart.cart.Adapter;
+package hathome.cart.cart.adapter;
 
 
 public class Product {

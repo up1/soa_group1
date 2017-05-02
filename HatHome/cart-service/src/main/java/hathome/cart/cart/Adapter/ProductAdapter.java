@@ -1,7 +1,5 @@
-package hathome.cart.cart.Adapter;
+package hathome.cart.cart.adapter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,9 +10,11 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ProductAdapter {
 
+    String ip = "128.199.126.179";
+
     public Product getProductDetail(long productId){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://128.199.126.179:9004/products/" + productId;
+        String url = "http://"+ip+":9004/products/" + productId;
         Product productItem = restTemplate.getForObject(url, Product.class);
 
         return  productItem;
