@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class ProductAdapter {
     public Product getProductDetail(long productId){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://localhost:9004/products/" + productId;
+        String url = "http://128.199.126.179:9004/products/" + productId;
         return restTemplate.getForObject(url, Product.class);
     }
 }
