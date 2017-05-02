@@ -12,21 +12,20 @@ Library         Selenium2Library
     Open Browser              http://localhost:8080/    gc
     Maximize Browser Window
     Title Should Be           hathome
-    Page Should Contain       Welcome thara
+    Page Should Contain       RECENT PRODUCTS
     Close Browser
 
 2_Edit amount in cart
     Open Browser              http://localhost:8080/    gc
     Maximize Browser Window
-    Page Should Contain       Welcome thara
+    Page Should Contain       RECENT PRODUCTS
     Set Selenium Speed        2
-    Click Link                Sign in
+    Click Link                Log in
     Set Selenium Speed        .5
     Wait Until Page Contains  Login to your account
     Input Text      email     mimi@mi
     Input Password  password  mimi
     Click Button              Login
-    Wait Until Page Contains  RECENT PRODUCTS
 	Click Link                Cart
 	Set Selenium Speed        0.5
 	Wait Until Page Contains  MY CART
@@ -44,15 +43,14 @@ Library         Selenium2Library
 3_Take Wishlist to cart
     Open Browser              http://localhost:8080/    gc
     Maximize Browser Window
-    Page Should Contain       Welcome thara
+    Page Should Contain       RECENT PRODUCTS
     Set Selenium Speed        2
-    Click Link                Sign in
+    Click Link                Log in
     Set Selenium Speed        .5
     Wait Until Page Contains  Login to your account
     Input Text      email     mimi@mi
     Input Password  password  mimi
     Click Button              Login
-    Set Selenium Speed        2
     Wait Until Page Contains  RECENT PRODUCTS
     Click Link                Wishlist
     Click Element             id=deleteItem
@@ -71,9 +69,9 @@ Library         Selenium2Library
 4_Login Flow
     Open Browser              http://localhost:8080/    gc
     Maximize Browser Window
-    Page Should Contain       Welcome thara
+    Page Should Contain       RECENT PRODUCTS
     Set Selenium Speed        2
-    Click Link                Sign in
+    Click Link                Log in
     Set Selenium Speed        .5
     Wait Until Page Contains  Login to your account
     Input Text      email     mimi@mi
@@ -91,9 +89,9 @@ Library         Selenium2Library
 5_Regis Flow
     Open Browser              http://localhost:8080/    gc
     Maximize Browser Window
-    Page Should Contain       Welcome thara
+    Page Should Contain       RECENT PRODUCTS
     Set Selenium Speed        2
-    Click Link                Sign in
+    Click Link                Log in
     Click Element             id=regis
     Input Text      email     somkiat@cc
     Input Password  password  somkiat
@@ -103,7 +101,7 @@ Library         Selenium2Library
     Close Browser 
 
 6_ViewProductDetail
-    Open Browser              http://localhost:8080/recentproducts/    gc
+    Open Browser              http://localhost:8080/    gc
     Maximize Browser Window
     Page Should Contain       RECENT PRODUCTS
     Set Selenium Speed        2
