@@ -18,19 +18,18 @@ public class UserRepository {
             return true;
 
         }catch (Exception e){
-            System.out.print(e);
-            return false;
+            throw new UserSignupException(e, user.getEmail());
         }
     }
 
     @Transactional(readOnly = true)
     public User findById(Long userId) {
         try {
-            String sql = "SELECT email, address, id FROM USER WHERE id=?";
+            String sql = "SELECT email, address, id FROM user WHERE id=?";
             return this.jdbcTemplate.queryForObject(sql,
                     new Object[]{userId}, new UserRowMapper());
         }catch (Exception exception) {
-            throw new UserNotFoundException(userId);
+            throw new UserNotFoundException(userId, exception);
         }
     }
 

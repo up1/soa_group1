@@ -1,16 +1,10 @@
-package hathome.wishlist.service.wishlist.Adapter;
+package hathome.wishlist.service.wishlist.adapter;
 
-/**
- * Created by Plern on 24/4/2560.
- */
 public class User {
     private String email;
     private String password;
     private String address;
     private Long id;
-
-    public User() {
-    }
 
     public User(Long id, String email, String address) {
         this.email = email;
