@@ -80,6 +80,7 @@
     </div>
   </section>
 </template>
+
 <script>
   import axios from 'axios'
   import Modal from '@/components/Modal'
