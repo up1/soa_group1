@@ -29,7 +29,7 @@
                   </div>
                 </td>
                 <td class="cart_delete" style="vertical-align: middle;">
-                  <a class="cart_quantity_delete" v-on:click="deleteFromWishlist(item.productId, item.userId)"><i class="fa fa-times"></i></a>
+                  <a class="cart_quantity_delete" id="deleteItem" v-on:click="deleteFromWishlist(item.productId, item.userId)"><i class="fa fa-times"></i></a>
                 </td>
               </tr>
               </tbody>
@@ -68,7 +68,7 @@
         else {}
       },
       wishlist() {
-        axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {
+        axios.get('http://188.166.233.180:9005/wishlist/user/' + this.$auth.user().id, {
         })
           .then(
             (response) => {

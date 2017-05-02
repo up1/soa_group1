@@ -11,9 +11,6 @@
               <input type="email" placeholder="email" id="email" v-model="body.email"/>
               <input type="password" placeholder="password" id="password" v-model="body.password"/>
               <div class="col-md-6">
-                                <span>
-                                <input type="checkbox" class="checkbox" id="checkbox" v-model="checked"> Keep me signed in
-                              </span>
               </div>
               <div class="col-md-6">
                                 <span>

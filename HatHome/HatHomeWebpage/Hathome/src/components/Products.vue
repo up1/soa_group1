@@ -203,7 +203,7 @@
         item: '',
         image: '',
         list: [],
-        resource_url:'http://localhost:9004/products/pages/'+ this.$route.params.page,
+        resource_url:'http://128.199.126.179:9004/products/pages/'+ this.$route.params.page,
         currentPage: '',
         lastPage: '',
         wishlists: [],
@@ -243,7 +243,7 @@
         else {}
       },
       product: function(page) {
-        return axios.get('http://localhost:9004/products/pages/'+ this.$route.params.page, {})
+        return axios.get('http://128.199.126.179:9004/products/pages/'+ this.$route.params.page, {})
           .then((response) => {
             console.log(response)
             this.list = response.data.products
@@ -280,7 +280,7 @@
         this.$router.push({ name: 'products', params: { page: this.currentPage + 1 } });
       },
       getWishlist: function () {
-        axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {})
+        axios.get('http://188.166.233.180:9005/wishlist/user/' + this.$auth.user().id, {})
           .then((response) => {
             this.wishlists = response.data;
             var i = 0;
@@ -311,7 +311,7 @@
       },
       search: function() {
         console.log(this.keyword)
-        axios.get('http://localhost:9004/search?keyword='+this.keyword, {})
+        axios.get('http://128.199.126.179:9004/search?keyword='+this.keyword, {})
           .then((response) => {
             console.log(response)
             this.list = response.data.results
@@ -350,8 +350,13 @@
         let price_str = this.checkedPrice.split("-")
         return this.list.filter(product => price_str[0] < product.price && product.price < price_str[1]);
       }
+  },
+  watch: {
+    '$route.params.page'(newpage, oldpage) {
+        this.product(newpage)
     }
   }
+}
 </script>
 <style>
   .page{

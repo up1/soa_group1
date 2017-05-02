@@ -88,16 +88,16 @@ Vue.use(VueAuth, {
     enabled: false // true by default.
   },
   loginData: {
-    url: 'http://localhost:9002/login'
+    url: 'http://128.199.64.78:9002/login'
   },
   fetchData: {
-    url: 'http://localhost:9007/user/profile'
+    url: 'http://128.199.64.78:9007/user/profile'
   },
   parseUserData: function (data) {
     return data
   },
   registerData: {
-    url: 'http://localhost:9002/user'
+    url: 'http://128.199.64.78:9002/user'
   }
 })
 

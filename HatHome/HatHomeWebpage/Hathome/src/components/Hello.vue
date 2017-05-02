@@ -34,8 +34,7 @@
     },
     methods: {
         billing() {
-          console.log('aaaaaaaa', 'billing');
-          axios.post('http://localhost:9006/bill', {
+          axios.post('http://128.199.153.227:9006/bill', {
             user_id : 1234
           })
             .then(
