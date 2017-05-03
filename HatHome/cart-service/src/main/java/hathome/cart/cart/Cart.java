@@ -1,8 +1,6 @@
 package hathome.cart.cart;
 
-
-import hathome.cart.cart.Adapter.Product;
-
+import hathome.cart.cart.adapter.Product;
 import java.io.Serializable;
 
 /**

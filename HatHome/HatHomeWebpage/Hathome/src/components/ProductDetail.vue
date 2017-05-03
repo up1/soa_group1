@@ -120,7 +120,7 @@
         }
       },
       product: function () {
-        axios.get('http://localhost:9004/products/' + this.$route.params.id, {
+        axios.get('http://128.199.126.179:9004/products/' + this.$route.params.id, {
         })
           .then((response) => {
             this.name = response.data.name
@@ -138,7 +138,7 @@
           })
       },
       getWishlist: function () {
-        axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id, {})
+        axios.get('http://188.166.233.180:9005/wishlist/user/' + this.$auth.user().id, {})
           .then((response) => {
             this.wishlists = response.data;
             var i = 0;

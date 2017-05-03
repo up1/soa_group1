@@ -7,7 +7,7 @@ class Cart {
     //TODO : get current userId
     console.log(`Adding new product ${productId} to ${userId} cart`)
 
-    axios.post('http://localhost:9003/cart', {
+    axios.post('http://128.199.155.128:9003/cart', {
       user_id: userId,
       product_id: productId
     })
@@ -25,7 +25,7 @@ class Cart {
 
   removeInCart(cartItemId, productName) {
     console.log(`Removing ${cartItemId} - ${productName} from cart`)
-    return axios.delete('http://localhost:9003/cart/' + cartItemId)
+    return axios.delete('http://128.199.155.128:9003/cart/' + cartItemId)
       .then(
         (response) => {
           alert(`Removed ${productName} from cart`)
@@ -44,7 +44,7 @@ class Cart {
         amount: obj.amount
       };
     });
-    axios.put('http://localhost:9003/cart', list)
+    axios.put('http://128.199.155.128:9003/cart', list)
       .then(
         (response) => {
           console.log('cart updated');

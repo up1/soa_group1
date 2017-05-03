@@ -48,7 +48,7 @@
             </tr>
             </tbody>
           </table>
-          <a :disabled="this.products.length===0" v-on:click="openModal" class="btn btn-primary checkout-button" style="margin-bottom:60px;margin-top:40px;">
+          <a :disabled="this.products.length===0"id="checkOut" v-on:click="openModal" class="btn btn-primary checkout-button" style="margin-bottom:60px;margin-top:40px;">
             Check out your cart
           </a>
         </div>
@@ -80,6 +80,7 @@
     </div>
   </section>
 </template>
+
 <script>
   import axios from 'axios'
   import Modal from '@/components/Modal'
@@ -110,7 +111,7 @@
     },
     methods: {
       getCartByUserId(){
-        axios.get('http://localhost:9003/cart/' + this.$auth.user().id)
+        axios.get('http://128.199.155.128:9003/cart/' + this.$auth.user().id)
           .then(
           (response) => {
             this.products = response.data;
@@ -122,7 +123,7 @@
         )
       },
       get_address() {
-        axios.get('http://localhost:9007/user/' + this.$auth.user().id, {})
+        axios.get('http://128.199.64.78:9007/user/' + this.$auth.user().id, {})
           .then(
             (response) => {
               this.username = response.data.email;
@@ -138,7 +139,7 @@
         this.submitClicked=true
         console.log(this.submitClicked)
         console.log(this.username)
-        axios.post('http://localhost:9006/bill', {
+        axios.post('http://128.199.153.227:9006/bill', {
           userId: this.$auth.user().id,
           username: this.username,
           address: this.address

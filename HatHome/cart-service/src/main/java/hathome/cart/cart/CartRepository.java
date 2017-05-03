@@ -50,7 +50,7 @@ public class CartRepository {
 
     public void updateMultiple(List<Cart> cartList) {
         String sql = "UPDATE cart SET amount = CASE id ";
-        String idList = "";
+        String idList = new String();
         for (Cart item : cartList) {
             sql += ("WHEN " + item.getId() + " THEN " + item.getAmount() + " ");
             idList += item.getId() + ",";

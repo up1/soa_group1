@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController()
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin
 public class ProductController {
 
     private final ProductRepository productRepository;
@@ -27,8 +27,8 @@ public class ProductController {
         List<Product> products = this.productRepository.findAllProduct();
         productPage.setCurrentPage(page);
         productPage.setLastPage((int)Math.ceil(products.size()/9.0));
-        productPage.setNextPageUrl("http://localhost:9004/products/pages/"+Integer.toString(page+1));
-        productPage.setPrevPageUrl("http://localhost:9004/products/pages/"+Integer.toString(page-1));
+        productPage.setNextPageUrl("http://128.199.126.179:9004/products/pages/"+Integer.toString(page+1));
+        productPage.setPrevPageUrl("http://128.199.126.179:9004/products/pages/"+Integer.toString(page-1));
         productPage.setProducts(this.productRepository.findProductsInPage(page));
         return productPage;
     }

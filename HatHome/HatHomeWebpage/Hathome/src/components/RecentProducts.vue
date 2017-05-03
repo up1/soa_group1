@@ -64,12 +64,12 @@
                           <i class="fa fa-shopping-cart"></i>
                         </button>
                       </div>
-                      <div v-if="wishlists_id.indexOf(item.id) < 0"  class="col-sm-4" style="margin-left: -110px;"  align="left">
+                      <div v-if="wishlists_id.indexOf(item.id) < 0"  class="col-sm-4" style="margin-left: -90px;"  align="left">
                         <button type="button" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id)">
                           <i class="fa fa-star"></i>
                         </button>
                       </div>
-                      <div v-else class="col-sm-4" style="border: 1px; margin-left: -110px;"  align="left">
+                      <div v-else class="col-sm-4" style="border: 1px; margin-left: -90px;"  align="left">
                         <button type="button" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
                           <i class="fa fa-star"></i>
                         </button>
@@ -86,14 +86,14 @@
                           </button>
                           </router-link>
                         </div>
-                        <div v-if="wishlists_id.indexOf(item.id) < 0"  class="col-sm-4" style="margin-left: -110px;"  align="left">
+                        <div v-if="wishlists_id.indexOf(item.id) < 0"  class="col-sm-4" style="margin-left: -90px;"  align="left">
                           <router-link :to="{ name: 'login'}">
                           <button type="button" class="btn btn-default custom-button" v-on:click="addToWishlist(item.id)">
                             <i class="fa fa-star" style="color: black"></i>
                           </button>
                           </router-link>
                         </div>
-                        <div v-else class="col-sm-4" style="border: 1px; margin-left: -110px;"  align="left">
+                        <div v-else class="col-sm-4" style="border: 1px; margin-left: -90px;"  align="left">
                           <button type="button" class="btn wlclicked-button" v-on:click="deleteFromWishlist(item.id)">
                             <i class="fa fa-star"></i>
                           </button>
@@ -155,7 +155,7 @@ export default {
       else {}
     },
     product: function() {
-      axios.get('http://localhost:9004/recentproducts', {})
+      axios.get('http://128.199.126.179:9004/recentproducts', {})
         .then((response) => {
           this.lists = response.data
         })
@@ -167,7 +167,7 @@ export default {
       return {x: 0,  y: 0}
     },
     getWishlist: function () {
-      axios.get('http://localhost:9005/wishlist/user/' + this.$auth.user().id)
+      axios.get('http://188.166.233.180:9005/wishlist/user/' + this.$auth.user().id)
         .then((response) => {
           this.wishlists = response.data
           var i = 0;
