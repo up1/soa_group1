@@ -61,13 +61,13 @@ public class CartController {
     public ResponseEntity<Cart> updateProductInCart(@RequestBody List<Cart> cartItem)
             throws JsonProcessingException{
         try {
-            if (cartItem.size() > 0){
+            if (!cartItem.isEmpty()){
                 this.cartRepository.updateMultiple(cartItem);;
                 return new ResponseEntity<>(HttpStatus.OK);
             }else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -86,7 +86,7 @@ public class CartController {
             }else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -103,7 +103,7 @@ public class CartController {
         try {
             this.cartRepository.removeProduct(cartItem);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -118,7 +118,7 @@ public class CartController {
         try {
             this.cartRepository.checkOut(userId);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (NotFoundException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

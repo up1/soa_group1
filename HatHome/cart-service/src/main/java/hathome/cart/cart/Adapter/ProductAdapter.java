@@ -10,13 +10,9 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ProductAdapter {
 
-    String ip = "128.199.126.179";
-
     public Product getProductDetail(long productId){
         RestTemplate restTemplate = new RestTemplate();
-        String url = "http://"+ip+":9004/products/" + productId;
-        Product productItem = restTemplate.getForObject(url, Product.class);
-
-        return  productItem;
+        String url = "http://localhost:9004/products/" + productId;
+        return  restTemplate.getForObject(url, Product.class);
     }
 }
