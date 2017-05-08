@@ -2,6 +2,8 @@ package hathome.cart.cart;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import hathome.cart.cart.adapter.ProductAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ public class CartController {
 
     private CartRepository cartRepository;
     private ProductAdapter productAdapter;
+    private static final Logger logger = LoggerFactory.getLogger(CartController.class);
 
     @Autowired
     public CartController(CartRepository cartRepository) {
@@ -62,12 +65,13 @@ public class CartController {
             throws JsonProcessingException{
         try {
             if (!cartItem.isEmpty()){
-                this.cartRepository.updateMultiple(cartItem);;
+                this.cartRepository.updateMultiple(cartItem);
                 return new ResponseEntity<>(HttpStatus.OK);
             }else {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         } catch (NotFoundException e) {
+            logger.error("INTERNAL_SERVER_ERROR");
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -87,6 +91,7 @@ public class CartController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         } catch (NotFoundException e) {
+            logger.error("INTERNAL_SERVER_ERROR");
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -104,6 +109,7 @@ public class CartController {
             this.cartRepository.removeProduct(cartItem);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
+            logger.error("INTERNAL_SERVER_ERROR");
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -119,13 +125,14 @@ public class CartController {
             this.cartRepository.checkOut(userId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
+            logger.error("INTERNAL_SERVER_ERROR");
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     private List<Cart> attachProductDetailToCartList(List<Cart> carts){
         if(carts.isEmpty()) {
-            System.err.println("Cart list is Empty");
+            logger.error("Cart list is Empty");
         }else {
             for (Cart c:carts){
                 c.setProduct(this.productAdapter.getProductDetail(c.getProduct_id()));
