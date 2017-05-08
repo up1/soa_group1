@@ -20,6 +20,7 @@ public class CartController {
     private CartRepository cartRepository;
     private ProductAdapter productAdapter;
     private static final Logger logger = LoggerFactory.getLogger(CartController.class);
+    private static final String ERROR = "INTERNAL_SERVER_ERROR";
 
     @Autowired
     public CartController(CartRepository cartRepository) {
@@ -71,7 +72,7 @@ public class CartController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         } catch (NotFoundException e) {
-            logger.error("INTERNAL_SERVER_ERROR");
+            logger.error("ERROR" + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -91,7 +92,7 @@ public class CartController {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         } catch (NotFoundException e) {
-            logger.error("INTERNAL_SERVER_ERROR");
+            logger.error("ERROR" + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -109,7 +110,7 @@ public class CartController {
             this.cartRepository.removeProduct(cartItem);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
-            logger.error("INTERNAL_SERVER_ERROR");
+            logger.error("ERROR" + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -125,7 +126,7 @@ public class CartController {
             this.cartRepository.checkOut(userId);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (NotFoundException e) {
-            logger.error("INTERNAL_SERVER_ERROR");
+            logger.error("ERROR" + e);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
