@@ -1,0 +1,5 @@
+projectKey=cart-service
+serverUrl=http://localhost:9000
+dashboardUrl=http://localhost:9000/dashboard/index/cart-service
+ceTaskId=AVvmxWHiAHHei6hz21PC
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AVvmxWHiAHHei6hz21PC
