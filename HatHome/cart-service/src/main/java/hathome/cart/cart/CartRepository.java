@@ -49,15 +49,16 @@ public class CartRepository {
     }
 
     public void updateMultiple(List<Cart> cartList) {
-        String sql = "UPDATE cart SET amount = CASE id ";
-        String idList = "";
+        StringBuilder sql = new StringBuilder();
+        StringBuilder idList = new StringBuilder();
+        sql.append("UPDATE cart SET amount = CASE id ");
         for (Cart item : cartList) {
-            sql += ("WHEN " + item.getId() + " THEN " + item.getAmount() + " ");
-            idList += item.getId() + ",";
+            sql.append("WHEN " + item.getId() + " THEN " + item.getAmount() + " ");
+            idList.append(item.getId() + ",");
         }
-        idList = idList.substring(0, idList.length() - 1);
-        sql += " END  WHERE id IN (" + idList + ")";
-        this.jdbcTemplate.update(sql);
+        idList.replace(0, idList.length() - 1, idList.substring(0, idList.length() - 1));
+        sql.append(" END  WHERE id IN (" + idList + ")") ;
+        this.jdbcTemplate.update(sql.toString());
     }
 
     public void checkOut(Long userId) {
