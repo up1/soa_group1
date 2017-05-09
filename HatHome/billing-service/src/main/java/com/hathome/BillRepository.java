@@ -56,14 +56,13 @@ public class BillRepository {
     }
 
     @Transactional(readOnly = false)
-    public Bill addBill(BillStoreRequest request){
+    public Bill addBill(Bill bill){
 
-        Bill bill = new Bill();
-        bill.setUserId(request.getUserId());
+        bill.setUserId(bill.getUserId());
 
         //set user
-        bill.setUsername(request.getUsername());
-        bill.setAddress(request.getAddress());
+        bill.setUsername(bill.getUsername());
+        bill.setAddress(bill.getAddress());
 
         //set date
         bill.setDate(getCurrentDate());

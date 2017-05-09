@@ -1,8 +1,8 @@
 package com.hathome;
 
 import com.hathome.adapter.Product;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.util.Properties;
@@ -42,7 +42,7 @@ public class EmailService{
     @Value("${mail.smtp.auth}")
     private String smtpAuth;
 
-    private static final Logger logger = LoggerFactory.getLogger(EmailService.class);
+    private static final Log logger = LogFactory.getLog(EmailService.class);
 
     public boolean sendEmailMessage(Bill bill) throws MessagingException {
 
@@ -78,14 +78,14 @@ public class EmailService{
             logger.info("send mail success!!!");
             return true;
         }catch (Exception e){
-            logger.warn(e.toString());
+            logger.info(e);
             return false;
         }
     }
 
     private String translateBillToHtml(Bill bill){
-        String message = new String();
-        message+=("<div class=\"billing\">\n" +
+        StringBuilder message = new StringBuilder();
+        message.append("<div class=\"billing\">\n" +
                 "    <section id=\"cart_items\">\n" +
                 "      <div class=\"container\">\n" +
                 "        <h2 class=\"title text-center\" text-centerstyle=\"margin-top:20px;\">Thank you for your shopping with us!</h2>\n" +
@@ -112,7 +112,7 @@ public class EmailService{
 
 
         for (Product product: bill.getCart().getProducts()) {
-            message+=("            <tr>\n" +
+            message.append("            <tr>\n" +
                     "              <td class=\"cart_description\">\n" +
                     "                <h4>" + product.getName() + "</h4>\n" +
                     "              </td>\n" +
@@ -130,7 +130,7 @@ public class EmailService{
                     "\n");
         }
 
-        message+=("            <tr>\n" +
+        message.append("            <tr>\n" +
                 "              <td colspan=\"3\">&nbsp;</td>\n" +
                 "              <td colspan=\"1\">\n" +
                 "                <table class=\"table table-condensed total-result\">\n" +
@@ -158,7 +158,7 @@ public class EmailService{
                 "      </div>\n" +
                 "    </section>\n" +
                 "  </div>");
-        return message;
+        return message.toString();
     }
 }
 

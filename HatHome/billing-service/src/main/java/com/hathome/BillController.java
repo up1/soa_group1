@@ -33,15 +33,15 @@ public class BillController {
 
 //    save bill
     @RequestMapping(value = "/bill", method =  RequestMethod.POST)
-    public ResponseEntity<BillStatus> saveBill(@RequestBody BillStoreRequest request) throws MessagingException {
+    public ResponseEntity<BillStatus> saveBill(@RequestBody Bill bill) throws MessagingException {
 
-        Bill bill = billRepository.addBill(request);
+        Bill billout = billRepository.addBill(bill);
         BillStatus billStatus = new BillStatus();
         billStatus.setStatus("success");
-        billStatus.setId(bill.getId());
-        emailService.sendEmailMessage(bill);
+        billStatus.setId(billout.getId());
+        emailService.sendEmailMessage(billout);
         CartAdapter cartAdapter = new CartAdapter();
-        cartAdapter.checkOutFromCart(request.getUserId());
+        cartAdapter.checkOutFromCart(billout.getUserId());
         return new ResponseEntity<>(billStatus, HttpStatus.CREATED);
     }
 }

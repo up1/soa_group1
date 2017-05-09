@@ -8,15 +8,6 @@ public class User {
     private String address;
     private Integer id;
 
-    public User() {
-    }
-
-    public User(Integer id, String email, String address) {
-        this.email = email;
-        this.address = address;
-        this.id = id;
-    }
-
     public Integer getId() {
         return id;
     }
